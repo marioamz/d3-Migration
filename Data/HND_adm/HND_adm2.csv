@@ -1,0 +1,299 @@
+"OBJECTID","ID_0","ISO","NAME_0","ID_1","NAME_1","ID_2","NAME_2","TYPE_2","ENGTYPE_2","NL_NAME_2","VARNAME_2"
+1,101,"HND","Honduras",1,"Atlántida",1,"Arizona","Municipio","Municipality",NA,NA
+2,101,"HND","Honduras",1,"Atlántida",2,"El Porvenir","Municipio","Municipality",NA,NA
+3,101,"HND","Honduras",1,"Atlántida",3,"Esparta","Municipio","Municipality",NA,NA
+4,101,"HND","Honduras",1,"Atlántida",4,"Jutiapa","Municipio","Municipality",NA,NA
+5,101,"HND","Honduras",1,"Atlántida",5,"La Ceiba","Municipio","Municipality",NA,NA
+6,101,"HND","Honduras",1,"Atlántida",6,"La Masica","Municipio","Municipality",NA,NA
+7,101,"HND","Honduras",1,"Atlántida",7,"San Francisco","Municipio","Municipality",NA,NA
+8,101,"HND","Honduras",1,"Atlántida",8,"Tela","Municipio","Municipality",NA,NA
+9,101,"HND","Honduras",2,"Choluteca",9,"Apacilagua","Municipio","Municipality",NA,NA
+10,101,"HND","Honduras",2,"Choluteca",10,"Choluteca","Municipio","Municipality",NA,NA
+11,101,"HND","Honduras",2,"Choluteca",11,"Concepción de Maria","Municipio","Municipality",NA,NA
+12,101,"HND","Honduras",2,"Choluteca",12,"Duyure","Municipio","Municipality",NA,NA
+13,101,"HND","Honduras",2,"Choluteca",13,"El Corpus","Municipio","Municipality",NA,NA
+14,101,"HND","Honduras",2,"Choluteca",14,"El Triunfo","Municipio","Municipality",NA,NA
+15,101,"HND","Honduras",2,"Choluteca",15,"Marcovia","Municipio","Municipality",NA,NA
+16,101,"HND","Honduras",2,"Choluteca",16,"Morolica","Municipio","Municipality",NA,NA
+17,101,"HND","Honduras",2,"Choluteca",17,"Namasigue","Municipio","Municipality",NA,NA
+18,101,"HND","Honduras",2,"Choluteca",18,"Orocuina","Municipio","Municipality",NA,NA
+19,101,"HND","Honduras",2,"Choluteca",19,"Pespire","Municipio","Municipality",NA,NA
+20,101,"HND","Honduras",2,"Choluteca",20,"San Antonio de Flores","Municipio","Municipality",NA,NA
+21,101,"HND","Honduras",2,"Choluteca",21,"San Isidro","Municipio","Municipality",NA,NA
+22,101,"HND","Honduras",2,"Choluteca",22,"San José","Municipio","Municipality",NA,NA
+23,101,"HND","Honduras",2,"Choluteca",23,"San Marcos de Colón","Municipio","Municipality",NA,NA
+24,101,"HND","Honduras",2,"Choluteca",24,"Santa Ana de Yusguare","Municipio","Municipality",NA,NA
+25,101,"HND","Honduras",3,"Colón",25,"Balfate","Municipio","Municipality",NA,NA
+26,101,"HND","Honduras",3,"Colón",26,"Bonito Oriental","Municipio","Municipality",NA,NA
+27,101,"HND","Honduras",3,"Colón",27,"Iriona","Municipio","Municipality",NA,NA
+28,101,"HND","Honduras",3,"Colón",28,"Limón","Municipio","Municipality",NA,NA
+29,101,"HND","Honduras",3,"Colón",29,"Sabá","Municipio","Municipality",NA,NA
+30,101,"HND","Honduras",3,"Colón",30,"Santa Fé","Municipio","Municipality",NA,NA
+31,101,"HND","Honduras",3,"Colón",31,"Santa Rosa de Aguán","Municipio","Municipality",NA,NA
+32,101,"HND","Honduras",3,"Colón",32,"Sonaguera","Municipio","Municipality",NA,NA
+33,101,"HND","Honduras",3,"Colón",33,"Tocoa","Municipio","Municipality",NA,NA
+34,101,"HND","Honduras",3,"Colón",34,"Trujillo","Municipio","Municipality",NA,NA
+35,101,"HND","Honduras",4,"Comayagua",35,"Ajuterique","Municipio","Municipality",NA,NA
+36,101,"HND","Honduras",4,"Comayagua",36,"Comayagua","Municipio","Municipality",NA,NA
+37,101,"HND","Honduras",4,"Comayagua",37,"El Rosario","Municipio","Municipality",NA,NA
+38,101,"HND","Honduras",4,"Comayagua",38,"Esquías","Municipio","Municipality",NA,NA
+39,101,"HND","Honduras",4,"Comayagua",39,"Humuya","Municipio","Municipality",NA,NA
+40,101,"HND","Honduras",4,"Comayagua",40,"La Libertad","Municipio","Municipality",NA,NA
+41,101,"HND","Honduras",4,"Comayagua",41,"La Trinidad","Municipio","Municipality",NA,NA
+42,101,"HND","Honduras",4,"Comayagua",42,"Lamaní","Municipio","Municipality",NA,NA
+43,101,"HND","Honduras",4,"Comayagua",43,"Las Lajas","Municipio","Municipality",NA,NA
+44,101,"HND","Honduras",4,"Comayagua",44,"Lejamaní","Municipio","Municipality",NA,NA
+45,101,"HND","Honduras",4,"Comayagua",45,"Meámbar","Municipio","Municipality",NA,NA
+46,101,"HND","Honduras",4,"Comayagua",46,"Minas de Oro","Municipio","Municipality",NA,NA
+47,101,"HND","Honduras",4,"Comayagua",47,"Ojo de Agua","Municipio","Municipality",NA,NA
+48,101,"HND","Honduras",4,"Comayagua",48,"San Jerónimo","Municipio","Municipality",NA,NA
+49,101,"HND","Honduras",4,"Comayagua",49,"San José de Comayagua","Municipio","Municipality",NA,NA
+50,101,"HND","Honduras",4,"Comayagua",50,"San José del Potrero","Municipio","Municipality",NA,NA
+51,101,"HND","Honduras",4,"Comayagua",51,"San Luis","Municipio","Municipality",NA,NA
+52,101,"HND","Honduras",4,"Comayagua",52,"San Sebastián","Municipio","Municipality",NA,NA
+53,101,"HND","Honduras",4,"Comayagua",53,"Siguatepeque","Municipio","Municipality",NA,NA
+54,101,"HND","Honduras",4,"Comayagua",54,"Taulabe","Municipio","Municipality",NA,NA
+55,101,"HND","Honduras",4,"Comayagua",55,"Villa de San Antonio","Municipio","Municipality",NA,NA
+56,101,"HND","Honduras",5,"Copán",56,"Cabañas","Municipio","Municipality",NA,NA
+57,101,"HND","Honduras",5,"Copán",57,"Concepción","Municipio","Municipality",NA,NA
+58,101,"HND","Honduras",5,"Copán",58,"Copán Ruinas","Municipio","Municipality",NA,NA
+59,101,"HND","Honduras",5,"Copán",59,"Corquín","Municipio","Municipality",NA,NA
+60,101,"HND","Honduras",5,"Copán",60,"Cucuyagua","Municipio","Municipality",NA,NA
+61,101,"HND","Honduras",5,"Copán",61,"Dolores","Municipio","Municipality",NA,NA
+62,101,"HND","Honduras",5,"Copán",62,"Dulce Nombre","Municipio","Municipality",NA,NA
+63,101,"HND","Honduras",5,"Copán",63,"El Paraíso","Municipio","Municipality",NA,NA
+64,101,"HND","Honduras",5,"Copán",64,"Florida","Municipio","Municipality",NA,NA
+65,101,"HND","Honduras",5,"Copán",65,"La Jigua","Municipio","Municipality",NA,NA
+66,101,"HND","Honduras",5,"Copán",66,"La Unión","Municipio","Municipality",NA,NA
+67,101,"HND","Honduras",5,"Copán",67,"Nueva Arcadia","Municipio","Municipality",NA,NA
+68,101,"HND","Honduras",5,"Copán",68,"San Agustín","Municipio","Municipality",NA,NA
+69,101,"HND","Honduras",5,"Copán",69,"San Antonio","Municipio","Municipality",NA,NA
+70,101,"HND","Honduras",5,"Copán",70,"San Jerónimo","Municipio","Municipality",NA,NA
+71,101,"HND","Honduras",5,"Copán",71,"San José","Municipio","Municipality",NA,NA
+72,101,"HND","Honduras",5,"Copán",72,"San Juan de Opoa","Municipio","Municipality",NA,NA
+73,101,"HND","Honduras",5,"Copán",73,"San Nicolás","Municipio","Municipality",NA,NA
+74,101,"HND","Honduras",5,"Copán",74,"San Pedro","Municipio","Municipality",NA,NA
+75,101,"HND","Honduras",5,"Copán",75,"Santa Rita","Municipio","Municipality",NA,NA
+76,101,"HND","Honduras",5,"Copán",76,"Santa Rosa de Copán","Municipio","Municipality",NA,NA
+77,101,"HND","Honduras",5,"Copán",77,"Trinidad","Municipio","Municipality",NA,NA
+78,101,"HND","Honduras",5,"Copán",78,"Veracruz","Municipio","Municipality",NA,NA
+79,101,"HND","Honduras",6,"Cortés",79,"Choloma","Municipio","Municipality",NA,NA
+80,101,"HND","Honduras",6,"Cortés",80,"La Lima","Municipio","Municipality",NA,NA
+81,101,"HND","Honduras",6,"Cortés",81,"Omoa","Municipio","Municipality",NA,NA
+82,101,"HND","Honduras",6,"Cortés",82,"Pimienta","Municipio","Municipality",NA,NA
+83,101,"HND","Honduras",6,"Cortés",83,"Potrerillos","Municipio","Municipality",NA,NA
+84,101,"HND","Honduras",6,"Cortés",84,"Puerto Cortés","Municipio","Municipality",NA,NA
+85,101,"HND","Honduras",6,"Cortés",85,"San Antonio de Cortés","Municipio","Municipality",NA,NA
+86,101,"HND","Honduras",6,"Cortés",86,"San Francisco de Yojoa","Municipio","Municipality",NA,NA
+87,101,"HND","Honduras",6,"Cortés",87,"San Manuel","Municipio","Municipality",NA,NA
+88,101,"HND","Honduras",6,"Cortés",88,"San Pedro Sula","Municipio","Municipality",NA,NA
+89,101,"HND","Honduras",6,"Cortés",89,"Santa Cruz de Yojoa","Municipio","Municipality",NA,NA
+90,101,"HND","Honduras",6,"Cortés",90,"Villanueva","Municipio","Municipality",NA,NA
+91,101,"HND","Honduras",7,"El Paraíso",91,"Alauca","Municipio","Municipality",NA,NA
+92,101,"HND","Honduras",7,"El Paraíso",92,"Danlí","Municipio","Municipality",NA,NA
+93,101,"HND","Honduras",7,"El Paraíso",93,"El Paraíso","Municipio","Municipality",NA,NA
+94,101,"HND","Honduras",7,"El Paraíso",94,"Guinope","Municipio","Municipality",NA,NA
+95,101,"HND","Honduras",7,"El Paraíso",95,"Jacaleapa","Municipio","Municipality",NA,NA
+96,101,"HND","Honduras",7,"El Paraíso",96,"Liure","Municipio","Municipality",NA,NA
+97,101,"HND","Honduras",7,"El Paraíso",97,"Morocelí","Municipio","Municipality",NA,NA
+98,101,"HND","Honduras",7,"El Paraíso",98,"Oropolí","Municipio","Municipality",NA,NA
+99,101,"HND","Honduras",7,"El Paraíso",99,"Potrerillos","Municipio","Municipality",NA,NA
+100,101,"HND","Honduras",7,"El Paraíso",100,"San Antonio de Flores","Municipio","Municipality",NA,NA
+101,101,"HND","Honduras",7,"El Paraíso",101,"San Lucas","Municipio","Municipality",NA,NA
+102,101,"HND","Honduras",7,"El Paraíso",102,"San Matías","Municipio","Municipality",NA,NA
+103,101,"HND","Honduras",7,"El Paraíso",103,"Soledad","Municipio","Municipality",NA,NA
+104,101,"HND","Honduras",7,"El Paraíso",104,"Teupasenti","Municipio","Municipality",NA,NA
+105,101,"HND","Honduras",7,"El Paraíso",105,"Texiguat","Municipio","Municipality",NA,NA
+106,101,"HND","Honduras",7,"El Paraíso",106,"Trojes","Municipio","Municipality",NA,NA
+107,101,"HND","Honduras",7,"El Paraíso",107,"Vado Ancho","Municipio","Municipality",NA,NA
+108,101,"HND","Honduras",7,"El Paraíso",108,"Yauyupe","Municipio","Municipality",NA,NA
+109,101,"HND","Honduras",7,"El Paraíso",109,"Yuscarán","Municipio","Municipality",NA,NA
+110,101,"HND","Honduras",8,"Francisco Morazán",110,"Alubarén","Municipio","Municipality",NA,NA
+111,101,"HND","Honduras",8,"Francisco Morazán",111,"Cedros","Municipio","Municipality",NA,NA
+112,101,"HND","Honduras",8,"Francisco Morazán",112,"Curarén","Municipio","Municipality",NA,NA
+113,101,"HND","Honduras",8,"Francisco Morazán",113,"Distrito Central","Municipio","Municipality",NA,NA
+114,101,"HND","Honduras",8,"Francisco Morazán",114,"El Porvenir","Municipio","Municipality",NA,NA
+115,101,"HND","Honduras",8,"Francisco Morazán",115,"Guaimaca","Municipio","Municipality",NA,NA
+116,101,"HND","Honduras",8,"Francisco Morazán",116,"La Libertad","Municipio","Municipality",NA,NA
+117,101,"HND","Honduras",8,"Francisco Morazán",117,"La Venta","Municipio","Municipality",NA,NA
+118,101,"HND","Honduras",8,"Francisco Morazán",118,"Lepaterique","Municipio","Municipality",NA,NA
+119,101,"HND","Honduras",8,"Francisco Morazán",119,"Maraita","Municipio","Municipality",NA,NA
+120,101,"HND","Honduras",8,"Francisco Morazán",120,"Marale","Municipio","Municipality",NA,NA
+121,101,"HND","Honduras",8,"Francisco Morazán",121,"Nueva Armenia","Municipio","Municipality",NA,NA
+122,101,"HND","Honduras",8,"Francisco Morazán",122,"Ojojona","Municipio","Municipality",NA,NA
+123,101,"HND","Honduras",8,"Francisco Morazán",123,"Orica","Municipio","Municipality",NA,NA
+124,101,"HND","Honduras",8,"Francisco Morazán",124,"Reitoca","Municipio","Municipality",NA,NA
+125,101,"HND","Honduras",8,"Francisco Morazán",125,"Sabanagrande","Municipio","Municipality",NA,NA
+126,101,"HND","Honduras",8,"Francisco Morazán",126,"San Antonio de Oriente","Municipio","Municipality",NA,NA
+127,101,"HND","Honduras",8,"Francisco Morazán",127,"San Buenaventura","Municipio","Municipality",NA,NA
+128,101,"HND","Honduras",8,"Francisco Morazán",128,"San Ignacio","Municipio","Municipality",NA,NA
+129,101,"HND","Honduras",8,"Francisco Morazán",129,"San Juan de Flores","Municipio","Municipality",NA,NA
+130,101,"HND","Honduras",8,"Francisco Morazán",130,"San Miguelito","Municipio","Municipality",NA,NA
+131,101,"HND","Honduras",8,"Francisco Morazán",131,"Santa Ana","Municipio","Municipality",NA,NA
+132,101,"HND","Honduras",8,"Francisco Morazán",132,"Santa Lucía","Municipio","Municipality",NA,NA
+133,101,"HND","Honduras",8,"Francisco Morazán",133,"Talanga","Municipio","Municipality",NA,NA
+134,101,"HND","Honduras",8,"Francisco Morazán",134,"Tatumbla","Municipio","Municipality",NA,NA
+135,101,"HND","Honduras",8,"Francisco Morazán",135,"Valle de Ángeles","Municipio","Municipality",NA,NA
+136,101,"HND","Honduras",8,"Francisco Morazán",136,"Vallecillo","Municipio","Municipality",NA,NA
+137,101,"HND","Honduras",8,"Francisco Morazán",137,"Villa de San Francisco","Municipio","Municipality",NA,NA
+138,101,"HND","Honduras",9,"Gracias a Dios",138,"Ahuas","Municipio","Municipality",NA,NA
+139,101,"HND","Honduras",9,"Gracias a Dios",139,"Brus Laguna","Municipio","Municipality",NA,NA
+140,101,"HND","Honduras",9,"Gracias a Dios",140,"Juan Francisco Bulnes","Municipio","Municipality",NA,NA
+141,101,"HND","Honduras",9,"Gracias a Dios",141,"Puerto Lempira","Municipio","Municipality",NA,NA
+142,101,"HND","Honduras",9,"Gracias a Dios",142,"Ramón Villeda Morales","Municipio","Municipality",NA,"Ramon V. Morales"
+143,101,"HND","Honduras",9,"Gracias a Dios",143,"Wampusirpi","Municipio","Municipality",NA,NA
+144,101,"HND","Honduras",10,"Intibucá",144,"Camasca","Municipio","Municipality",NA,NA
+145,101,"HND","Honduras",10,"Intibucá",145,"Colomoncagua","Municipio","Municipality",NA,NA
+146,101,"HND","Honduras",10,"Intibucá",146,"Concepción","Municipio","Municipality",NA,NA
+147,101,"HND","Honduras",10,"Intibucá",147,"Dolores","Municipio","Municipality",NA,NA
+148,101,"HND","Honduras",10,"Intibucá",148,"Intibucá","Municipio","Municipality",NA,NA
+149,101,"HND","Honduras",10,"Intibucá",149,"Jesús de Otoro","Municipio","Municipality",NA,NA
+150,101,"HND","Honduras",10,"Intibucá",150,"La Esperanza","Municipio","Municipality",NA,NA
+151,101,"HND","Honduras",10,"Intibucá",151,"Magdalena","Municipio","Municipality",NA,NA
+152,101,"HND","Honduras",10,"Intibucá",152,"Masaguara","Municipio","Municipality",NA,NA
+153,101,"HND","Honduras",10,"Intibucá",153,"San Antonio","Municipio","Municipality",NA,NA
+154,101,"HND","Honduras",10,"Intibucá",154,"San Francisco de Opalaca","Municipio","Municipality",NA,NA
+155,101,"HND","Honduras",10,"Intibucá",155,"San Isidro","Municipio","Municipality",NA,NA
+156,101,"HND","Honduras",10,"Intibucá",156,"San Juan","Municipio","Municipality",NA,NA
+157,101,"HND","Honduras",10,"Intibucá",157,"San Marcos de la Sierra","Municipio","Municipality",NA,"San Marcos de Sierra"
+158,101,"HND","Honduras",10,"Intibucá",158,"San Miguelito","Municipio","Municipality",NA,NA
+159,101,"HND","Honduras",10,"Intibucá",159,"Santa Lucía","Municipio","Municipality",NA,NA
+160,101,"HND","Honduras",10,"Intibucá",160,"Yamaranguila","Municipio","Municipality",NA,NA
+161,101,"HND","Honduras",11,"Islas de la Bahía",161,"Guanaja","Municipio","Municipality",NA,NA
+162,101,"HND","Honduras",11,"Islas de la Bahía",162,"José Santos Guardiola","Municipio","Municipality",NA,NA
+163,101,"HND","Honduras",11,"Islas de la Bahía",163,"Roatán","Municipio","Municipality",NA,NA
+164,101,"HND","Honduras",11,"Islas de la Bahía",164,"Utila","Municipio","Municipality",NA,NA
+165,101,"HND","Honduras",12,"La Paz",165,"Aguaqueterique","Municipio","Municipality",NA,"Aguanqueterique"
+166,101,"HND","Honduras",12,"La Paz",166,"Cabañas","Municipio","Municipality",NA,NA
+167,101,"HND","Honduras",12,"La Paz",167,"Cane","Municipio","Municipality",NA,NA
+168,101,"HND","Honduras",12,"La Paz",168,"Chinacla","Municipio","Municipality",NA,NA
+169,101,"HND","Honduras",12,"La Paz",169,"Guajiquiro","Municipio","Municipality",NA,NA
+170,101,"HND","Honduras",12,"La Paz",170,"La Paz","Municipio","Municipality",NA,NA
+171,101,"HND","Honduras",12,"La Paz",171,"Lauterique","Municipio","Municipality",NA,NA
+172,101,"HND","Honduras",12,"La Paz",172,"Marcala","Municipio","Municipality",NA,NA
+173,101,"HND","Honduras",12,"La Paz",173,"Mercedes de Oriente","Municipio","Municipality",NA,NA
+174,101,"HND","Honduras",12,"La Paz",174,"Opatoro","Municipio","Municipality",NA,NA
+175,101,"HND","Honduras",12,"La Paz",175,"San Antonio del Norte","Municipio","Municipality",NA,NA
+176,101,"HND","Honduras",12,"La Paz",176,"San José","Municipio","Municipality",NA,NA
+177,101,"HND","Honduras",12,"La Paz",177,"San Juan","Municipio","Municipality",NA,NA
+178,101,"HND","Honduras",12,"La Paz",178,"San Pedro de Tutule","Municipio","Municipality",NA,NA
+179,101,"HND","Honduras",12,"La Paz",179,"Santa Ana","Municipio","Municipality",NA,NA
+180,101,"HND","Honduras",12,"La Paz",180,"Santa Elena","Municipio","Municipality",NA,NA
+181,101,"HND","Honduras",12,"La Paz",181,"Santa María","Municipio","Municipality",NA,NA
+182,101,"HND","Honduras",12,"La Paz",182,"Santiago de Puringla","Municipio","Municipality",NA,NA
+183,101,"HND","Honduras",12,"La Paz",183,"Yarula","Municipio","Municipality",NA,NA
+184,101,"HND","Honduras",13,"Lempira",184,"Belen","Municipio","Municipality",NA,"Belén"
+185,101,"HND","Honduras",13,"Lempira",185,"Candelaria","Municipio","Municipality",NA,NA
+186,101,"HND","Honduras",13,"Lempira",186,"Cololaca","Municipio","Municipality",NA,NA
+187,101,"HND","Honduras",13,"Lempira",187,"Erandique","Municipio","Municipality",NA,NA
+188,101,"HND","Honduras",13,"Lempira",188,"Gracias","Municipio","Municipality",NA,NA
+189,101,"HND","Honduras",13,"Lempira",189,"Gualcince","Municipio","Municipality",NA,NA
+190,101,"HND","Honduras",13,"Lempira",190,"Guarita","Municipio","Municipality",NA,NA
+191,101,"HND","Honduras",13,"Lempira",191,"La Campa","Municipio","Municipality",NA,NA
+192,101,"HND","Honduras",13,"Lempira",192,"La Iguala","Municipio","Municipality",NA,NA
+193,101,"HND","Honduras",13,"Lempira",193,"La Unión","Municipio","Municipality",NA,NA
+194,101,"HND","Honduras",13,"Lempira",194,"La Virtud","Municipio","Municipality",NA,NA
+195,101,"HND","Honduras",13,"Lempira",195,"Las Flores","Municipio","Municipality",NA,NA
+196,101,"HND","Honduras",13,"Lempira",196,"Lepaera","Municipio","Municipality",NA,NA
+197,101,"HND","Honduras",13,"Lempira",197,"Mapulaca","Municipio","Municipality",NA,NA
+198,101,"HND","Honduras",13,"Lempira",198,"Piraera","Municipio","Municipality",NA,NA
+199,101,"HND","Honduras",13,"Lempira",199,"San Andrés","Municipio","Municipality",NA,NA
+200,101,"HND","Honduras",13,"Lempira",200,"San Francisco","Municipio","Municipality",NA,NA
+201,101,"HND","Honduras",13,"Lempira",201,"San Juan Guarita","Municipio","Municipality",NA,NA
+202,101,"HND","Honduras",13,"Lempira",202,"San Manuel Colohete","Municipio","Municipality",NA,"San Manuel del Colohete"
+203,101,"HND","Honduras",13,"Lempira",203,"San Marcos de Caiquín","Municipio","Municipality",NA,NA
+204,101,"HND","Honduras",13,"Lempira",204,"San Rafael","Municipio","Municipality",NA,NA
+205,101,"HND","Honduras",13,"Lempira",205,"San Sebastian","Municipio","Municipality",NA,NA
+206,101,"HND","Honduras",13,"Lempira",206,"Santa Cruz","Municipio","Municipality",NA,NA
+207,101,"HND","Honduras",13,"Lempira",207,"Talgua","Municipio","Municipality",NA,NA
+208,101,"HND","Honduras",13,"Lempira",208,"Tambla","Municipio","Municipality",NA,NA
+209,101,"HND","Honduras",13,"Lempira",209,"Tomalá","Municipio","Municipality",NA,NA
+210,101,"HND","Honduras",13,"Lempira",210,"Valladolid","Municipio","Municipality",NA,NA
+211,101,"HND","Honduras",13,"Lempira",211,"Virginia","Municipio","Municipality",NA,NA
+212,101,"HND","Honduras",14,"Ocotepeque",212,"Belén Gualcho","Municipio","Municipality",NA,NA
+213,101,"HND","Honduras",14,"Ocotepeque",213,"Concepción","Municipio","Municipality",NA,NA
+214,101,"HND","Honduras",14,"Ocotepeque",214,"Dolores Merendon","Municipio","Municipality",NA,NA
+215,101,"HND","Honduras",14,"Ocotepeque",215,"Fraternidad","Municipio","Municipality",NA,NA
+216,101,"HND","Honduras",14,"Ocotepeque",216,"La Encarnación","Municipio","Municipality",NA,NA
+217,101,"HND","Honduras",14,"Ocotepeque",217,"La Labor","Municipio","Municipality",NA,NA
+218,101,"HND","Honduras",14,"Ocotepeque",218,"Lucerna","Municipio","Municipality",NA,NA
+219,101,"HND","Honduras",14,"Ocotepeque",219,"Mercedes","Municipio","Municipality",NA,NA
+220,101,"HND","Honduras",14,"Ocotepeque",220,"Ocotepeque","Municipio","Municipality",NA,"Nueva Ocotepeque"
+221,101,"HND","Honduras",14,"Ocotepeque",221,"San Fernando","Municipio","Municipality",NA,NA
+222,101,"HND","Honduras",14,"Ocotepeque",222,"San Francisco del Valle","Municipio","Municipality",NA,NA
+223,101,"HND","Honduras",14,"Ocotepeque",223,"San Jorge","Municipio","Municipality",NA,NA
+224,101,"HND","Honduras",14,"Ocotepeque",224,"San Marcos","Municipio","Municipality",NA,NA
+225,101,"HND","Honduras",14,"Ocotepeque",225,"Santa Fé","Municipio","Municipality",NA,NA
+226,101,"HND","Honduras",14,"Ocotepeque",226,"Sensenti","Municipio","Municipality",NA,NA
+227,101,"HND","Honduras",14,"Ocotepeque",227,"Sinuapa","Municipio","Municipality",NA,NA
+228,101,"HND","Honduras",15,"Olancho",228,"Campamento","Municipio","Municipality",NA,NA
+229,101,"HND","Honduras",15,"Olancho",229,"Catacamas","Municipio","Municipality",NA,NA
+230,101,"HND","Honduras",15,"Olancho",230,"Concordia","Municipio","Municipality",NA,NA
+231,101,"HND","Honduras",15,"Olancho",231,"Dulce Nombre de Culmí","Municipio","Municipality",NA,NA
+232,101,"HND","Honduras",15,"Olancho",232,"El Rosario","Municipio","Municipality",NA,NA
+233,101,"HND","Honduras",15,"Olancho",233,"Esquipulas del Norte","Municipio","Municipality",NA,NA
+234,101,"HND","Honduras",15,"Olancho",234,"Gualaco","Municipio","Municipality",NA,NA
+235,101,"HND","Honduras",15,"Olancho",235,"Guarizama","Municipio","Municipality",NA,NA
+236,101,"HND","Honduras",15,"Olancho",236,"Guata","Municipio","Municipality",NA,NA
+237,101,"HND","Honduras",15,"Olancho",237,"Guayape","Municipio","Municipality",NA,NA
+238,101,"HND","Honduras",15,"Olancho",238,"Jano","Municipio","Municipality",NA,NA
+239,101,"HND","Honduras",15,"Olancho",239,"Juticalpa","Municipio","Municipality",NA,NA
+240,101,"HND","Honduras",15,"Olancho",240,"La Unión","Municipio","Municipality",NA,NA
+241,101,"HND","Honduras",15,"Olancho",241,"Mangulile","Municipio","Municipality",NA,NA
+242,101,"HND","Honduras",15,"Olancho",242,"Manto","Municipio","Municipality",NA,NA
+243,101,"HND","Honduras",15,"Olancho",243,"Patuca","Municipio","Municipality",NA,NA
+244,101,"HND","Honduras",15,"Olancho",244,"Salamá","Municipio","Municipality",NA,NA
+245,101,"HND","Honduras",15,"Olancho",245,"San Esteban","Municipio","Municipality",NA,NA
+246,101,"HND","Honduras",15,"Olancho",246,"San Francisco de Becerra","Municipio","Municipality",NA,NA
+247,101,"HND","Honduras",15,"Olancho",247,"San Francisco de la Paz","Municipio","Municipality",NA,NA
+248,101,"HND","Honduras",15,"Olancho",248,"Santa Maria del Real","Municipio","Municipality",NA,NA
+249,101,"HND","Honduras",15,"Olancho",249,"Silca","Municipio","Municipality",NA,NA
+250,101,"HND","Honduras",15,"Olancho",250,"Yocón","Municipio","Municipality",NA,NA
+251,101,"HND","Honduras",16,"Santa Bárbara",251,"Arada","Municipio","Municipality",NA,NA
+252,101,"HND","Honduras",16,"Santa Bárbara",252,"Atima","Municipio","Municipality",NA,NA
+253,101,"HND","Honduras",16,"Santa Bárbara",253,"Azacualpa","Municipio","Municipality",NA,NA
+254,101,"HND","Honduras",16,"Santa Bárbara",254,"Ceguaca","Municipio","Municipality",NA,NA
+255,101,"HND","Honduras",16,"Santa Bárbara",255,"Chinda","Municipio","Municipality",NA,NA
+256,101,"HND","Honduras",16,"Santa Bárbara",256,"Concepción del Norte","Municipio","Municipality",NA,NA
+257,101,"HND","Honduras",16,"Santa Bárbara",257,"Concepción del Sur","Municipio","Municipality",NA,NA
+258,101,"HND","Honduras",16,"Santa Bárbara",258,"El Nispero","Municipio","Municipality",NA,NA
+259,101,"HND","Honduras",16,"Santa Bárbara",259,"Gualala","Municipio","Municipality",NA,NA
+260,101,"HND","Honduras",16,"Santa Bárbara",260,"Ilama","Municipio","Municipality",NA,NA
+261,101,"HND","Honduras",16,"Santa Bárbara",261,"Las Vegas","Municipio","Municipality",NA,NA
+262,101,"HND","Honduras",16,"Santa Bárbara",262,"Macuelizo","Municipio","Municipality",NA,NA
+263,101,"HND","Honduras",16,"Santa Bárbara",263,"Naranjito","Municipio","Municipality",NA,NA
+264,101,"HND","Honduras",16,"Santa Bárbara",264,"Nueva Frontera","Municipio","Municipality",NA,NA
+265,101,"HND","Honduras",16,"Santa Bárbara",265,"Nuevo Celilac","Municipio","Municipality",NA,NA
+266,101,"HND","Honduras",16,"Santa Bárbara",266,"Petoa","Municipio","Municipality",NA,NA
+267,101,"HND","Honduras",16,"Santa Bárbara",267,"Protección","Municipio","Municipality",NA,NA
+268,101,"HND","Honduras",16,"Santa Bárbara",268,"Quimistán","Municipio","Municipality",NA,"QuimiSantan"
+269,101,"HND","Honduras",16,"Santa Bárbara",269,"San Francisco de Ojuera","Municipio","Municipality",NA,NA
+270,101,"HND","Honduras",16,"Santa Bárbara",270,"San José de Colinas","Municipio","Municipality",NA,"San Jose de Colimas"
+271,101,"HND","Honduras",16,"Santa Bárbara",271,"San Luis","Municipio","Municipality",NA,NA
+272,101,"HND","Honduras",16,"Santa Bárbara",272,"San Marcos","Municipio","Municipality",NA,NA
+273,101,"HND","Honduras",16,"Santa Bárbara",273,"San Nicolás","Municipio","Municipality",NA,NA
+274,101,"HND","Honduras",16,"Santa Bárbara",274,"San Pedro Zacapa","Municipio","Municipality",NA,NA
+275,101,"HND","Honduras",16,"Santa Bárbara",275,"San Vicente Centenario","Municipio","Municipality",NA,NA
+276,101,"HND","Honduras",16,"Santa Bárbara",276,"Santa Bárbara","Municipio","Municipality",NA,NA
+277,101,"HND","Honduras",16,"Santa Bárbara",277,"Santa Rita","Municipio","Municipality",NA,NA
+278,101,"HND","Honduras",16,"Santa Bárbara",278,"Trinidad de Copán","Municipio","Municipality",NA,"Trinidad"
+279,101,"HND","Honduras",17,"Valle",279,"Alianza","Municipio","Municipality",NA,NA
+280,101,"HND","Honduras",17,"Valle",280,"Amapala","Municipio","Municipality",NA,NA
+281,101,"HND","Honduras",17,"Valle",281,"Aramecina","Municipio","Municipality",NA,NA
+282,101,"HND","Honduras",17,"Valle",282,"Caridad","Municipio","Municipality",NA,NA
+283,101,"HND","Honduras",17,"Valle",283,"Goascorán","Municipio","Municipality",NA,NA
+284,101,"HND","Honduras",17,"Valle",284,"Langue","Municipio","Municipality",NA,NA
+285,101,"HND","Honduras",17,"Valle",285,"Nacaome","Municipio","Municipality",NA,NA
+286,101,"HND","Honduras",17,"Valle",286,"San Francisco de Coray","Municipio","Municipality",NA,NA
+287,101,"HND","Honduras",17,"Valle",287,"San Lorenzo","Municipio","Municipality",NA,NA
+288,101,"HND","Honduras",18,"Yoro",288,"Arenal","Municipio","Municipality",NA,NA
+289,101,"HND","Honduras",18,"Yoro",289,"El Negrito","Municipio","Municipality",NA,NA
+290,101,"HND","Honduras",18,"Yoro",290,"El Progreso","Municipio","Municipality",NA,NA
+291,101,"HND","Honduras",18,"Yoro",291,"Jocón","Municipio","Municipality",NA,NA
+292,101,"HND","Honduras",18,"Yoro",292,"Morazán","Municipio","Municipality",NA,NA
+293,101,"HND","Honduras",18,"Yoro",293,"Olanchito","Municipio","Municipality",NA,NA
+294,101,"HND","Honduras",18,"Yoro",294,"Santa Rita","Municipio","Municipality",NA,NA
+295,101,"HND","Honduras",18,"Yoro",295,"Sulaco","Municipio","Municipality",NA,NA
+296,101,"HND","Honduras",18,"Yoro",296,"Victoria","Municipio","Municipality",NA,NA
+297,101,"HND","Honduras",18,"Yoro",297,"Yorito","Municipio","Municipality",NA,NA
+298,101,"HND","Honduras",18,"Yoro",298,"Yoro","Municipio","Municipality",NA,NA
