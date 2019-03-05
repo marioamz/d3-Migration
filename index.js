@@ -33,9 +33,37 @@ d3.json("build/mx_tj.json", function(error, mx) {
 });
 
 // now I'm building dots for people deported from USA
-const columns = [['mex_port_long', 'mex_port_lat'], ['us_entry_long', 'us_entry_lat']]
+/*
+d3.csv('d3data/encodedusa.csv', function(error, usa) {
+  console.log(usa);
+  for(var i=0; i < usa.length; i++) {
+    svg.selectAll('circle'+i)
+    .data(usa)
+    .enter()
+    .append('circle')
+    .attr('cx', function(d) {
+      console.log(usa[i]['mex_port_lat']);
+      return projection([d[usa[i]['mex_port_long']], d[usa[i]['mex_port_lat']]])[0];
+    })
+    .attr('cy', function(d) {
+      return projection([d[usa[i]['mex_port_long']], d[usa[i]['mex_port_lat']]])[1];
+    })
+    .attr('r', 2)
+    .style('fill', 'purple')
+    .style('stroke', 'black');
+}
+});
+*/
+
+var tooltip = d3.select("body").append("div")
+    .attr("class", "tooltip")
+    .style("opacity", 0);
+
+var columns = [['mex_port_long', 'mex_port_lat', 'mex_port'], ['us_entry_long', 'us_entry_lat', 'us_entry'],
+['firstcity_long', 'firstcity_lat', 'first_citynew'], ['secondcity_long', 'secondcity_lat', 'second_citynew'], ['longcity_long', 'longcity_lat', 'long_citynew']]
 
 d3.csv('d3data/encodedusa.csv', function(error, usa) {
+  console.log(usa);
   for(var i=0; i < columns.length; i++) {
     svg.selectAll('circle'+i)
     .data(usa)
@@ -48,8 +76,19 @@ d3.csv('d3data/encodedusa.csv', function(error, usa) {
       return projection([d[columns[i][0]], d[columns[i][1]]])[1];
     })
     .attr('r', 2)
-    .style('fill', 'purple')
-    .style('stroke', 'black');
+    .on("mouseover", function(e) {
+      tooltip.transition()
+      .duration(200)
+      .style("opacity", .9);
+      tooltip.html(e[columns[i][2]])
+      .style("left", (d3.event.pageX) + "px")
+      .style("top", (d3.event.pageY - 28) + "px");
+    })
+    .on("mouseout", function(e) {
+      tooltip.transition()
+      .duration(500)
+      .style("opacity", 0);
+    });
 }
 });
 
