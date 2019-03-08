@@ -27,9 +27,8 @@ d3.json("build/mx_tj.json", function(error, mx) {
 // now I'm building dots for people deported from USA
 
 // WORKS, ITERATING THROUGH COLUMNS
-var columns = [['mex_port_long', 'mex_port_lat'], ['us_entry_long', 'us_entry_lat'],
-['firstcity_long', 'firstcity_lat'], ['secondcity_long', 'secondcity_lat'],
-['longcity_long', 'longcity_lat']]
+var columns = [['mex_port_long', 'mex_port_lat'],
+['firstcity_long', 'firstcity_lat'], ['secondcity_long', 'secondcity_lat'], ['us_entry_long', 'us_entry_lat']]
 
 d3.csv('d3data/encodedusa.csv', function(error, usa) {
   let state = 0;
@@ -41,11 +40,14 @@ d3.csv('d3data/encodedusa.csv', function(error, usa) {
       })
     };
   });
+
   console.log(newData)
+
   svg.selectAll('circle')
     .data(newData)
     .enter()
     .append('circle')
+    .attr('class', 'mexport')
     .attr('cx', function(d) {
       return projection([d.locations[state][0], d.locations[state][1]])[0];
       // return projection([d[columns[i][0]], d[columns[i][1]]])[0];
@@ -53,10 +55,23 @@ d3.csv('d3data/encodedusa.csv', function(error, usa) {
     .attr('cy', function(d) {
       return projection([d.locations[state][0], d.locations[state][1]])[1];
     })
-    .attr('r', 2)
-  svg.append('button')
+    .attr('r', 2);
+
+  d3.select("#option").select("input")
     .on('click', d => {
       state += 1;
+      console.log(state);
+
+      svg.selectAll('.mexport')
+        .transition().duration(1000)
+        .attr('cx', function(d) {
+          return projection([d.locations[state][0], d.locations[state][1]])[0];
+        // return projection([d[columns[i][0]], d[columns[i][1]]])[0];
+        })
+        .attr('cy', function(d) {
+          return projection([d.locations[state][0], d.locations[state][1]])[1];
+        });
+
     })
     .text('asddsadsa')
   // for(var i=0; i < columns.length; i++) {
