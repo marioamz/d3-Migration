@@ -1,19 +1,19 @@
-﻿Location
-"Tapachula, Chiapas"
-"Mapastepec, Chiapas"
-"Pijijiapan, Chiapas"
-"Arriaga, Chiapas"
-"Tapanatepec, Oaxaca"
-"Juchitán, Oaxaca"
-"Donají, Oaxaca"
-"Isla, Veracruz"
-"Córdoba, Veracruz"
-"Mexico City, Mexico"
-"Querétaro, Queretaro"
-"Irapuato, Michoacán"
-"Guadalajara, Jalisco"
-"La Concha, Sinaloa"
-"Navajoa, Sonora"
-"Guaymas, Sonora"
-"Sonoyta, Sonora"
-"Tijuana, Baja California"
+,Location,city_lat,city_long
+0,"Tapachula, Chiapas",14.9055599,-92.26342059999999
+1,"Mapastepec, Chiapas",15.4414006,-92.8949959
+2,"Pijijiapan, Chiapas",15.6851709,-93.2122536
+3,"Arriaga, Chiapas",16.2371385,-93.8986279
+4,"Tapanatepec, Oaxaca",16.3693859,-94.1944784
+5,"Juchitán, Oaxaca",16.4406909,-95.0221197
+6,"Donají, Oaxaca",17.2263888,-95.0511111
+7,"Isla, Veracruz",18.028804,-95.52806299999999
+8,"Córdoba, Veracruz",18.8838909,-96.9237751
+9,"Mexico City, Mexico",19.4326077,-99.133208
+10,"Querétaro, Queretaro",20.5887932,-100.3898881
+11,"Irapuato, Michoacán",20.6622419,-101.3511641
+12,"Guadalajara, Jalisco",20.6596988,-103.3496092
+13,"La Concha, Sinaloa",22.5313301,-105.4496002
+14,"Navajoa, Sonora",27.0727573,-109.4437493
+15,"Guaymas, Sonora",27.9178651,-110.9089378
+16,"Sonoyta, Sonora",31.8629677,-112.8488631
+17,"Tijuana, Baja California",32.5149469,-117.0382471

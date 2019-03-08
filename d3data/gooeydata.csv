@@ -1,0 +1,170 @@
+,mex_port,mex_port_lat,mex_port_long,index,sum,city_lat,city_long
+0,"Talismán, Chiapas",14.962767999999999,-92.148176,"Isla , Veracruz de Ignacio de la Llave",1.0,18.028804,-95.52806299999999
+1,"Cuauhtémoc, Chiapas",15.665482999999998,-92.003579,"San Juan Cuautlancingo , Puebla",1.0,19.0839687,-98.2668451
+2,"Carmen Xhán, Chiapas",16.043086,-91.755012,"San Jorge Pueblo Nuevo , México",1.0,19.2474122,-99.61395410000002
+3,"El Ceibo, Tabasco",17.261546,-90.994378,"Chapala , Jalisco",1.0,20.2971255,-103.1889464
+4,"Ciudad Hidalgo, Chiapas",14.679726,-92.150326,"Hidalgo , Chiapas",1.0,14.6796279,-92.1525959
+5,"El Martillo, Tabasco",17.278333,-91.021111,"Paso del Toro , Veracruz de Ignacio de la Llave",1.0,19.0313169,-96.1354683
+6,"Carmen Xhán, Chiapas",16.043086,-91.755012,"Paraíso , Tabasco",1.0,18.4006144,-93.2127162
+7,"Cuauhtémoc, Chiapas",15.665482999999998,-92.003579,"Ciudad Hidalgo , Chiapas",1.0,14.6796279,-92.1525959
+8,"Carmen Xhán, Chiapas",16.043086,-91.755012,"Palomas , Chihuahua",1.0,31.7808759,-107.6309084
+9,"Carmen Xhán, Chiapas",16.043086,-91.755012,Otras Ciudades de Chihuahua,1.0,28.6329957,-106.0691004
+10,"El Ceibo, Tabasco",17.261546,-90.994378,"Ciudad Serdán , Puebla",1.0,18.9844003,-97.4543626
+11,"Ciudad Hidalgo, Chiapas",14.679726,-92.150326,"Ciudad del Carmen , Campeche",1.0,18.6504879,-91.80745859999999
+12,"Frontera Corozal, Chiapas",16.814734,-90.884703,"Morelia , Michoacán de Ocampo",1.0,19.7059504,-101.1949825
+13,"Cuauhtémoc, Chiapas",15.665482999999998,-92.003579,"Comonfort , Guanajuato",1.0,20.7197856,-100.7596892
+14,"Cuauhtémoc, Chiapas",15.665482999999998,-92.003579,"León de los Aldama , Guanajuato",1.0,21.1250077,-101.6859605
+15,"Cuauhtémoc, Chiapas",15.665482999999998,-92.003579,"Cuajimalpa de Morelos , Distrito Federal",1.0,19.3631419,-99.28805969999999
+16,"El Martillo, Tabasco",17.278333,-91.021111,"Cuautla , Morelos",1.0,18.8126047,-98.9548261
+17,"Cuauhtémoc, Chiapas",15.665482999999998,-92.003579,"Juventino Rosas , Guanajuato",1.0,20.6440308,-100.9932881
+18,"Talismán, Chiapas",14.962767999999999,-92.148176,"Juanacatlán , Jalisco",1.0,20.5084132,-103.1684561
+19,"El Ceibo, Tabasco",17.261546,-90.994378,"Jamay , Jalisco",1.0,20.2960475,-102.7106394
+20,"Cuauhtémoc, Chiapas",15.665482999999998,-92.003579,"El Rosario , Sinaloa",1.0,22.75,-105.371111
+21,"Unión Juárez, Chiapas",15.071193,-92.091311,"Zacatlán , Puebla",1.0,19.9350819,-97.9611534
+22,"El Ceibo, Tabasco",17.261546,-90.994378,"Fray Bernardino de Sahagún , Ciudad Sahagún , Hidalgo",1.0,19.7758168,-98.57593020000002
+23,"Cuauhtémoc, Chiapas",15.665482999999998,-92.003579,"Gabriel Leyva Solano , Benito Juárez , Sinaloa",1.0,25.6637607,-108.6370444
+24,"Talismán, Chiapas",14.962767999999999,-92.148176,"García , Nuevo León",1.0,25.801032,-100.5861995
+25,"Carmen Xhán, Chiapas",16.043086,-91.755012,"Hidalgo del Parral , Chihuahua",1.0,26.9317835,-105.6666166
+26,"Cuauhtémoc, Chiapas",15.665482999999998,-92.003579,"San Juan de los Lagos , Jalisco",1.0,21.2474689,-102.3316999
+27,"El Ceibo, Tabasco",17.261546,-90.994378,"San Pablo Autopan , México",1.0,19.3567572,-99.6589726
+28,"Cuauhtémoc, Chiapas",15.665482999999998,-92.003579,"Heroica Ciudad de Juchitán de Zaragoza , Oaxaca",1.0,16.4406909,-95.0221197
+29,"Unión Juárez, Chiapas",15.071193,-92.091311,"Teapa , Tabasco",1.0,17.5609321,-92.9519802
+30,"Talismán, Chiapas",14.962767999999999,-92.148176,"San Pedro , Coahuila de Zaragoza",1.0,25.7572143,-102.9838564
+31,"Ciudad Hidalgo, Chiapas",14.679726,-92.150326," Gabriel Leyva Solano , Sinaloa",1.0,25.6637607,-108.6370444
+32,"Carmen Xhán, Chiapas",16.043086,-91.755012,"San Pedro Totoltepec , México",1.0,19.3117967,-99.5704509
+33,"Ciudad Hidalgo, Chiapas",14.679726,-92.150326,"Tabasco Nuevo , Tabasco",1.0,32.6492905,-115.5045911
+34,"Ciudad Hidalgo, Chiapas",14.679726,-92.150326,"Tecomán , Colima",1.0,18.9173829,-103.8738031
+35,"Carmen Xhán, Chiapas",16.043086,-91.755012,"Amecameca de Juárez , México",1.0,19.1252361,-98.76711309999999
+36,"Talismán, Chiapas",14.962767999999999,-92.148176,"San Pablo Oztotepec , Distrito Federal",1.0,19.1861266,-99.0709315
+37,"Cuauhtémoc, Chiapas",15.665482999999998,-92.003579,"Vicente Guerrero , Algodones , Baja California",1.0,32.7134113,-114.7365544
+38,"Cuauhtémoc, Chiapas",15.665482999999998,-92.003579,"Santiago , Nuevo León",1.0,25.4166153,-100.1591213
+39,"Carmen Xhán, Chiapas",16.043086,-91.755012,"Macuspana , Tabasco",2.0,17.7607017,-92.5936096
+40,"Ciudad Hidalgo, Chiapas",14.679726,-92.150326,"Cuauhtémoc , Distrito Federal",2.0,19.4356338,-99.1495107
+41,"Cuauhtémoc, Chiapas",15.665482999999998,-92.003579,"Acatlán de Osorio , Puebla",2.0,18.2019204,-98.0484434
+42,"Cuauhtémoc, Chiapas",15.665482999999998,-92.003579,"Tres Valles , Veracruz de Ignacio de la Llave",2.0,18.2376942,-96.1368511
+43,"Cuauhtémoc, Chiapas",15.665482999999998,-92.003579,"San Miguel Ajusco , Distrito Federal",2.0,19.2252505,-99.2007328
+44,"Carmen Xhán, Chiapas",16.043086,-91.755012,"Vicente Guerrero , Durango",2.0,23.7321074,-103.9832684
+45,"Ciudad Hidalgo, Chiapas",14.679726,-92.150326,"Esperanza , Sonora",2.0,27.5800122,-109.9297789
+46,"Talismán, Chiapas",14.962767999999999,-92.148176,"Villaflores , Chiapas",2.0,16.2329693,-93.2734517
+47,"Cuauhtémoc, Chiapas",15.665482999999998,-92.003579," Ixtapan de la Sal , México",2.0,18.8390501,-99.6760096
+48,"Talismán, Chiapas",14.962767999999999,-92.148176," Irapuato , Guanajuato",2.0,20.6786652,-101.3544964
+49,"Cuauhtémoc, Chiapas",15.665482999999998,-92.003579,"Valle Hermoso , Tamaulipas",2.0,25.6683739,-97.8159111
+50,"Cuauhtémoc, Chiapas",15.665482999999998,-92.003579," Salina Cruz , Oaxaca",2.0,16.1842839,-95.20876249999999
+51,"Carmen Xhán, Chiapas",16.043086,-91.755012,"Río Bravo , Tamaulipas",2.0,25.9860315,-98.09563279999999
+52,"Carmen Xhán, Chiapas",16.043086,-91.755012,"Anáhuac , Nuevo León",2.0,27.241196,-100.1334498
+53,"Ciudad Hidalgo, Chiapas",14.679726,-92.150326,"Suchiapa , Chiapas",2.0,16.6238059,-93.1000854
+54,"Carmen Xhán, Chiapas",16.043086,-91.755012,"Sonora , Sonora",2.0,29.2972247,-110.3308814
+55,"Talismán, Chiapas",14.962767999999999,-92.148176,"Ameca , Jalisco",2.0,20.5476292,-104.0466547
+56,"Carmen Xhán, Chiapas",16.043086,-91.755012,"Cihuatlán , Jalisco",2.0,19.2376572,-104.5684406
+57,"Cuauhtémoc, Chiapas",15.665482999999998,-92.003579,"Motozintla de Mendoza , Chiapas",2.0,15.3691977,-92.2458096
+58,"Cuauhtémoc, Chiapas",15.665482999999998,-92.003579,"Ebano , San Luis Potosí",3.0,22.2165831,-98.3758762
+59,"Carmen Xhán, Chiapas",16.043086,-91.755012,"San Juan Ixtayopan , Distrito Federal",3.0,19.2309165,-98.9990801
+60,"El Ceibo, Tabasco",17.261546,-90.994378,"Apan , Hidalgo",3.0,19.711382,-98.45407
+61,"El Ceibo, Tabasco",17.261546,-90.994378,"San Antonio Tecómitl , Distrito Federal",3.0,19.2194041,-98.9935558
+62,"Talismán, Chiapas",14.962767999999999,-92.148176,"Frontera Comalapa , Chiapas",3.0,15.6604331,-92.1425385
+63,"Carmen Xhán, Chiapas",16.043086,-91.755012,"Ciudad Acuña , Coahuila de Zaragoza",3.0,29.3232963,-100.9514187
+64,"Unión Juárez, Chiapas",15.071193,-92.091311,"Montemorelos , Nuevo León",3.0,25.1889176,-99.8363028
+65,"Frontera Corozal, Chiapas",16.814734,-90.884703,"Delicias , Chihuahua",3.0,28.1871201,-105.4595306
+66,"Ciudad Hidalgo, Chiapas",14.679726,-92.150326,"Ciudad Altamirano , Guerrero",3.0,18.3578156,-100.6686262
+67,"Frontera Corozal, Chiapas",16.814734,-90.884703,Otras Ciudades de Tamaulipas,3.0,24.26694,-98.8362755
+68,"Carmen Xhán, Chiapas",16.043086,-91.755012,"Altamira , Tamaulipas",3.0,22.4077462,-97.92115550000001
+69,"El Martillo, Tabasco",17.278333,-91.021111,"Allende , Veracruz de Ignacio de la Llave",3.0,18.1465313,-94.38221089999999
+70,"El Martillo, Tabasco",17.278333,-91.021111,"Tepic , Nayarit",4.0,21.5041651,-104.8945887
+71,"Frontera Corozal, Chiapas",16.814734,-90.884703,"Naco , Sonora",4.0,31.3260273,-109.9470019
+72,"Carmen Xhán, Chiapas",16.043086,-91.755012,"Iztapalapa , Distrito Federal",4.0,19.342083,-99.05321590000001
+73,"Talismán, Chiapas",14.962767999999999,-92.148176,"Tecate , Baja California",4.0,32.563609,-116.6256752
+74,"Cuauhtémoc, Chiapas",15.665482999999998,-92.003579," Ciudad Victoria , Tamaulipas",4.0,23.7369164,-99.14111539999999
+75,"Carmen Xhán, Chiapas",16.043086,-91.755012,"Hermosillo , Sonora",4.0,29.0729673,-110.9559192
+76,"Talismán, Chiapas",14.962767999999999,-92.148176,"Berriozábal , Chiapas",4.0,16.7978347,-93.2734517
+77,"Ciudad Hidalgo, Chiapas",14.679726,-92.150326,"Alto Lucero , Veracruz de Ignacio de la Llave",4.0,19.6242712,-96.7343456
+78,"Cuauhtémoc, Chiapas",15.665482999999998,-92.003579," Matehuala , San Luis Potosí",4.0,23.6448029,-100.64279
+79,"Carmen Xhán, Chiapas",16.043086,-91.755012,"Ciudad Río Bravo , Tamaulipas",4.0,25.9860315,-98.09563279999999
+80,"Cuauhtémoc, Chiapas",15.665482999999998,-92.003579,"Ciudad de Libres , Puebla",4.0,19.4682032,-97.68465669999999
+81,"Ciudad Hidalgo, Chiapas",14.679726,-92.150326,"Abasolo , Guanajuato",4.0,20.4536351,-101.5269589
+82,"Carmen Xhán, Chiapas",16.043086,-91.755012,"Comalcalco , Tabasco",4.0,18.261156,-93.2216864
+83,"Cuauhtémoc, Chiapas",15.665482999999998,-92.003579,"Cortazar , Guanajuato",4.0,20.4771827,-100.9637456
+84,"Carmen Xhán, Chiapas",16.043086,-91.755012,"Aguascalientes , Aguascalientes",5.0,21.8852562,-102.2915677
+85,"Ciudad Hidalgo, Chiapas",14.679726,-92.150326,"Alborada Jaltenco , México",5.0,19.6612727,-99.06824610000001
+86,"Carmen Xhán, Chiapas",16.043086,-91.755012,"Tonalá , Chiapas",5.0,16.0869461,-93.7612856
+87,"Ciudad Hidalgo, Chiapas",14.679726,-92.150326,"Culiacán Rosales , Sinaloa",5.0,24.8090649,-107.3940117
+88,"Cuauhtémoc, Chiapas",15.665482999999998,-92.003579,"Casa Blanca , Puebla",5.0,19.0419435,-98.1202024
+89,"El Ceibo, Tabasco",17.261546,-90.994378,"El Pueblito , Querétaro",5.0,20.5318673,-100.4417126
+90,"Nuevo Orizaba, Chiapas",16.082816,-90.63266999999999," Orizaba , Veracruz de Ignacio de la Llave",5.0,18.8504744,-97.1036396
+91,"Cuauhtémoc, Chiapas",15.665482999999998,-92.003579,"Acapulco de Juárez , Guerrero",5.0,16.8531086,-99.8236533
+92,"Carmen Xhán, Chiapas",16.043086,-91.755012,"Torreón , Coahuila de Zaragoza",6.0,25.5428443,-103.4067861
+93,"Cuauhtémoc, Chiapas",15.665482999999998,-92.003579,"Zacatecas , Zacatecas",6.0,22.7641984,-102.5865558
+94,"Cuauhtémoc, Chiapas",15.665482999999998,-92.003579,"Mazatlán , Sinaloa",6.0,23.2494148,-106.4111425
+95,"Talismán, Chiapas",14.962767999999999,-92.148176,"Reforma , Chiapas",6.0,17.8578141,-93.1547842
+96,"Talismán, Chiapas",14.962767999999999,-92.148176,"Las Margaritas , Chiapas",6.0,16.3154625,-91.9879122
+97,"Ciudad Hidalgo, Chiapas",14.679726,-92.150326,"Santa Rosalía de Camargo , Chihuahua",7.0,27.6763786,-105.166953
+98,"Cuauhtémoc, Chiapas",15.665482999999998,-92.003579,"Victoria de Durango , Durango",7.0,24.0277202,-104.6531759
+99,"Unión Juárez, Chiapas",15.071193,-92.091311,"Cerro Azul , Veracruz de Ignacio de la Llave",7.0,21.1843885,-97.7471025
+100,"Unión Juárez, Chiapas",15.071193,-92.091311,"Sásabe , Sonora",8.0,31.46907969999999,-111.5428012
+101,"Ciudad Hidalgo, Chiapas",14.679726,-92.150326,"Kilómetro 32 Texcoco Lechería , México",8.0,19.6146779,-98.96633779999999
+102,"Cuauhtémoc, Chiapas",15.665482999999998,-92.003579,"Heroica Ciudad de Cananea , Sonora",8.0,30.9897648,-110.289179
+103,"Frontera Corozal, Chiapas",16.814734,-90.884703,"Las Rosas , Chiapas",9.0,16.3607767,-92.36729059999999
+104,"Ciudad Hidalgo, Chiapas",14.679726,-92.150326,"Azcapotzalco , Distrito Federal",9.0,19.4846606,-99.1886749
+105,"Ciudad Hidalgo, Chiapas",14.679726,-92.150326,"Guanajuato , Guanajuato",10.0,21.0190145,-101.2573586
+106,"Carmen Xhán, Chiapas",16.043086,-91.755012,"Puerto Palomas de Villa , Chihuahua",10.0,31.7808759,-107.6309084
+107,"Cuauhtémoc, Chiapas",15.665482999999998,-92.003579,"Saltillo , Coahuila de Zaragoza",10.0,25.4383234,-100.973678
+108,"Ciudad Hidalgo, Chiapas",14.679726,-92.150326,"Ciudad Camargo , Tamaulipas",10.0,26.3207342,-98.833519
+109,"Carmen Xhán, Chiapas",16.043086,-91.755012,"Gustavo A. Madero , Distrito Federal",10.0,19.4873329,-99.1236134
+110,"Cuauhtémoc, Chiapas",15.665482999999998,-92.003579,"Cancún , Quintana Roo",10.0,21.161908,-86.8515279
+111,"Cuauhtémoc, Chiapas",15.665482999999998,-92.003579,"Cacahoatán , Chiapas",11.0,14.9958182,-92.1671288
+112,"Carmen Xhán, Chiapas",16.043086,-91.755012,"El Salto , Durango",11.0,23.7788616,-105.357029
+113,"Cuauhtémoc, Chiapas",15.665482999999998,-92.003579,"Buenavista , México",11.0,19.602311,-99.1732936
+114,"Ciudad Hidalgo, Chiapas",14.679726,-92.150326,"Miguel Hidalgo , Distrito Federal",12.0,19.4306575,-99.20839529999999
+115,"Carmen Xhán, Chiapas",16.043086,-91.755012,"Ocosingo , Chiapas",12.0,16.9087258,-92.0943351
+116,"Carmen Xhán, Chiapas",16.043086,-91.755012,"Agua Prieta , Sonora",12.0,31.3277755,-109.5489617
+117,"Carmen Xhán, Chiapas",16.043086,-91.755012,"Poza Rica de Hidalgo , Veracruz de Ignacio de la Llave",12.0,20.5270592,-97.4629119
+118,"Carmen Xhán, Chiapas",16.043086,-91.755012,"Altepexi , Puebla",13.0,18.3693599,-97.2982224
+119,"Ciudad Hidalgo, Chiapas",14.679726,-92.150326,Otras Ciudades de Sonora,14.0,29.2972247,-110.3308814
+120,"Carmen Xhán, Chiapas",16.043086,-91.755012,"Mapastepec , Chiapas",15.0,15.4414006,-92.8949959
+121,"Cuauhtémoc, Chiapas",15.665482999999998,-92.003579,"Agua Dulce , Veracruz de Ignacio de la Llave",15.0,18.1426611,-94.1435302
+122,"Carmen Xhán, Chiapas",16.043086,-91.755012,"Comitán de Domínguez , Chiapas",17.0,16.2299602,-92.1155691
+123,"Cuauhtémoc, Chiapas",15.665482999999998,-92.003579,"Pijijiapan , Chiapas",18.0,15.6851709,-93.2122536
+124,"Talismán, Chiapas",14.962767999999999,-92.148176,"Cárdenas , San Luis Potosí",23.0,21.9985181,-99.64248719999999
+125,"Ciudad Hidalgo, Chiapas",14.679726,-92.150326,"Tampico , Tamaulipas",25.0,22.2331041,-97.861099
+126,"Cuauhtémoc, Chiapas",15.665482999999998,-92.003579,"Tierra Blanca , Veracruz de Ignacio de la Llave",26.0,18.4458276,-96.3598367
+127,"Carmen Xhán, Chiapas",16.043086,-91.755012,"Heroica Caborca , Sonora",26.0,30.6954438,-112.1835004
+128,"Ciudad Hidalgo, Chiapas",14.679726,-92.150326,"Huixtla , Chiapas",27.0,15.137663,-92.46591889999999
+129,"Ciudad Hidalgo, Chiapas",14.679726,-92.150326,"San Luis Río Colorado , Sonora",27.0,32.4518877,-114.771711
+130,"Cuauhtémoc, Chiapas",15.665482999999998,-92.003579,"Chihuahua , Chihuahua",28.0,28.6329957,-106.0691004
+131,"Cuauhtémoc, Chiapas",15.665482999999998,-92.003579,"Iztacalco , Distrito Federal",31.0,19.3948036,-99.09768079999999
+132,"Unión Juárez, Chiapas",15.071193,-92.091311,"Cárdenas , Tabasco",32.0,18.0012067,-93.37323390000002
+133,"Cuauhtémoc, Chiapas",15.665482999999998,-92.003579,"Santiago de Querétaro , Querétaro",32.0,20.5887932,-100.3898881
+134,"Cuauhtémoc, Chiapas",15.665482999999998,-92.003579,"San Cristóbal de las Casas , Chiapas",33.0,16.7369928,-92.63759879999999
+135,"Cuauhtémoc, Chiapas",15.665482999999998,-92.003579,"Manuel Ojinaga , Chihuahua",34.0,29.5458844,-104.4082908
+136,"Talismán, Chiapas",14.962767999999999,-92.148176,"Celaya , Guanajuato",34.0,20.5279612,-100.8112885
+137,"Carmen Xhán, Chiapas",16.043086,-91.755012,"Mexicali , Baja California",36.0,32.6245389,-115.4522623
+138,"Cuauhtémoc, Chiapas",15.665482999999998,-92.003579,"Sonoyta , Sonora",38.0,31.8629677,-112.8488631
+139,"Cuauhtémoc, Chiapas",15.665482999999998,-92.003579,"Benito Juárez , Distrito Federal",41.0,19.3794059,-99.15914459999999
+140,"Ciudad Hidalgo, Chiapas",14.679726,-92.150326,"Álvaro Obregón , Distrito Federal",42.0,19.3605334,-99.2267067
+141,"Carmen Xhán, Chiapas",16.043086,-91.755012,"Acajete , Puebla",43.0,19.1061301,-97.9522432
+142,"Unión Juárez, Chiapas",15.071193,-92.091311,"Heroica Nogales , Sonora",47.0,31.3011855,-110.9381047
+143,"Carmen Xhán, Chiapas",16.043086,-91.755012,"Ciudad Ixtepec , Oaxaca",53.0,16.5611267,-95.0963141
+144,"Carmen Xhán, Chiapas",16.043086,-91.755012,"Tenosique de Pino Suárez , Tabasco",62.0,17.472665,-91.425051
+145,"Ciudad Hidalgo, Chiapas",14.679726,-92.150326,"Oaxaca de Juárez , Oaxaca",67.0,17.0731842,-96.7265889
+146,"Cuauhtémoc, Chiapas",15.665482999999998,-92.003579,"Guadalajara , Jalisco",68.0,20.6596988,-103.3496092
+147,"Talismán, Chiapas",14.962767999999999,-92.148176,"Miguel Alemán , Brecha 124 entre Kilómetro 15 y 16 Norte , Tamaulipas",79.0,26.1808832,-99.05710889999999
+148,"Cuauhtémoc, Chiapas",15.665482999999998,-92.003579,"Ciudad Miguel Alemán , Tamaulipas",84.0,26.3995427,-99.0310434
+149,"Talismán, Chiapas",14.962767999999999,-92.148176,"Coatzacoalcos , Veracruz de Ignacio de la Llave",111.0,18.1344779,-94.4589858
+150,"Cuauhtémoc, Chiapas",15.665482999999998,-92.003579,"San Luis Potosí , San Luis Potosí",116.0,22.1564699,-100.9855409
+151,"El Ceibo, Tabasco",17.261546,-90.994378,"Tijuana , Baja California",117.0,32.5149469,-117.0382471
+152,"Unión Juárez, Chiapas",15.071193,-92.091311,"Palenque , Chiapas",146.0,17.5229209,-91.9872616
+153,"Ciudad Hidalgo, Chiapas",14.679726,-92.150326,"Acayucan , Veracruz de Ignacio de la Llave",150.0,17.949192,-94.91459739999999
+154,"Cuauhtémoc, Chiapas",15.665482999999998,-92.003579,"Piedras Negras , Coahuila de Zaragoza",151.0,28.6916182,-100.5408622
+155,"Cuauhtémoc, Chiapas",15.665482999999998,-92.003579,"Coyoacán , Distrito Federal",154.0,19.3437444,-99.1561883
+156,"Unión Juárez, Chiapas",15.071193,-92.091311,"Juárez , Chihuahua",179.0,31.6903638,-106.4245478
+157,"Cuauhtémoc, Chiapas",15.665482999999998,-92.003579,"Arriaga , Chiapas",186.0,16.2371385,-93.8986279
+158,"El Martillo, Tabasco",17.278333,-91.021111,"Heroica Matamoros , Tamaulipas",190.0,25.8690294,-97.50273759999999
+159,"El Ceibo, Tabasco",17.261546,-90.994378,"Tapachula de Córdova y Ordóñez , Chiapas",207.0,14.9055567,-92.26341359999999
+160,"Cuauhtémoc, Chiapas",15.665482999999998,-92.003579,"Nuevo Laredo , Tamaulipas",256.0,27.4779362,-99.549573
+161,"Cuauhtémoc, Chiapas",15.665482999999998,-92.003579,"Tuxtla Gutiérrez , Chiapas",261.0,16.7516009,-93.1029939
+162,"Carmen Xhán, Chiapas",16.043086,-91.755012,"Heróica Puebla de Zaragoza , Puebla",263.0,19.0414398,-98.2062727
+163,"Talismán, Chiapas",14.962767999999999,-92.148176,"Chiapa de Corzo , Chiapas",270.0,16.7021616,-93.0081378
+164,"Carmen Xhán, Chiapas",16.043086,-91.755012,"Villahermosa , Tabasco",297.0,17.989456,-92.9475061
+165,"Carmen Xhán, Chiapas",16.043086,-91.755012,"Altar , Sonora",356.0,30.714148,-111.8354941
+166,"El Ceibo, Tabasco",17.261546,-90.994378,"Veracruz , Veracruz de Ignacio de la Llave",381.0,19.173773,-96.1342241
+167,"El Ceibo, Tabasco",17.261546,-90.994378,"Monterrey , Nuevo León",690.0,25.6866142,-100.3161126
+168,"El Ceibo, Tabasco",17.261546,-90.994378,"Reynosa , Tamaulipas",2942.0,26.0508406,-98.29789509999999
