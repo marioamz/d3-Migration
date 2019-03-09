@@ -42,7 +42,7 @@ d3.csv('d3data/gooeydata.csv', function(error, usa) {
   var max = d3.max(newData, function(d) { return d.locations[state][2]; } );
   var scale = d3.scaleLinear()
     .domain([0, max])
-    .range([0, 15]);
+    .range([5, 20]);
 
   svg.selectAll('circle')
     .data(newData)
