@@ -39,7 +39,10 @@ d3.csv('d3data/gooeydata.csv', function(error, usa) {
     };
   });
 
-  console.log(newData);
+  var max = d3.max(newData, function(d) { return d.locations[state][2]; } );
+  var scale = d3.scaleLinear()
+    .domain([0, max])
+    .range([0, 15]);
 
   svg.selectAll('circle')
     .data(newData)
@@ -63,13 +66,12 @@ d3.csv('d3data/gooeydata.csv', function(error, usa) {
         .transition().duration(1000)
         .attr('cx', function(d) {
           return projection([d.locations[state][0], d.locations[state][1]])[0];
-        // return projection([d[columns[i][0]], d[columns[i][1]]])[0];
         })
         .attr('cy', function(d) {
           return projection([d.locations[state][0], d.locations[state][1]])[1];
         })
-        .attr('r', function(d){
-          return d.locations[state][2];
+        .attr('r', function(d) {
+          return scale(d.locations[state][2]);
         })
         .style('opacity', 1.0)
         .style('fill', '#fde0dd')
