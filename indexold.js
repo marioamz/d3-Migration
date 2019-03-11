@@ -126,3 +126,47 @@ d3.csv('d3data/Migrant_Caravan.csv', function(error, caravan) {
   .style('fill', '#fde0dd')
   .style('stroke', '#c51b8a');
 });
+
+
+// THIS CREATES THE CHLOROPETH OF VIOLENCE
+
+var svg3 = d3.select('#chloropeth')
+  .append('svg')
+  .attr('width', width)
+  .attr('height', height);
+
+var color = d3.scaleQuantize()
+  .domain([0, 0.6])
+  .range(['#f1eef6', '#d7b5d8', '#df65b0', '#dd1c77', '#980043']);
+
+
+d3.csv("d3data/violence.csv", function(data) {
+  d3.json("build/mx_tj.json", function(json) {
+    for (var i = 0; i < data.length; i++) {
+      var dataState = data[i].State;
+      var dataValue = parseFloat(data[i].Percentage);
+      console.log(dataValue);
+      for (var j = 0; j < json.objects.states.geometries.length; j++) {
+        var jsonState = json.objects.states.geometries[j].properties.NOM_ENT;
+        if (dataState == jsonState) {
+          json.objects.states.geometries[j].properties.value = dataValue;
+          break;
+        }
+      }
+    }
+
+      svg3.selectAll("path")
+      .data(topojson.object(json, json.objects.states).geometries)
+      .enter().append("path")
+      .attr("d", d3.geoPath().projection(projection))
+      .style('fill', function(d) {
+        var value = d.properties.value;
+        console.log('value');
+        if (value) {
+          return color(value);
+        } else {
+          return '#ccc';
+        }
+      });
+    });
+});
