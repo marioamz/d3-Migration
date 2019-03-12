@@ -1,3 +1,4 @@
+/*
 #cities_graph {
   display: inline-block;
   position: fixed;
@@ -6,4 +7,10 @@
   margin-left: 0;
   height: 600px;
   width: 600px;
+}
+*/
+path {
+  fill: none;
+  stroke: #000;
+  stroke-width: 3px;
 }

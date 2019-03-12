@@ -81,92 +81,126 @@ d3.csv('d3data/gooeydata.csv', function(error, usa) {
 
 //now I'm building the caravan path as a comparison case
 
-/*
-function drawLine(path, duration=2000) {
-  var totalLength = path.node().getTotalLength();
-  path
-    .style('opacity',1)
-    .attr("stroke-dasharray", totalLength + " " + totalLength)
-    .attr("stroke-dashoffset", totalLength)
-    .transition()
-      .ease(d3.easeCubic)
-      .duration(duration)
-      .attr("stroke-dashoffset", 0);
-};
-*/
 
 var svg2 = d3.select('#caravan_graph')
   .append('svg')
   .attr('width', width)
   .attr('height', height);
 
-d3.json("build/mx_tj.json", function(error, mx) {
-  svg2.selectAll("path")
-    .data(topojson.object(mx, mx.objects.states).geometries)
-    .enter().append("path")
-    .attr("d", d3.geoPath().projection(projection))
-    .attr("fill", "transparent")
-    .style("stroke", "#333")
-    .style("stroke-width", ".2px")
-    .attr("class", "muns");
-});
+var g1 = svg2.append('g');
 
-d3.csv('d3data/Migrant_Caravan.csv', function(error, caravan) {
-  svg2.selectAll('circle')
-  .data(caravan)
-  .enter()
-  .append('circle')
-  .attr('cx', function(d) {
-    return projection([d.city_long, d.city_lat])[0];
-  })
-  .attr('cy', function(d) {
-    return projection([d.city_long, d.city_lat])[1];
-  })
-  .attr('r', 2)
-  .style('fill', '#fde0dd')
-  .style('stroke', '#c51b8a');
+d3.json("build/mx_tj.json", function(error, mx) {
+    g1.selectAll("path")
+      .data(topojson.object(mx, mx.objects.states).geometries)
+      .enter().append("path")
+      .attr("d", d3.geoPath().projection(projection))
+      .attr("fill", "transparent")
+      .style("stroke", "#333")
+      .style("stroke-width", ".2px")
+      .attr("class", "muns");
+    });
+
+var cols = [['city_long', 'city_lat']]
+
+d3.csv('d3data/Migrant_Caravan.csv', function(error, ups) {
+  let states = 0;
+    const newsData = ups.map(row => {
+      return {
+        ...row,
+      locations: cols.map(col => {
+        return [Number(row[col[0]]), Number(row[col[1]])];
+          })
+        };
+      });
+
+    var line = d3.line()
+    .x(function(d) { return projection([d.locations[states][0], d.locations[states][1]])[0]; })
+    .y(function(d) { return projection([d.locations[states][0], d.locations[states][1]])[1]; })
+    .curve(d3.curveCardinal.tension(1));
+
+    svg2.append("path")
+      .data([newsData])
+      .attr("class", "line")
+      .style("stroke", '#c51b8a')
+      .style("fill", "none")
+      .style("stroke-width", "3px")
+      .attr("d", line);
+
+    transition(d3.selectAll('path'));
+
+    function tweenDash() {
+   			var l = this.getTotalLength(),
+   				i = d3.interpolateString("0," + l, l + "," + l);
+   			return function (t) { return i(t); };
+   		};
+
+    function transition(selection) {
+   		selection.each(function(){
+        d3.select(this).transition()
+   			.duration(15000)
+   			.attrTween("stroke-dasharray", tweenDash);
+         })
+   		};
+
 });
 
 
 // THIS CREATES THE CHLOROPETH OF VIOLENCE
 
 var svg3 = d3.select('#chloropeth')
-  .append('svg')
-  .attr('width', width)
-  .attr('height', height);
+    .append('svg')
+    .attr('width', width)
+    .attr('height', height);
 
-var color = d3.scaleQuantize()
-  .domain([0, 0.6])
-  .range(['#f1eef6', '#d7b5d8', '#df65b0', '#dd1c77', '#980043']);
+var colorScheme = d3.schemePurples[4];
+    colorScheme.unshift("#eee")
+var colorScale = d3.scaleThreshold()
+        .domain([0, 0.12, 0.24, 0.36, 0.48, 0.6])
+        .range(colorScheme);
 
+    // Legend
+var g = svg3.append("g")
+    .attr("class", "legendThreshold")
+    .attr("transform", "translate(20,20)");
+g.append("text")
+    .attr("class", "caption")
+    .attr("x", 0)
+    .attr("y", -6)
+    .text("% Experienced Danger");
+var labels = ['0-12%', '12-24%', '24-36%', '36-48%', '48-60%'];
+var legend = d3.legendColor()
+    .labels(function (d) { return labels[d.i]; })
+    .shapePadding(4)
+    .scale(colorScale);
+  svg3.select(".legendThreshold")
+    .call(legend);
 
 d3.csv("d3data/violence.csv", function(data) {
-  d3.json("build/mx_tj.json", function(json) {
-    for (var i = 0; i < data.length; i++) {
-      var dataState = data[i].State;
-      var dataValue = parseFloat(data[i].Percentage);
-      console.log(dataValue);
-      for (var j = 0; j < json.objects.states.geometries.length; j++) {
-        var jsonState = json.objects.states.geometries[j].properties.NOM_ENT;
-        if (dataState == jsonState) {
-          json.objects.states.geometries[j].properties.value = dataValue;
-          break;
-        }
-      }
-    }
 
-      svg3.selectAll("path")
+  d3.json("build/mx_tj.json", function(json) {
+      for (var i = 0; i < data.length; i++) {
+        var dataState = data[i].Index;
+        var dataValue = parseFloat(data[i].Percentage);
+        for (var j = 0; j < json.objects.states.geometries.length; j++) {
+          var jsonState = parseFloat(json.objects.states.geometries[j].properties.CVE_ENT);
+            if (dataState == jsonState) {
+              json.objects.states.geometries[j].properties.value = dataValue;
+              break;
+            }
+          }
+        }
+    console.log(json);
+    svg3.selectAll("path")
       .data(topojson.object(json, json.objects.states).geometries)
       .enter().append("path")
       .attr("d", d3.geoPath().projection(projection))
       .style('fill', function(d) {
-        var value = d.properties.value;
-        console.log('value');
-        if (value) {
-          return color(value);
-        } else {
-          return '#ccc';
-        }
-      });
+        d.total = d.properties.value;
+        console.log(d.total);
+          return colorScale(d.total);
+        })
+      .style("stroke", "#333")
+      .style("stroke-width", ".2px")
+      .attr("class", "muns");
     });
 });
