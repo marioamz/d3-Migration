@@ -9,8 +9,36 @@
   width: 600px;
 }
 */
-path {
-  fill: none;
-  stroke: #000;
-  stroke-width: 3px;
+
+#tooltip {
+  font-size: 12px;
+  position: absolute;
+  width: auto;
+  height: auto;
+  padding: 2.5px;
+  border:1px solid black;
+  background-color: white;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  pointer-events: none;
+}
+
+#tooltip.hidden {
+  display: none;
+}
+
+#tooltip p {
+  margin: 0;
+  font-family: sans-serif;
+  font-size: 16px;
+  line-height: 20px;
+}
+path.area{
+  stroke-width:0.3;
+  fill: #ffffbf;
+  stroke: black;
+}
+path.area.highlight{
+  fill:#78c679;
 }

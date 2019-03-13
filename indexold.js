@@ -167,7 +167,7 @@ var g = svg3.append("g")
         .attr("class", "caption")
         .attr("x", 0)
         .attr("y", -6)
-        .text("% Experienced Danger");
+        .text("% of Migrants who Self-Reported Experiencing Danger in Each State");
 var labels = ['0-12%', '12-24%', '24-36%', '36-48%', '48-60%'];
 var legend = d3.legendColor()
         .labels(function (d) { return labels[d.i]; })
@@ -204,9 +204,6 @@ d3.csv("d3data/violence.csv", function(data) {
           drawTooltip(d);})
       .on('mouseout',mouseout)
       .attr("fill", function(d) {
-        // d.total = d.properties.value;
-        console.log(d.properties.value);
-        //return '#fde0dd';
         return colorScale(d.properties.value);
         })
       .style("stroke", "#333")
@@ -223,7 +220,7 @@ function drawTooltip(d){
 			.classed("hidden",false)
 			.style("left", xPosition + "px")
 			.style("top", yPosition + "px")
-			.text(d.properties.name, d.properties.value);
+			.text(d.properties.name + ': ' + (d.properties.value*100) + '%');
 }
 
 function mouseout() {
