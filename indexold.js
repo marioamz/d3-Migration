@@ -21,7 +21,7 @@ d3.json(url, function(error, mx) {
     .attr("d", path)
     .attr("fill", "transparent")
     .style("stroke", "#333")
-    .style("stroke-width", ".2px")
+    .style("stroke-width", ".5px")
     .attr("class", "muns");
 });
 
@@ -77,6 +77,7 @@ d3.csv('d3data/gooeydata.csv', function(error, usa) {
           return scale(d.locations[state][2]);
         })
         .style('opacity', 1.0)
+        .style('fill-opacity', 0.5)
         .style('fill', '#fde0dd')
         .style('stroke', '#c51b8a')
     })
@@ -99,7 +100,7 @@ d3.json(url, function(error, mx) {
       .attr("d", path)
       .attr("fill", "transparent")
       .style("stroke", "#333")
-      .style("stroke-width", ".2px")
+      .style("stroke-width", ".5px")
       .attr("class", "muns");
     });
 
@@ -119,14 +120,14 @@ d3.csv('d3data/Migrant_Caravan.csv', function(error, ups) {
     var line = d3.line()
     .x(function(d) { return projection([d.locations[states][0], d.locations[states][1]])[0]; })
     .y(function(d) { return projection([d.locations[states][0], d.locations[states][1]])[1]; })
-    .curve(d3.curveCardinal.tension(1));
+    .curve(d3.curveCardinal.tension(0));
 
     svg2.append("path")
       .data([newsData])
       .attr("class", "line")
-      .style("stroke", '#c51b8a')
+      .style("stroke", '#df65b0')
       .style("fill", "none")
-      .style("stroke-width", "3px")
+      .style("stroke-width", "1.5px")
       .attr("d", line);
 
     transition(d3.selectAll('path'));
@@ -140,7 +141,7 @@ d3.csv('d3data/Migrant_Caravan.csv', function(error, ups) {
     function transition(selection) {
    		selection.each(function(){
         d3.select(this).transition()
-   			.duration(15000)
+   			.duration(12000)
    			.attrTween("stroke-dasharray", tweenDash);
          })
    		};
@@ -207,7 +208,7 @@ d3.csv("d3data/violence.csv", function(data) {
         return colorScale(d.properties.value);
         })
       .style("stroke", "#333")
-      .style("stroke-width", ".2px")
+      .style("stroke-width", ".5px")
       .attr("class", "muns");
   });
 });
