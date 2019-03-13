@@ -1,33 +1,33 @@
-,Unnamed: 0,Index,State,Percentage
-0,0,1,Aguascalientes,0
-1,1,2,Baja California,0.258928571
-2,2,3,Baja California Sur,0
-3,3,4,Campeche,0
-4,4,5,Chiapas,0.348579682
-5,5,6,Chihuahua,0.278145695
-6,6,7,Coahuila de Zaragoza,0.422857143
-7,7,8,Colima,0
-8,8,9,Distrito Federal,0.413472706
-9,9,10,Durango,0.235294118
-10,10,11,Guanajuato,0.34939759
-11,11,12,Guerrero,0.217391304
-12,12,13,Hidalgo,0
-13,13,14,Jalisco,0.446280992
-14,14,16,Michoacán de Ocampo,0
-15,15,17,Morelos,0
-16,16,15,México,0.275449102
-17,17,18,Nayarit,0
-18,18,19,Nuevo León,0.273180459
-19,19,20,Oaxaca,0.396984925
-20,20,21,Puebla,0.272887324
-21,21,22,Querétaro,0.015384615
-22,22,23,Quintana Roo,0.375
-23,23,24,San Luis Potosí,0.518867925
-24,24,25,Sinaloa,0.1875
-25,25,26,Sonora,0.277966102
-26,26,27,Tabasco,0.432055749
-27,27,28,Tamaulipas,0.390052356
-28,28,29,Tlaxcala,0
-29,29,30,Veracruz de Ignacio de la Llave,0.542908762
-30,30,31,Yucatán,0
-31,31,32,Zacatecas,0
+,Index,State,Percentage
+0,1,Aguascalientes,0.0
+1,2,Baja California,0.258928571
+2,3,Baja California Sur,0.0
+3,4,Campeche,0.0
+4,5,Chiapas,0.34857968200000006
+5,6,Chihuahua,0.278145695
+6,7,Coahuila,0.422857143
+7,8,Colima,0.0
+8,9,Distrito Federal,0.413472706
+9,10,Durango,0.235294118
+10,11,Guanajuato,0.34939759
+11,12,Guerrero,0.21739130399999998
+12,13,Hidalgo,0.0
+13,14,Jalisco,0.44628099200000004
+14,16,Michoacán,0.0
+15,17,Morelos,0.0
+16,15,México,0.275449102
+17,18,Nayarit,0.0
+18,19,Nuevo León,0.273180459
+19,20,Oaxaca,0.396984925
+20,21,Puebla,0.272887324
+21,22,Querétaro,0.015384615
+22,23,Quintana Roo,0.375
+23,24,San Luis Potosí,0.518867925
+24,25,Sinaloa,0.1875
+25,26,Sonora,0.277966102
+26,27,Tabasco,0.432055749
+27,28,Tamaulipas,0.390052356
+28,29,Tlaxcala,0.0
+29,30,Veracruz,0.542908762
+30,31,Yucatán,0.0
+31,32,Zacatecas,0.0
