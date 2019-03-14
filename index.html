@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+<!--inspired by: https://vallandingham.me/scroller.html-->
+
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -6,28 +8,44 @@
   <link rel="stylesheet" type="text/css" href="main.css">
 </head>
 <body>
-  <h1>Central Americans and their Routes through Mexico</h1>
-      <div id = "caravan_graph">
-        </div>
-
-      <div id = "cities_graph">
-        <div id="option">
-          <input name="updateButton"
-            type="button"
-            value="Update"/>
-          </div>
+  <div class='container'>
+    <div id='graphic'>
+      <div id='sections'>
+        <section class='step'>
+          <div class='title'>Changing Routes in Central American Migration through Mexico</div>
+          In 2018 the nature of Central American migration through Mexico began to change. Rather than making the trip individually or in small groups, a subset of Honduran migrants set off for the United States in a caravan -- and picked up Guatemalan and Salvadorean migrants along the way. While the discussion around the migrant caravans has rightfully focused on the violence driving vulnerable populations to emigrate and the broken immigration system and rhetoric in the United States, relatively little has been said about the route the migrant caravan chose to take.
+        </section>
+        <section class="step">
+          <div class="title">The October 13 Migrant Caravan route</div>
+          One of the caravans, which left <a href='https://cis.org/Migrant-Caravan-Map'>San Pedro Sula, Honduras on October 13, 2018,</a>, entered Mexico through Tapachula, Chiapas, headed inland to Mexico City, and then hugged the Pacific coastline on its way to the Tijuana-San Diego border.
+        </section>
+        <section class="step">
+          <div class="title">The route they chose was unorthodox</div>
+          In choosing the Pacific route and Tijuana as an entry point, this caravan broke with previous paradigms of the routes followed by Central American migrants. In 2017, for instance, self-reported data from Central American migrants deported from the United States shows that these migrants largely named Mexican cities along the Gulf of Mexico or in the heart of the country in their route. Overwhelmingly, they chose to attempt entry into the United States through the Reynosa-Brownsville border. That route makes more sense -- the route from the Mexican border to Reynosa is half the distance of the route to Tijuana, a consideration of <a href='https://www.azcentral.com/story/news/politics/immigration/2018/12/09/why-do-migrant-caravans-central-america-travel-tijuana/2206334002/'>critical importance</a> to migrants.
+        </section>
+        <section class="step">
+          <div class="title">The Gulf of Mexico route is known as the 'route of death'</div>
+          The decision was purposeful -- upon reaching Mexico City, <a href = 'https://www.azcentral.com/story/news/politics/immigration/2018/12/09/why-do-migrant-caravans-central-america-travel-tijuana/2206334002/'>members of the caravan</a> held group meetings to discuss the route to take to the US border. The caravan ultimately opted for the safer route along the Pacific Coast, with good reason. In self-reported data, Central American migrants who named states on the Gulf of Mexico as part of their route, were far more likely to also self-report being robbed, attacked, abandoned by traffickers, get injured, or face extreme weather. Nowhere was there more danger than in the Mexico City-Veracruz-San Luis Potosí-Tamaulipas corridor along the coast, with nearly 55% of migrants who named Veracruz in their route facing dangerous situations in their journey.
+        </section>
+        <section class="step">
+          <div class="title">Collective decision-making</div>
+          In choosing to travel by caravan, migrants not only highlighted the violence they were fleeing in their home countries, but the dangerous conditions they face in their journey. The sheer number of migrants travelling in the caravan was therefore not the only protection mechanism against attacks in Mexico, they also protected themselves by making informed decisions collectively regarding thier path.
+        </section>
+      </div>
+      <div id='vis'>
+         </div>
+         <div id="extra-space">
+         </div>
        </div>
+     </div>
 
-       <div id = "chloropeth">
-         <div id = "tooltip" class="hidden">
-          </div>
-        </div>
     <script src="https://d3js.org/d3.v4.js"></script>
     <script src="https://d3js.org/topojson.v0.min.js"></script>
     <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.24.0/d3-legend.js"></script>
 
-    <script src="indexold.js"></script>
+    <script src="scroller.js"></script>
+    <script src="maps.js"></script>
 
 
 </body>

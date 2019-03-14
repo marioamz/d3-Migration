@@ -10,6 +10,36 @@
 }
 */
 
+.container {
+  width = 800px;
+}
+
+#sections {
+  position: relative;
+  display: inline-block;
+  width: 350px;
+  top: 0px;
+  padding-bottom: 150px
+}
+
+#sections .title {
+    font-family: Georgia;
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 3px;
+    color: #151515;
+    padding-bottom: 5px;
+}
+
+.step {
+  margin-bottom: 250px;
+  font-family: Georgia;
+  font-size: 15px;
+  line-height: 20px;
+  color: #484848;
+}
+
+
 #tooltip {
   font-size: 12px;
   position: absolute;
