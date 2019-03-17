@@ -20,6 +20,7 @@ d3.json("build/mx_tj.json", function(error, mx) {
  * http://bost.ocks.org/mike/chart/
  */
 var scrollVis = function () {
+
   // constants to define the size
   // and margins of the vis area.
   var width = 600;
@@ -33,6 +34,13 @@ var scrollVis = function () {
   // activate functions that they pass.
   var lastIndex = -1;
   var activeIndex = 0;
+
+  // projections and path
+  var projection = d3.geoMercator()
+      .scale(1100)
+      .center([-102.34034978813841, 24.012062015793]);
+
+  var path = d3.geoPath().projection(projection);
 
   // main svg used for visualization
   var svg = null;
@@ -62,8 +70,20 @@ var scrollVis = function () {
    */
   var chart = function (selection) {
     selection.each(function (data) {
+
+      // separate out my data
+      var bubblesdata = data[0];
+      var chorodata = data[1];
+      var caravandata = data[2];
+      var mapdata = data[3];
+
+      // perform some preprocessing of my data
+      var bubdata = getBubblesData(bubblesdata);
+      var mymap = getMapData(mapdata, chorodata);
+      var caradata = getCaravanData(caravandata);
+
       // create svg and give it a width and height
-      svg = d3.select(this).selectAll('svg').data([data]);
+      svg = d3.select(this).selectAll('svg').data(mymap.features);
       var svgE = svg.enter().append('svg');
       // @v4 use merge to combine enter and existing selection
       svg = svg.merge(svgE);
@@ -79,165 +99,266 @@ var scrollVis = function () {
       g = svg.select('g')
         .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
 
-      // perform some preprocessing on raw data
-      var wordData = getWords(rawData);
-      // filter to just include filler words
-      var fillerWords = getFillerWords(wordData);
-
-      // get the counts of filler words for the
-      // bar chart display
-      var fillerCounts = groupByWord(fillerWords);
-      // set the bar scale's domain
-      var countMax = d3.max(fillerCounts, function (d) { return d.value;});
-      xBarScale.domain([0, countMax]);
-
-      // get aggregated histogram data
-
-      var histData = getHistogram(fillerWords);
-      // set histogram's domain
-      var histMax = d3.max(histData, function (d) { return d.length; });
-      yHistScale.domain([0, histMax]);
-
-      setupVis(wordData, fillerCounts, histData);
+      setupVis(bubdata, mymap, caradata);
 
       setupSections();
     });
   };
 
 
+  /** Drawing tooltip functions!
+  */
+
+  function drawTooltip(d){
+    var xPosition = d3.event.pageX;
+    var yPosition = d3.event.pageY;
+
+    d3.select("#tooltip")
+      .classed("hidden",false)
+      .style("left", xPosition + "px")
+      .style("top", yPosition + "px")
+      .text(d.properties.name + ': ' + (d.properties.value*100) + '%');
+  };
+
+  function mouseout() {
+  d3.select("#tooltip").classed("hidden", true);
+  d3.select(this).classed("highlight",false)
+  };
+
+
+  /** DRAWING LINES FUNCTIONS
+  * tweenDash and transition both draw the lines for the caravan map
+  */
+
+  function tweenDash() {
+      var l = this.getTotalLength(),
+        i = d3.interpolateString("0," + l, l + "," + l);
+      return function (t) { return i(t); };
+    };
+
+  function transition(selection) {
+    selection.each(function(){
+      d3.select(this).transition()
+      .duration(12000)
+      .attrTween("stroke-dasharray", tweenDash);
+       })
+    };
+
+
+  /** DATA FUNCTIONS: preprocessing of my data
+   * getBubblesData - creates an array within each object that has lat and long
+   * getCaravanData - creates an array within each object that has lat and long
+   * getMapData - adds value of danger from choropleth data to the geojson map,
+   this creates the data we can use to create an initial map, which we can then
+   update with all the other data, and then tap into choro to make the choropleth.
+   */
+
+  function getMapData (mapdata, chorodata) {
+    for (var i = 0; i < chorodata.length; i++) {
+      var dataState = chorodata[i].State;
+      var dataValue = parseFloat(chorodata[i].Percentage);
+      for (var j = 0; j < mapdata.features.length; j++) {
+        var jsonState = mapdata.features[j].properties.name;
+          if (dataState == jsonState) {
+            mapdata.features[j].properties.value = dataValue;
+            console.log(dataState, jsonState, dataValue);
+            break;
+          }
+        }
+      }
+      return mapdata;
+    };
+
+  function getBubblesData (bubblesdata) {
+    var columns = [['mex_port_long', 'mex_port_lat', 'sum'],
+    ['city_long', 'city_lat', 'sum']];
+
+    var newData = bubblesdata.map(row => {
+      return {
+        ...row,
+        locations: columns.map(column => {
+          return [Number(row[column[0]]), Number(row[column[1]]), Number(row[column[2]])];
+        })
+      };
+    });
+    return newData;
+   };
+
+   function getCaravanData (caravandata) {
+     var cols = [['city_long', 'city_lat']];
+
+     var newsData = caravandata.map(row => {
+       return {
+         ...row,
+       locations: cols.map(col => {
+         return [Number(row[col[0]]), Number(row[col[1]])];
+           })
+         };
+       });
+      return newsData;
+   };
+
   /**
    * setupVis - creates initial elements for all
    * sections of the visualization.
    *
-   * @param wordData - data object for each word.
-   * @param fillerCounts - nested data that includes
-   *  element for each filler word type.
-   * @param histData - binned histogram data
+   * @param bubdata - stops data
+   * @param caradata - the caravan
+     @param mapdata - the map and choro
    */
-  var setupVis = function (wordData, fillerCounts, histData) {
-    // axis
+  var setupVis = function (bubdata, mymap, caradata) {
+
+    // first transparent map
+    var map1 = g.append("g")
+      .selectAll(".map1")
+      .data(mymap.features);
+    map1
+      .attr("class", ".map1")
+      .enter().append("path")
+      .attr("d", path)
+      .merge(map1)
+      .attr("fill", "transparent")
+      .style("stroke", "#333")
+      .style("stroke-width", ".5px");
+    map1.select('.map1').style('opacity', 0);
+
+    // second caravan map
+    var map2 = g.selectAll("caravan")
+      .data(mymap.features)
+      .attr('class', 'caravan');
+    var map2next = map2.enter()
+      .append("path")
+      .attr("d", path);
+    map2 = map2.merge(map2next)
+      .attr("fill", "transparent")
+      .style("stroke", "#333")
+      .style("stroke-width", ".5px")
+      .attr('opacity', 0);
+
+    var line = d3.line()
+    .x(function(d) { return projection([d.locations[0][0], d.locations[0][1]])[0]; })
+    .y(function(d) { return projection([d.locations[0][0], d.locations[0][1]])[1]; })
+    .curve(d3.curveCardinal.tension(0));
+
+    g.append("path")
+      .data([caradata])
+      .attr("class", "line")
+      .style("stroke", '#df65b0')
+      .style("fill", "none")
+      .style("stroke-width", "1.5px")
+      .attr("d", line)
+      .attr('opacity', 0);
+
+    transition(d3.selectAll('path'));
+
+
+    // create bubbles graph
     g.append('g')
-      .attr('class', 'x axis')
-      .attr('transform', 'translate(0,' + height + ')')
-      .call(xAxisBar);
-    g.select('.x.axis').style('opacity', 0);
+      .selectAll("path")
+      .data(mymap.features)
+      .enter().append("path")
+      .attr("d", path)
+      .attr("fill", "transparent")
+      .style("stroke", "#333")
+      .style("stroke-width", ".5px")
+      .attr("opacity", 0);
 
-    // count openvis title
-    g.append('text')
-      .attr('class', 'title openvis-title')
-      .attr('x', width / 2)
-      .attr('y', height / 3)
-      .text('2013');
+    var state = 0
 
-    g.append('text')
-      .attr('class', 'sub-title openvis-title')
-      .attr('x', width / 2)
-      .attr('y', (height / 3) + (height / 5))
-      .text('OpenVis Conf');
+    var max = d3.max(bubdata, function(d) { return d.locations[state][2]; } );
+    var scale = d3.scaleLinear()
+      .domain([0, max])
+      .range([5, 20]);
 
-    g.selectAll('.openvis-title')
-      .attr('opacity', 0);
-
-    // count filler word count title
-    g.append('text')
-      .attr('class', 'title count-title highlight')
-      .attr('x', width / 2)
-      .attr('y', height / 3)
-      .text('180');
-
-    g.append('text')
-      .attr('class', 'sub-title count-title')
-      .attr('x', width / 2)
-      .attr('y', (height / 3) + (height / 5))
-      .text('Filler Words');
-
-    g.selectAll('.count-title')
-      .attr('opacity', 0);
-
-    // square grid
-    // @v4 Using .merge here to ensure
-    // new and old data have same attrs applied
-    var squares = g.selectAll('.square').data(wordData, function (d) { return d.word; });
-    var squaresE = squares.enter()
-      .append('rect')
-      .classed('square', true);
-    squares = squares.merge(squaresE)
-      .attr('width', squareSize)
-      .attr('height', squareSize)
-      .attr('fill', '#fff')
-      .classed('fill-square', function (d) { return d.filler; })
-      .attr('x', function (d) { return d.x;})
-      .attr('y', function (d) { return d.y;})
-      .attr('opacity', 0);
-
-    // barchart
-    // @v4 Using .merge here to ensure
-    // new and old data have same attrs applied
-    var bars = g.selectAll('.bar').data(fillerCounts);
-    var barsE = bars.enter()
-      .append('rect')
-      .attr('class', 'bar');
-    bars = bars.merge(barsE)
-      .attr('x', 0)
-      .attr('y', function (d, i) { return yBarScale(i);})
-      .attr('fill', function (d, i) { return barColors[i]; })
-      .attr('width', 0)
-      .attr('height', yBarScale.bandwidth());
-
-    var barText = g.selectAll('.bar-text').data(fillerCounts);
-    barText.enter()
-      .append('text')
-      .attr('class', 'bar-text')
-      .text(function (d) { return d.key + '…'; })
-      .attr('x', 0)
-      .attr('dx', 15)
-      .attr('y', function (d, i) { return yBarScale(i);})
-      .attr('dy', yBarScale.bandwidth() / 1.2)
-      .style('font-size', '110px')
-      .attr('fill', 'white')
-      .attr('opacity', 0);
-
-    // histogram
-    // @v4 Using .merge here to ensure
-    // new and old data have same attrs applied
-    var hist = g.selectAll('.hist').data(histData);
-    var histE = hist.enter().append('rect')
-      .attr('class', 'hist');
-    hist = hist.merge(histE).attr('x', function (d) { return xHistScale(d.x0); })
-      .attr('y', height)
-      .attr('height', 0)
-      .attr('width', xHistScale(histData[0].x1) - xHistScale(histData[0].x0) - 1)
-      .attr('fill', barColors[0])
-      .attr('opacity', 0);
-
-    // cough title
-    g.append('text')
-      .attr('class', 'sub-title cough cough-title')
-      .attr('x', width / 2)
-      .attr('y', 60)
-      .text('cough')
-      .attr('opacity', 0);
-
-    // arrowhead from
-    // http://logogin.blogspot.com/2013/02/d3js-arrowhead-markers.html
-    svg.append('defs').append('marker')
-      .attr('id', 'arrowhead')
-      .attr('refY', 2)
-      .attr('markerWidth', 6)
-      .attr('markerHeight', 4)
-      .attr('orient', 'auto')
-      .append('path')
-      .attr('d', 'M 0,0 V 4 L6,2 Z');
-
-    g.append('path')
-      .attr('class', 'cough cough-arrow')
-      .attr('marker-end', 'url(#arrowhead)')
-      .attr('d', function () {
-        var line = 'M ' + ((width / 2) - 10) + ' ' + 80;
-        line += ' l 0 ' + 230;
-        return line;
+    g.selectAll('circle')
+      .data(bubdata)
+      .enter()
+      .append('circle')
+      .attr('class', 'mexport')
+      .attr('cx', function(d) {
+        return projection([d.locations[state][0], d.locations[state][1]])[0];
       })
+      .attr('cy', function(d) {
+        return projection([d.locations[state][0], d.locations[state][1]])[1];
+      })
+      .attr('r', 2)
+      .attr('fill', '#c51b8a')
       .attr('opacity', 0);
+
+    d3.select("#option").select("input")
+      .on('click', d => {
+        state += 1;
+        g.selectAll('.mexport')
+          .transition().duration(1000)
+          .attr('cx', function(d) {
+            return projection([d.locations[state][0], d.locations[state][1]])[0];
+          })
+          .attr('cy', function(d) {
+            return projection([d.locations[state][0], d.locations[state][1]])[1];
+          })
+          .attr('r', function(d) {
+            return scale(d.locations[state][2]);
+          })
+          .style('opacity', 1.0)
+          .style('fill-opacity', 0.5)
+          .style('fill', '#fde0dd')
+          .style('stroke', '#c51b8a')
+          .style('opacity', 0);
+      });
+
+    // create choropleth
+    var colorScheme = d3.schemePurples[4];
+            colorScheme.unshift("#eee");
+    var colorScale = d3.scaleThreshold()
+                .domain([0, 0.12, 0.24, 0.36, 0.48, 0.6])
+                .range(colorScheme);
+            // Legend
+    var g2 = g.append("g")
+            .attr("class", "legendThreshold")
+            .attr("transform", "translate(20,20)");
+        g2.append("text")
+            .attr("class", "caption")
+            .attr("x", 0)
+            .attr("y", -6)
+            .text("% of Migrants who Self-Reported Experiencing Danger in Each State")
+            .attr('opacity', 0);
+    var labels = ['0-12%', '12-24%', '24-36%', '36-48%', '48-60%'];
+    var legend = d3.legendColor()
+            .labels(function (d) { return labels[d.i]; })
+            .shapePadding(4)
+            .scale(colorScale)
+          g.select(".legendThreshold")
+            .call(legend)
+            .attr('opacity', 0);
+
+    g.append('g')
+      .selectAll("path")
+      .data(mymap.features)
+      .enter().append("path")
+      .attr("d", path)
+      .classed("area",true)
+      .on('mouseover', function(d) {
+        d3.select(this).classed("highlight",true);
+          drawTooltip(d);})
+      .on('mouseout',mouseout)
+      .attr("fill", function(d) {
+        return colorScale(d.properties.value);
+        })
+      .style("stroke", "#333")
+      .style("stroke-width", ".5px")
+      .attr('opacity', 0);
+
+    // final map
+    g.append('g')
+      .selectAll("path")
+      .data(mymap.features)
+      .enter().append("path")
+      .attr("d", path)
+      .attr("fill", "transparent")
+      .style("stroke", "#333")
+      .style("stroke-width", ".5px")
+      .style('opacity', 0);
+
   };
 
   /**
@@ -262,10 +383,10 @@ var scrollVis = function () {
     // Most sections do not need to be updated
     // for all scrolling and so are set to
     // no-op functions.
-    for (var i = 0; i < 9; i++) {
+    for (var i = 0; i < 5; i++) {
       updateFunctions[i] = function () {};
     }
-    updateFunctions[7] = updateCough;
+//    updateFunctions[7] = updateCough;
   };
 
   /**
@@ -288,20 +409,25 @@ var scrollVis = function () {
    *
    */
   function showMap() {
-    console.log('first map');
-  }
+    g.selectAll('.map1')
+      .transition()
+      .attr('opacity', 1.0);
+  };
 
   /**
-   * showFillerTitle - filler counts
+   * showCaravan - shows caravan
    *
-   * hides: intro title
-   * hides: square grid
-   * shows: filler count title
+   * hides: initial map
+   * shows: caravan map
+   * shows: line
    *
    */
   function showCaravan() {
-    console.log('caravan map');
-  }
+    g.selectAll('.map2')
+      .transition()
+      .duration(200)
+      .attr('opacity', 1.0);
+  };
 
   /**
    * showGrid - square grid
@@ -440,7 +566,7 @@ function display(data) {
   scroll.on('progress', function (index, progress) {
     plot.update(index, progress);
   });
-}
+};
 
 var url = 'https://gist.githubusercontent.com/ponentesincausa/46d1d9a94ca04a56f93d/raw/a05f4e2b42cf981e31ef9f6f9ee151a060a38c25/mexico.json';
 // load data and display
