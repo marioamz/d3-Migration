@@ -1,232 +1,454 @@
-// this is to build the Mexico map
-const url = 'https://gist.githubusercontent.com/ponentesincausa/46d1d9a94ca04a56f93d/raw/a05f4e2b42cf981e31ef9f6f9ee151a060a38c25/mexico.json';
-
-var width = 960,
-    height = 500;
-
-var projection = d3.geoMercator()
-    .scale(1100)
-    .center([-102.34034978813841, 24.012062015793]);
-
-var path = d3.geoPath().projection(projection);
-
-var svg = d3.select("#cities_graph").append("svg")
-    .attr("width", width)
-    .attr("height", height);
-
-d3.json(url, function(error, mx) {
-  svg.selectAll("path")
-    .data(mx.features)
-    .enter().append("path")
-    .attr("d", path)
-    .attr("fill", "transparent")
-    .style("stroke", "#333")
-    .style("stroke-width", ".5px")
-    .attr("class", "muns");
-});
-
-// now I'm building the dots of frequency of visits in a city
-
-// WORKS, ITERATING THROUGH COLUMNS
-var columns = [['mex_port_long', 'mex_port_lat', 'sum'],
-['city_long', 'city_lat', 'sum']]
-
-d3.csv('d3data/gooeydata.csv', function(error, usa) {
-  let state = 0;
-  const newData = usa.map(row => {
-    return {
-      ...row,
-      locations: columns.map(column => {
-        return [Number(row[column[0]]), Number(row[column[1]]), Number(row[column[2]])];
-      })
-    };
-  });
-
-  var max = d3.max(newData, function(d) { return d.locations[state][2]; } );
-  var scale = d3.scaleLinear()
-    .domain([0, max])
-    .range([5, 20]);
-
-  svg.selectAll('circle')
-    .data(newData)
-    .enter()
-    .append('circle')
-    .attr('class', 'mexport')
-    .attr('cx', function(d) {
-      return projection([d.locations[state][0], d.locations[state][1]])[0];
-    })
-    .attr('cy', function(d) {
-      return projection([d.locations[state][0], d.locations[state][1]])[1];
-    })
-    .attr('r', 2)
-    .attr('fill', '#c51b8a');
-
-  d3.select("#option").select("input")
-    .on('click', d => {
-      state += 1;
-      console.log(state);
-      svg.selectAll('.mexport')
-        .transition().duration(1000)
-        .attr('cx', function(d) {
-          return projection([d.locations[state][0], d.locations[state][1]])[0];
-        })
-        .attr('cy', function(d) {
-          return projection([d.locations[state][0], d.locations[state][1]])[1];
-        })
-        .attr('r', function(d) {
-          return scale(d.locations[state][2]);
-        })
-        .style('opacity', 1.0)
-        .style('fill-opacity', 0.5)
-        .style('fill', '#fde0dd')
-        .style('stroke', '#c51b8a')
-    })
-});
-
-//now I'm building the caravan path as a comparison case
-
-
-var svg2 = d3.select('#caravan_graph')
-  .append('svg')
-  .attr('width', width)
-  .attr('height', height);
-
-var g1 = svg2.append('g');
-
-d3.json(url, function(error, mx) {
-    g1.selectAll("path")
-      .data(mx.features)
+/* THIS IS THE CODE FOR CREATING MULTIPLE ITERATIONS OF THE SAME GRAPH
+d3.json("build/mx_tj.json", function(error, mx) {
+    const join = g1.selectAll("path")
+      .data(topojson.object(mx, mx.objects.states).geometries);
+    join
       .enter().append("path")
       .attr("d", path)
+      .merge(join)
       .attr("fill", "transparent")
       .style("stroke", "#333")
-      .style("stroke-width", ".5px")
+      .style("stroke-width", ".2px")
       .attr("class", "muns");
     });
+*/
 
-var cols = [['city_long', 'city_lat']]
+/**
+ * scrollVis - encapsulates
+ * all the code for the visualization
+ * using reusable charts pattern:
+ * http://bost.ocks.org/mike/chart/
+ */
+var scrollVis = function () {
+  // constants to define the size
+  // and margins of the vis area.
+  var width = 600;
+  var height = 520;
+  var margin = { top: 0, left: 20, bottom: 40, right: 10 };
 
-d3.csv('d3data/Migrant_Caravan.csv', function(error, ups) {
-  let states = 0;
-    const newsData = ups.map(row => {
-      return {
-        ...row,
-      locations: cols.map(col => {
-        return [Number(row[col[0]]), Number(row[col[1]])];
-          })
-        };
+  // Keep track of which visualization
+  // we are on and which was the last
+  // index activated. When user scrolls
+  // quickly, we want to call all the
+  // activate functions that they pass.
+  var lastIndex = -1;
+  var activeIndex = 0;
+
+  // main svg used for visualization
+  var svg = null;
+
+  // d3 selection that will be used
+  // for displaying visualizations
+  var g = null;
+
+  //ADDS SCALES AS GLOBALS Here
+
+  // When scrolling to a new section
+  // the activation function for that
+  // section is called.
+  var activateFunctions = [];
+  // If a section has an update function
+  // then it is called while scrolling
+  // through the section with the current
+  // progress through the section.
+  var updateFunctions = [];
+
+  /**
+   * chart
+   *
+   * @param selection - the current d3 selection(s)
+   *  to draw the visualization in. For this
+   *  example, we will be drawing it in #vis
+   */
+  var chart = function (selection) {
+    selection.each(function (data) {
+      // create svg and give it a width and height
+      svg = d3.select(this).selectAll('svg').data([data]);
+      var svgE = svg.enter().append('svg');
+      // @v4 use merge to combine enter and existing selection
+      svg = svg.merge(svgE);
+
+      svg.attr('width', width + margin.left + margin.right);
+      svg.attr('height', height + margin.top + margin.bottom);
+
+      svg.append('g');
+
+
+      // this group element will be used to contain all
+      // other elements.
+      g = svg.select('g')
+        .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
+
+      // perform some preprocessing on raw data
+      var wordData = getWords(rawData);
+      // filter to just include filler words
+      var fillerWords = getFillerWords(wordData);
+
+      // get the counts of filler words for the
+      // bar chart display
+      var fillerCounts = groupByWord(fillerWords);
+      // set the bar scale's domain
+      var countMax = d3.max(fillerCounts, function (d) { return d.value;});
+      xBarScale.domain([0, countMax]);
+
+      // get aggregated histogram data
+
+      var histData = getHistogram(fillerWords);
+      // set histogram's domain
+      var histMax = d3.max(histData, function (d) { return d.length; });
+      yHistScale.domain([0, histMax]);
+
+      setupVis(wordData, fillerCounts, histData);
+
+      setupSections();
+    });
+  };
+
+
+  /**
+   * setupVis - creates initial elements for all
+   * sections of the visualization.
+   *
+   * @param wordData - data object for each word.
+   * @param fillerCounts - nested data that includes
+   *  element for each filler word type.
+   * @param histData - binned histogram data
+   */
+  var setupVis = function (wordData, fillerCounts, histData) {
+    // axis
+    g.append('g')
+      .attr('class', 'x axis')
+      .attr('transform', 'translate(0,' + height + ')')
+      .call(xAxisBar);
+    g.select('.x.axis').style('opacity', 0);
+
+    // count openvis title
+    g.append('text')
+      .attr('class', 'title openvis-title')
+      .attr('x', width / 2)
+      .attr('y', height / 3)
+      .text('2013');
+
+    g.append('text')
+      .attr('class', 'sub-title openvis-title')
+      .attr('x', width / 2)
+      .attr('y', (height / 3) + (height / 5))
+      .text('OpenVis Conf');
+
+    g.selectAll('.openvis-title')
+      .attr('opacity', 0);
+
+    // count filler word count title
+    g.append('text')
+      .attr('class', 'title count-title highlight')
+      .attr('x', width / 2)
+      .attr('y', height / 3)
+      .text('180');
+
+    g.append('text')
+      .attr('class', 'sub-title count-title')
+      .attr('x', width / 2)
+      .attr('y', (height / 3) + (height / 5))
+      .text('Filler Words');
+
+    g.selectAll('.count-title')
+      .attr('opacity', 0);
+
+    // square grid
+    // @v4 Using .merge here to ensure
+    // new and old data have same attrs applied
+    var squares = g.selectAll('.square').data(wordData, function (d) { return d.word; });
+    var squaresE = squares.enter()
+      .append('rect')
+      .classed('square', true);
+    squares = squares.merge(squaresE)
+      .attr('width', squareSize)
+      .attr('height', squareSize)
+      .attr('fill', '#fff')
+      .classed('fill-square', function (d) { return d.filler; })
+      .attr('x', function (d) { return d.x;})
+      .attr('y', function (d) { return d.y;})
+      .attr('opacity', 0);
+
+    // barchart
+    // @v4 Using .merge here to ensure
+    // new and old data have same attrs applied
+    var bars = g.selectAll('.bar').data(fillerCounts);
+    var barsE = bars.enter()
+      .append('rect')
+      .attr('class', 'bar');
+    bars = bars.merge(barsE)
+      .attr('x', 0)
+      .attr('y', function (d, i) { return yBarScale(i);})
+      .attr('fill', function (d, i) { return barColors[i]; })
+      .attr('width', 0)
+      .attr('height', yBarScale.bandwidth());
+
+    var barText = g.selectAll('.bar-text').data(fillerCounts);
+    barText.enter()
+      .append('text')
+      .attr('class', 'bar-text')
+      .text(function (d) { return d.key + '…'; })
+      .attr('x', 0)
+      .attr('dx', 15)
+      .attr('y', function (d, i) { return yBarScale(i);})
+      .attr('dy', yBarScale.bandwidth() / 1.2)
+      .style('font-size', '110px')
+      .attr('fill', 'white')
+      .attr('opacity', 0);
+
+    // histogram
+    // @v4 Using .merge here to ensure
+    // new and old data have same attrs applied
+    var hist = g.selectAll('.hist').data(histData);
+    var histE = hist.enter().append('rect')
+      .attr('class', 'hist');
+    hist = hist.merge(histE).attr('x', function (d) { return xHistScale(d.x0); })
+      .attr('y', height)
+      .attr('height', 0)
+      .attr('width', xHistScale(histData[0].x1) - xHistScale(histData[0].x0) - 1)
+      .attr('fill', barColors[0])
+      .attr('opacity', 0);
+
+    // cough title
+    g.append('text')
+      .attr('class', 'sub-title cough cough-title')
+      .attr('x', width / 2)
+      .attr('y', 60)
+      .text('cough')
+      .attr('opacity', 0);
+
+    // arrowhead from
+    // http://logogin.blogspot.com/2013/02/d3js-arrowhead-markers.html
+    svg.append('defs').append('marker')
+      .attr('id', 'arrowhead')
+      .attr('refY', 2)
+      .attr('markerWidth', 6)
+      .attr('markerHeight', 4)
+      .attr('orient', 'auto')
+      .append('path')
+      .attr('d', 'M 0,0 V 4 L6,2 Z');
+
+    g.append('path')
+      .attr('class', 'cough cough-arrow')
+      .attr('marker-end', 'url(#arrowhead)')
+      .attr('d', function () {
+        var line = 'M ' + ((width / 2) - 10) + ' ' + 80;
+        line += ' l 0 ' + 230;
+        return line;
+      })
+      .attr('opacity', 0);
+  };
+
+  /**
+   * setupSections - each section is activated
+   * by a separate function. Here we associate
+   * these functions to the sections based on
+   * the section's index.
+   *
+   */
+  var setupSections = function () {
+    // activateFunctions are called each
+    // time the active section changes
+    activateFunctions[0] = showMap;
+    activateFunctions[1] = showCaravan;
+    activateFunctions[2] = showBubbles;
+    activateFunctions[3] = showChoropleth;
+    activateFunctions[4] = showMapFinal;
+
+    // updateFunctions are called while
+    // in a particular section to update
+    // the scroll progress in that section.
+    // Most sections do not need to be updated
+    // for all scrolling and so are set to
+    // no-op functions.
+    for (var i = 0; i < 9; i++) {
+      updateFunctions[i] = function () {};
+    }
+    updateFunctions[7] = updateCough;
+  };
+
+  /**
+   * ACTIVATE FUNCTIONS
+   *
+   * These will be called their
+   * section is scrolled to.
+   *
+   * General pattern is to ensure
+   * all content for the current section
+   * is transitioned in, while hiding
+   * the content for the previous section
+   * as well as the next section (as the
+   * user may be scrolling up or down).
+   *
+   */
+
+  /**
+   * showMap: shows first, empty map of Mexico
+   *
+   */
+  function showMap() {
+    console.log('first map');
+  }
+
+  /**
+   * showFillerTitle - filler counts
+   *
+   * hides: intro title
+   * hides: square grid
+   * shows: filler count title
+   *
+   */
+  function showCaravan() {
+    console.log('caravan map');
+  }
+
+  /**
+   * showGrid - square grid
+   *
+   * hides: filler count title
+   * hides: filler highlight in grid
+   * shows: square grid
+   *
+   */
+  function showBubbles() {
+    console.log('Bubbles map');
+  }
+
+  /**
+   * highlightGrid - show fillers in grid
+   *
+   * hides: barchart, text and axis
+   * shows: square grid and highlighted
+   *  filler words. also ensures squares
+   *  are moved back to their place in the grid
+   */
+  function showChoropleth() {
+    console.log('choropleth map');
+  }
+
+  /**
+   * showBar - barchart
+   *
+   * hides: square grid
+   * hides: histogram
+   * shows: barchart
+   *
+   */
+  function showMapFinal() {
+    // ensure bar axis is set
+    console.log('final map');
+  }
+
+
+  /**
+   * UPDATE FUNCTIONS
+   *
+   * These will be called within a section
+   * as the user scrolls through it.
+   *
+   * We use an immediate transition to
+   * update visual elements based on
+   * how far the user has scrolled
+   *
+   */
+
+  /**
+   * updateCough - increase/decrease
+   * cough text and color
+   *
+   * @param progress - 0.0 - 1.0 -
+   *  how far user has scrolled in section
+   */
+  function updateCough(progress) {
+    g.selectAll('.cough')
+      .transition()
+      .duration(0)
+      .attr('opacity', progress);
+
+    g.selectAll('.hist')
+      .transition('cough')
+      .duration(0)
+      .style('fill', function (d) {
+        return (d.x0 >= 14) ? coughColorScale(progress) : '#008080';
       });
+  }
 
-    var line = d3.line()
-    .x(function(d) { return projection([d.locations[states][0], d.locations[states][1]])[0]; })
-    .y(function(d) { return projection([d.locations[states][0], d.locations[states][1]])[1]; })
-    .curve(d3.curveCardinal.tension(0));
+  /**
+   * activate -
+   *
+   * @param index - index of the activated section
+   */
+  chart.activate = function (index) {
+    activeIndex = index;
+    var sign = (activeIndex - lastIndex) < 0 ? -1 : 1;
+    var scrolledSections = d3.range(lastIndex + sign, activeIndex + sign, sign);
+    scrolledSections.forEach(function (i) {
+      activateFunctions[i]();
+    });
+    lastIndex = activeIndex;
+  };
 
-    svg2.append("path")
-      .data([newsData])
-      .attr("class", "line")
-      .style("stroke", '#df65b0')
-      .style("fill", "none")
-      .style("stroke-width", "1.5px")
-      .attr("d", line);
+  /**
+   * update
+   *
+   * @param index
+   * @param progress
+   */
+  chart.update = function (index, progress) {
+    updateFunctions[index](progress);
+  };
 
-    transition(d3.selectAll('path'));
-
-    function tweenDash() {
-   			var l = this.getTotalLength(),
-   				i = d3.interpolateString("0," + l, l + "," + l);
-   			return function (t) { return i(t); };
-   		};
-
-    function transition(selection) {
-   		selection.each(function(){
-        d3.select(this).transition()
-   			.duration(12000)
-   			.attrTween("stroke-dasharray", tweenDash);
-         })
-   		};
-
-});
-
-
-// THIS CREATES THE CHLOROPETH OF VIOLENCE
-
-var svg3 = d3.select("#chloropeth").append("svg")
-    .attr("width", width)
-    .attr("height", height);
-
-var colorScheme = d3.schemePurples[4];
-        colorScheme.unshift("#eee");
-var colorScale = d3.scaleThreshold()
-            .domain([0, 0.12, 0.24, 0.36, 0.48, 0.6])
-            .range(colorScheme);
-        // Legend
-var g = svg3.append("g")
-        .attr("class", "legendThreshold")
-        .attr("transform", "translate(20,20)");
-    g.append("text")
-        .attr("class", "caption")
-        .attr("x", 0)
-        .attr("y", -6)
-        .text("% of Migrants who Self-Reported Experiencing Danger in Each State");
-var labels = ['0-12%', '12-24%', '24-36%', '36-48%', '48-60%'];
-var legend = d3.legendColor()
-        .labels(function (d) { return labels[d.i]; })
-        .shapePadding(4)
-        .scale(colorScale);
-      svg3.select(".legendThreshold")
-        .call(legend);
-
-d3.csv("d3data/violence.csv", function(data) {
-  d3.json(url, function(error, mx) {
-    for (var i = 0; i < data.length; i++) {
-      var dataState = data[i].State;
-      var dataValue = parseFloat(data[i].Percentage);
-      for (var j = 0; j < mx.features.length; j++) {
-        var jsonState = mx.features[j].properties.name;
-          if (dataState == jsonState) {
-            mx.features[j].properties.value = dataValue;
-            console.log(dataState, jsonState, dataValue);
-
-            break;
-          }
-        }
-      }
+  // return chart function
+  return chart;
+};
 
 
+/**
+ * display - called once data
+ * has been loaded.
+ * sets up the scroller and
+ * displays the visualization.
+ *
+ * @param data - loaded tsv data
+ */
+function display(data) {
+  // create a new plot and
+  // display it
+  var plot = scrollVis();
+  d3.select('#vis')
+    .datum(data)
+    .call(plot);
 
-    svg3.selectAll("path")
-      .data(mx.features)
-      .enter().append("path")
-      .attr("d", path)
-      .classed("area",true)
-      .on('mouseover', function(d) {
-        d3.select(this).classed("highlight",true);
-          drawTooltip(d);})
-      .on('mouseout',mouseout)
-      .attr("fill", function(d) {
-        return colorScale(d.properties.value);
-        })
-      .style("stroke", "#333")
-      .style("stroke-width", ".5px")
-      .attr("class", "muns");
+  // setup scroll functionality
+  var scroll = scroller()
+    .container(d3.select('#graphic'));
+
+  // pass in .step selection as the steps
+  scroll(d3.selectAll('.step'));
+
+  // setup event handling
+  scroll.on('active', function (index) {
+    // highlight current step text
+    d3.selectAll('.step')
+      .style('opacity', function (d, i) { return i === index ? 1 : 0.1; });
+
+    // activate current section
+    plot.activate(index);
   });
-});
 
-function drawTooltip(d){
-		var xPosition = d3.event.pageX;
-    var yPosition = d3.event.pageY;
-
-		d3.select("#tooltip")
-			.classed("hidden",false)
-			.style("left", xPosition + "px")
-			.style("top", yPosition + "px")
-			.text(d.properties.name + ': ' + (d.properties.value*100) + '%');
+  scroll.on('progress', function (index, progress) {
+    plot.update(index, progress);
+  });
 }
 
-function mouseout() {
-	d3.select("#tooltip").classed("hidden", true);
-	d3.select(this).classed("highlight",false)
-}
-
-//
+var url = 'https://gist.githubusercontent.com/ponentesincausa/46d1d9a94ca04a56f93d/raw/a05f4e2b42cf981e31ef9f6f9ee151a060a38c25/mexico.json';
+// load data and display
+d3.queue()
+    .defer(d3.csv, "d3data/gooeydata.csv")
+    .defer(d3.csv, "d3data/violence.csv")
+    .defer(d3.csv, "d3data/Migrant_Caravan.csv")
+    .defer(d3.json, url)
+    .awaitAll(function (err, results) {
+      display(results)
+    });

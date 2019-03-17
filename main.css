@@ -19,7 +19,7 @@
   display: inline-block;
   width: 350px;
   top: 0px;
-  padding-bottom: 150px
+  padding-bottom: 150px;
 }
 
 #sections .title {
@@ -37,6 +37,18 @@
   font-size: 15px;
   line-height: 20px;
   color: #484848;
+}
+
+#vis {
+  display: inline-block;
+  position: fixed;
+  top: 60px;
+  z-index: 1;
+  margin-left:100px;
+
+  height: 500px;
+  width: 500px;
+  background-color: #ddd;
 }
 
 

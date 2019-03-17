@@ -1,4 +1,6 @@
-// this is to build the Mexico map
+
+
+
 const url = 'https://gist.githubusercontent.com/ponentesincausa/46d1d9a94ca04a56f93d/raw/a05f4e2b42cf981e31ef9f6f9ee151a060a38c25/mexico.json';
 
 var width = 960,
@@ -228,3 +230,5 @@ function mouseout() {
 	d3.select("#tooltip").classed("hidden", true);
 	d3.select(this).classed("highlight",false)
 }
+
+//

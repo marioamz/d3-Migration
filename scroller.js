@@ -1,4 +1,3 @@
-//scrolling inspired by: https://github.com/vlandham/scroll_demo/blob/gh-pages/js/scroller.js
 
 /**
  * scroller - handles the details
@@ -133,19 +132,3 @@ function scroller() {
 
   return scroll;
 }
-
-
-/* THIS IS THE CODE FOR CREATING MULTIPLE ITERATIONS OF THE SAME GRAPH
-d3.json("build/mx_tj.json", function(error, mx) {
-    const join = g1.selectAll("path")
-      .data(topojson.object(mx, mx.objects.states).geometries);
-    join
-      .enter().append("path")
-      .attr("d", path)
-      .merge(join)
-      .attr("fill", "transparent")
-      .style("stroke", "#333")
-      .style("stroke-width", ".2px")
-      .attr("class", "muns");
-    });
-*/
