@@ -96,8 +96,8 @@ var scrollVis = function () {
 
       // this group element will be used to contain all
       // other elements.
-      g = svg.select('g');
-      //  .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
+      g = svg.select('g')
+        .style('transform', 'translate(-190px)');
 
       setupVis(bubdata, mymap, caradata);
 
