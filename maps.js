@@ -88,16 +88,16 @@ var scrollVis = function () {
       // @v4 use merge to combine enter and existing selection
       svg = svg.merge(svgE);
 
-      svg.attr('width', width + margin.left + margin.right);
-      svg.attr('height', height + margin.top + margin.bottom);
+      svg.attr('width', width); //+ margin.left + margin.right);
+      svg.attr('height', height); //+ margin.top + margin.bottom);
 
       svg.append('g');
 
 
       // this group element will be used to contain all
       // other elements.
-      g = svg.select('g')
-        .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
+      g = svg.select('g');
+      //  .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
 
       setupVis(bubdata, mymap, caradata);
 
