@@ -1,18 +1,3 @@
-/* THIS IS THE CODE FOR CREATING MULTIPLE ITERATIONS OF THE SAME GRAPH
-d3.json("build/mx_tj.json", function(error, mx) {
-    const join = g1.selectAll("path")
-      .data(topojson.object(mx, mx.objects.states).geometries);
-    join
-      .enter().append("path")
-      .attr("d", path)
-      .merge(join)
-      .attr("fill", "transparent")
-      .style("stroke", "#333")
-      .style("stroke-width", ".2px")
-      .attr("class", "muns");
-    });
-*/
-
 /**
  * scrollVis - encapsulates
  * all the code for the visualization
@@ -24,7 +9,7 @@ var scrollVis = function () {
   // constants to define the size
   // and margins of the vis area.
   var width = 600;
-  var height = 520;
+  var height = 500;
   var margin = { top: 0, left: 20, bottom: 40, right: 10 };
 
   // Keep track of which visualization
@@ -49,7 +34,12 @@ var scrollVis = function () {
   // for displaying visualizations
   var g = null;
 
-  //ADDS SCALES AS GLOBALS Here
+  var colorScheme = d3.schemePurples[4];
+          colorScheme.unshift("#eee");
+
+  var colorScale = d3.scaleThreshold()
+              .domain([0, 0.12, 0.24, 0.36, 0.48, 0.6])
+              .range(colorScheme);
 
   // When scrolling to a new section
   // the activation function for that
@@ -210,6 +200,8 @@ var scrollVis = function () {
 
     // first transparent map
     var map1 = g.append("g")
+      .attr('height', 300)
+      .attr('width', 300)
       .selectAll(".map1")
       .data(mymap.features);
     map1
@@ -223,7 +215,7 @@ var scrollVis = function () {
     map1.select('.map1').style('opacity', 0);
 
     // second caravan map
-    var map2 = g.append("g")
+  /*  var map2 = g.append("g")
       .selectAll(".map2")
       .data(mymap.features);
     map2
@@ -235,11 +227,11 @@ var scrollVis = function () {
       .style("stroke", "#333")
       .style("stroke-width", ".5px");
     map2.select('.map2').style('opacity', 0);
-
+*/
     var line = d3.line()
     .x(function(d) { return projection([d.locations[0][0], d.locations[0][1]])[0]; })
     .y(function(d) { return projection([d.locations[0][0], d.locations[0][1]])[1]; })
-    .curve(d3.curveCardinal.tension(0));
+    .curve(d3.curveCardinal.tension(1));
 
     g.append("path")
       .data([caradata])
@@ -254,6 +246,7 @@ var scrollVis = function () {
 
 
     // create bubbles graph
+/*
     var map3 = g.append('g')
       .selectAll(".map3")
       .data(mymap.features);
@@ -266,7 +259,7 @@ var scrollVis = function () {
       .style("stroke", "#333")
       .style("stroke-width", ".5px")
       .attr("opacity", 0);
-
+*/
     var state = 0
 
     var max = d3.max(bubdata, function(d) { return d.locations[state][2]; } );
@@ -310,15 +303,11 @@ var scrollVis = function () {
       });
 
     // create choropleth
-    var colorScheme = d3.schemePurples[4];
-            colorScheme.unshift("#eee");
-    var colorScale = d3.scaleThreshold()
-                .domain([0, 0.12, 0.24, 0.36, 0.48, 0.6])
-                .range(colorScheme);
+
             // Legend
     var g2 = g.append("g")
             .attr("class", "legendThreshold")
-            .attr("transform", "translate(20,20)");
+            .attr("transform", "translate(600,20)");
         g2.append("text")
             .attr("class", "caption")
             .attr("x", 0)
@@ -418,6 +407,7 @@ var scrollVis = function () {
   function showMap() {
     g.selectAll('.map1')
       .transition()
+      .duration(500)
       .attr('opacity', 1.0);
   };
 
@@ -430,7 +420,7 @@ var scrollVis = function () {
    *
    */
   function showCaravan() {
-
+/*
     g.selectAll('.map1')
       .transition()
       .attr('opacity', 0);
@@ -438,9 +428,10 @@ var scrollVis = function () {
     g.selectAll('.map2')
       .transition()
       .attr('opacity', 1.0);
-
+*/
     g.selectAll('.line')
       .transition()
+      .duration(500)
       .attr('opacity', 1.0);
   };
 
@@ -453,6 +444,7 @@ var scrollVis = function () {
    *
    */
   function showBubbles() {
+/*
     g.selectAll('.map1')
       .transition()
       .attr('opacity', 0);
@@ -461,13 +453,13 @@ var scrollVis = function () {
       .transition()
       .attr('opacity', 0);
 
-    g.selectAll('.line')
-      .transition()
-      .attr('opacity', 0);
-
     g.selectAll('.map3')
       .transition()
       .attr('opacity', 1.0);
+*/
+    g.selectAll('.line')
+      .transition()
+      .attr('opacity', 0);
 
     g.selectAll('.circle')
       .transition()
@@ -503,6 +495,14 @@ var scrollVis = function () {
     g.selectAll('.map4')
       .transition()
       .attr('opacity', 1.0);
+
+    g.selectAll('.area')
+      .transition()
+      .attr('opacity', 1.0);
+
+    g.selectAll('.highlight')
+      .transition()
+      .attr('opacity', 1.0);
   }
 
   /**
@@ -515,7 +515,25 @@ var scrollVis = function () {
    */
   function showMapFinal() {
     // ensure bar axis is set
-    console.log('final map');
+    g.selectAll('.legendThreshold')
+      .transition()
+      .attr('opacity', 0);
+
+    g.selectAll('.text')
+      .transition()
+      .attr('opacity', 0);
+
+    g.selectAll('.map4')
+      .transition()
+      .attr('opacity', 0);
+
+    g.selectAll('.area')
+      .transition()
+      .attr('opacity', 0);
+
+    g.selectAll('.highlight')
+      .transition()
+      .attr('opacity', 0);
   }
 
 

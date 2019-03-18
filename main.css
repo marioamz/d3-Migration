@@ -1,7 +1,7 @@
 
 
 .container {
-  width: 1500px;
+  width: 1000px;
   margin: auto;
 }
 
@@ -65,7 +65,6 @@
 }
 path.area{
   stroke-width:0.3;
-  fill: #ffffbf;
   stroke: black;
 }
 path.area.highlight{
