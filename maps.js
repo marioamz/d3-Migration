@@ -223,17 +223,18 @@ var scrollVis = function () {
     map1.select('.map1').style('opacity', 0);
 
     // second caravan map
-    var map2 = g.selectAll("caravan")
-      .data(mymap.features)
-      .attr('class', 'caravan');
-    var map2next = map2.enter()
-      .append("path")
-      .attr("d", path);
-    map2 = map2.merge(map2next)
+    var map2 = g.append("g")
+      .selectAll(".map2")
+      .data(mymap.features);
+    map2
+      .attr("class", ".map2")
+      .enter().append("path")
+      .attr("d", path)
+      .merge(map2)
       .attr("fill", "transparent")
       .style("stroke", "#333")
-      .style("stroke-width", ".5px")
-      .attr('opacity', 0);
+      .style("stroke-width", ".5px");
+    map2.select('.map2').style('opacity', 0);
 
     var line = d3.line()
     .x(function(d) { return projection([d.locations[0][0], d.locations[0][1]])[0]; })
@@ -253,10 +254,13 @@ var scrollVis = function () {
 
 
     // create bubbles graph
-    g.append('g')
-      .selectAll("path")
-      .data(mymap.features)
+    var map3 = g.append('g')
+      .selectAll(".map3")
+      .data(mymap.features);
+    map3
+      .attr('class', '.map3')
       .enter().append("path")
+      .merge(map3)
       .attr("d", path)
       .attr("fill", "transparent")
       .style("stroke", "#333")
@@ -274,7 +278,7 @@ var scrollVis = function () {
       .data(bubdata)
       .enter()
       .append('circle')
-      .attr('class', 'mexport')
+      .attr('class', 'circle')
       .attr('cx', function(d) {
         return projection([d.locations[state][0], d.locations[state][1]])[0];
       })
@@ -288,7 +292,7 @@ var scrollVis = function () {
     d3.select("#option").select("input")
       .on('click', d => {
         state += 1;
-        g.selectAll('.mexport')
+        g.selectAll('.circle')
           .transition().duration(1000)
           .attr('cx', function(d) {
             return projection([d.locations[state][0], d.locations[state][1]])[0];
@@ -299,11 +303,10 @@ var scrollVis = function () {
           .attr('r', function(d) {
             return scale(d.locations[state][2]);
           })
-          .style('opacity', 1.0)
+          //.style('opacity', 0)
           .style('fill-opacity', 0.5)
           .style('fill', '#fde0dd')
           .style('stroke', '#c51b8a')
-          .style('opacity', 0);
       });
 
     // create choropleth
@@ -322,6 +325,7 @@ var scrollVis = function () {
             .attr("y", -6)
             .text("% of Migrants who Self-Reported Experiencing Danger in Each State")
             .attr('opacity', 0);
+
     var labels = ['0-12%', '12-24%', '24-36%', '36-48%', '48-60%'];
     var legend = d3.legendColor()
             .labels(function (d) { return labels[d.i]; })
@@ -331,12 +335,15 @@ var scrollVis = function () {
             .call(legend)
             .attr('opacity', 0);
 
-    g.append('g')
-      .selectAll("path")
-      .data(mymap.features)
+    var map4 = g.append('g')
+      .selectAll(".map4")
+      .data(mymap.features);
+    map4
+      .attr('class', '.map4')
       .enter().append("path")
       .attr("d", path)
-      .classed("area",true)
+      .merge(map4)
+      .classed("area", true)
       .on('mouseover', function(d) {
         d3.select(this).classed("highlight",true);
           drawTooltip(d);})
@@ -423,9 +430,17 @@ var scrollVis = function () {
    *
    */
   function showCaravan() {
+
+    g.selectAll('.map1')
+      .transition()
+      .attr('opacity', 0);
+
     g.selectAll('.map2')
       .transition()
-      .duration(200)
+      .attr('opacity', 1.0);
+
+    g.selectAll('.line')
+      .transition()
       .attr('opacity', 1.0);
   };
 
@@ -438,8 +453,26 @@ var scrollVis = function () {
    *
    */
   function showBubbles() {
-    console.log('Bubbles map');
-  }
+    g.selectAll('.map1')
+      .transition()
+      .attr('opacity', 0);
+
+    g.selectAll('.map2')
+      .transition()
+      .attr('opacity', 0);
+
+    g.selectAll('.line')
+      .transition()
+      .attr('opacity', 0);
+
+    g.selectAll('.map3')
+      .transition()
+      .attr('opacity', 1.0);
+
+    g.selectAll('.circle')
+      .transition()
+      .attr('opacity', 1.0);
+    };
 
   /**
    * highlightGrid - show fillers in grid
@@ -450,7 +483,26 @@ var scrollVis = function () {
    *  are moved back to their place in the grid
    */
   function showChoropleth() {
-    console.log('choropleth map');
+
+    g.selectAll('.map3')
+      .transition()
+      .attr('opacity', 0);
+
+    g.selectAll('.circle')
+      .transition()
+      .attr('opacity', 0);
+
+    g.selectAll('.legendThreshold')
+      .transition()
+      .attr('opacity', 1.0);
+
+    g.selectAll('.text')
+      .transition()
+      .attr('opacity', 1.0);
+
+    g.selectAll('.map4')
+      .transition()
+      .attr('opacity', 1.0);
   }
 
   /**

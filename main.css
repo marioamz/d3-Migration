@@ -11,13 +11,13 @@
 */
 
 .container {
-  width: 800px;
+  width: 890px;
 }
 
 #sections {
   position: relative;
   display: inline-block;
-  width: 350px;
+  width: 300px;
   top: 0px;
   padding-bottom: 150px;
 }
@@ -42,13 +42,8 @@
 #vis {
   display: inline-block;
   position: fixed;
-  top: 60px;
-  z-index: 1;
-  margin-left:100px;
+  margin-left:0px;
 
-  height: 500px;
-  width: 500px;
-  background-color: #ddd;
 }
 
 
