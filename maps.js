@@ -73,16 +73,17 @@ var scrollVis = function () {
       var caradata = getCaravanData(caravandata);
 
       // create svg and give it a width and height
-      svg = d3.select(this).selectAll('svg').data(mymap.features);
-      var svgE = svg.enter().append('svg');
+      // svg = d3.select(this).selectAll('svg').data(mymap.features);
+      // var svgE = svg.enter().append('svg');
+
+      svg = d3.select(this).append('svg');
       // @v4 use merge to combine enter and existing selection
-      svg = svg.merge(svgE);
+      // svg = svg.merge(svgE);
 
       svg.attr('width', width); //+ margin.left + margin.right);
       svg.attr('height', height); //+ margin.top + margin.bottom);
 
       svg.append('g');
-
 
       // this group element will be used to contain all
       // other elements.
@@ -204,6 +205,7 @@ var scrollVis = function () {
       .attr('width', 300)
       .selectAll(".map1")
       .data(mymap.features);
+
     map1
       .attr("class", ".map1")
       .enter().append("path")
@@ -212,7 +214,8 @@ var scrollVis = function () {
       .attr("fill", "transparent")
       .style("stroke", "#333")
       .style("stroke-width", ".5px");
-    map1.select('.map1').style('opacity', 0);
+
+    // map1.select('.map1').style('opacity', 0);
 
     // second caravan map
   /*  var map2 = g.append("g")
@@ -308,6 +311,7 @@ var scrollVis = function () {
     var g2 = g.append("g")
             .attr("class", "legendThreshold")
             .attr("transform", "translate(600,20)");
+
         g2.append("text")
             .attr("class", "caption")
             .attr("x", 0)
@@ -327,8 +331,9 @@ var scrollVis = function () {
     var map4 = g.append('g')
       .selectAll(".map4")
       .data(mymap.features);
+
     map4
-      .attr('class', '.map4')
+      .attr('class', 'map4')
       .enter().append("path")
       .attr("d", path)
       .merge(map4)
@@ -405,7 +410,7 @@ var scrollVis = function () {
    *
    */
   function showMap() {
-    g.selectAll('.map1')
+    g.select('.map1')
       .transition()
       .duration(500)
       .attr('opacity', 1.0);
@@ -476,9 +481,9 @@ var scrollVis = function () {
    */
   function showChoropleth() {
 
-    g.selectAll('.map3')
-      .transition()
-      .attr('opacity', 0);
+    g.selectAll('.map3').remove();
+      // .attr('opacity', 0)
+      // .classed("back", true);
 
     g.selectAll('.circle')
       .transition()
@@ -500,7 +505,7 @@ var scrollVis = function () {
       .transition()
       .attr('opacity', 1.0);
 
-    g.selectAll('.highlight')
+    g.selectAll('.hidden')
       .transition()
       .attr('opacity', 1.0);
   }

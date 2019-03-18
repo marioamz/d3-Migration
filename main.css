@@ -70,3 +70,7 @@ path.area{
 path.area.highlight{
   fill:#78c679;
 }
+
+.back {
+  z-index: -1;
+}
