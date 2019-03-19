@@ -235,14 +235,14 @@ d3.selectAll(".city_dots").data(city_data).enter()
       .attr('opacity', 1);
 
 
-    // bubbles graph
-
-    var state = 0
-
     var max = d3.max(bubdata, function(d) { return d.locations[1][2]; } );
     var scale = d3.scaleLinear()
       .domain([0, max])
       .range([5, 20]);
+
+    // bubbles graph
+
+    var state = 0
 
     g.selectAll('circle')
       .data(bubdata)
@@ -260,25 +260,6 @@ d3.selectAll(".city_dots").data(city_data).enter()
       .attr('opacity', 0);
 
 //  bubbles graph expansion
-
-    g.selectAll('circle2')
-      .data(bubdata)
-      .enter()
-      .append('circle')
-      .attr('class', 'circle2')
-      .attr('cx', function(d) {
-        return projection([d.locations[1][0], d.locations[1][1]])[0];
-      })
-      .attr('cy', function(d) {
-        return projection([d.locations[1][0], d.locations[1][1]])[1];
-      })
-      .attr('r', function(d) {
-        return scale(d.locations[1][2]);
-      })
-      .style('fill-opacity', 0.5)
-      .style('fill', '#fde0dd')
-      .style('stroke', '#c51b8a')
-      .attr('opacity', 0);
 
     // create choropleth
     // Legend
@@ -452,9 +433,31 @@ d3.selectAll(".city_dots").data(city_data).enter()
         return '#FFFACD';
       });
 
+    var projection = d3.geoMercator()
+        .scale(1100)
+        .center([-102.34034978813841, 24.012062015793]);
+
+    var scale = d3.scaleLinear()
+      .domain([0, 2500])
+      .range([5, 20]);
+
     g.selectAll('.circle')
-      .transition()
-      .attr('opacity', 1.0);
+      .transition().duration(1000)
+      .attr('opacity', 1.0)
+      .transition().delay(2000).duration(2000)
+      .attr('cx', function(d) {
+        return projection([d.locations[1][0], d.locations[1][1]])[0];
+      })
+      .attr('cy', function(d) {
+        return projection([d.locations[1][0], d.locations[1][1]])[1];
+      })
+      .attr('r', function(d) {
+        return scale(d.locations[1][2]);
+      })
+      .style('fill-opacity', 0.5)
+      .style('fill', '#fde0dd')
+      .style('stroke', '#c51b8a');
+
 
     g.selectAll('.circle2')
       .transition()
