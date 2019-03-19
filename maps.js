@@ -86,7 +86,6 @@ var scrollVis = function () {
       g = svg.select('g')
         .style('transform', 'translate(-190px)');
 
-      console.log(caradata);
       setupVis(bubdata, mymap, caradata);
 
       setupSections();
@@ -98,13 +97,13 @@ var scrollVis = function () {
   */
 
   function drawTooltip(d){
-    var xPosition = d3.event.pageX;
-    var yPosition = d3.event.pageY;
+    var xPosition = d3.event.clientX;
+    var yPosition = d3.event.clientY;
 
     d3.select("#tooltip")
       .classed("hidden",false)
-      .style("left", (xPosition - 400)+"px")
-      .style("top", (yPosition - 1450)+"px")
+      .style("left", (xPosition-350)+"px")
+      .style("top", (yPosition)+"px")
       .text(d.properties.name + ': ' + (d.properties.value*100) + '%');
   };
 
@@ -130,8 +129,16 @@ var scrollVis = function () {
       .duration(8000)
       .attrTween("stroke-dasharray", tweenDash);
        })
+
+
     };
 
+/*
+d3.selectAll(".city_dots").data(city_data).enter()
+  .append("circle").attr("class","city_dot")
+  .attr("cx").attr("cy").attr("r",0)
+  .transition().delay(function(d,i){ return i * 2000 }).duration(1000).attr("r",)
+*/
 
   /** DATA FUNCTIONS: preprocessing of my data
    * getBubblesData - creates an array within each object that has lat and long
@@ -232,7 +239,7 @@ var scrollVis = function () {
 
     var state = 0
 
-    var max = d3.max(bubdata, function(d) { return d.locations[state][2]; } );
+    var max = d3.max(bubdata, function(d) { return d.locations[1][2]; } );
     var scale = d3.scaleLinear()
       .domain([0, max])
       .range([5, 20]);
@@ -252,24 +259,28 @@ var scrollVis = function () {
       .attr('fill', '#c51b8a')
       .attr('opacity', 0);
 
-    d3.select("#option").select("input")
-      .on('click', d => {
-        state += 1;
-        g.selectAll('.circle')
-          .transition().duration(1000)
-          .attr('cx', function(d) {
-            return projection([d.locations[state][0], d.locations[state][1]])[0];
-          })
-          .attr('cy', function(d) {
-            return projection([d.locations[state][0], d.locations[state][1]])[1];
-          })
-          .attr('r', function(d) {
-            return scale(d.locations[state][2]);
-          })
-          .style('fill-opacity', 0.5)
-          .style('fill', '#fde0dd')
-          .style('stroke', '#c51b8a')
-      });
+//    d3.select("#option").select("input")
+//      .on('click', d => {
+//        state += 1;
+    g.selectAll('circle2')
+      .data(bubdata)
+      .enter()
+      .append('circle')
+      .attr('class', 'circle2')
+      .attr('cx', function(d) {
+        return projection([d.locations[1][0], d.locations[1][1]])[0];
+      })
+      .attr('cy', function(d) {
+        return projection([d.locations[1][0], d.locations[1][1]])[1];
+      })
+      .attr('r', function(d) {
+        return scale(d.locations[1][2]);
+      })
+      .style('fill-opacity', 0.5)
+      .style('fill', '#fde0dd')
+      .style('stroke', '#c51b8a')
+      .attr('opacity', 0);
+//      });
 
     // create choropleth
     // Legend
@@ -357,6 +368,10 @@ var scrollVis = function () {
       .transition()
       .attr('opacity', 0);
 
+    g.selectAll('.circle2')
+      .transition()
+      .attr('opacity', 0);
+
     g.selectAll('.line')
        .attr('opacity', 0);
 
@@ -388,6 +403,7 @@ var scrollVis = function () {
 
     g.selectAll('.line')
       .attr('opacity', 1.0);
+
     transitionfxn(d3.selectAll(".line"));
 
   //  g.selectAll('.line')
@@ -395,6 +411,10 @@ var scrollVis = function () {
   //    .attr('opacity', 1.0);
 
     g.selectAll('.circle')
+      .transition()
+      .attr('opacity', 0);
+
+    g.selectAll('.circle2')
       .transition()
       .attr('opacity', 0);
 
@@ -438,6 +458,11 @@ var scrollVis = function () {
     g.selectAll('.circle')
       .transition()
       .attr('opacity', 1.0);
+
+    g.selectAll('.circle2')
+      .transition()
+      .duration(3000)
+      .attr('opacity', 1);
     };
 
   /**
@@ -451,6 +476,10 @@ var scrollVis = function () {
   function showChoropleth() {
 
     g.selectAll('.circle')
+      .transition()
+      .attr('opacity', 0);
+
+    g.selectAll('.circle2')
       .transition()
       .attr('opacity', 0);
 
@@ -502,6 +531,11 @@ var scrollVis = function () {
 
     g.selectAll('.line')
       .attr('opacity', 1.0);
+
+    g.selectAll('.circle2')
+      .transition()
+      .attr('opacity', 0);
+
     transitionfxn(d3.selectAll(".line"));
 
     g.selectAll('.map1')
