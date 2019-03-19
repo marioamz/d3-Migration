@@ -102,8 +102,8 @@ var scrollVis = function () {
 
     d3.select("#tooltip")
       .classed("hidden",false)
-      .style("left", xPosition + "px")
-      .style("top", yPosition + "px")
+      .style("left", (xPosition - 400)+"px")
+      .style("top", (yPosition - 1450)+"px")
       .text(d.properties.name + ': ' + (d.properties.value*100) + '%');
   };
 
@@ -123,10 +123,10 @@ var scrollVis = function () {
       return function (t) { return i(t); };
     };
 
-  function transition(selection) {
+  function transitionfxn(selection) {
     selection.each(function(){
       d3.select(this).transition()
-      .duration(12000)
+      .duration(8000)
       .attrTween("stroke-dasharray", tweenDash);
        })
     };
@@ -225,7 +225,7 @@ var scrollVis = function () {
       .style("fill", "none")
       .style("stroke-width", "3.5px")
       .attr("d", line)
-      .attr('opacity', 0);
+      .attr('opacity', 1);
 
     // bubbles graph
 
@@ -292,28 +292,6 @@ var scrollVis = function () {
           g.select(".legendThreshold")
             .call(legend)
             .attr('opacity', 0);
-/*
-    var map4 = g.append('g')
-      .selectAll(".map4")
-      .data(mymap.features);
-*
-    map4
-      .attr('class', 'map4')
-      .enter().append("path")
-      .attr("d", path)
-      .merge(map4)
-      .classed("area", true)
-      .on('mouseover', function(d) {
-        d3.select(this).classed("highlight",true);
-          drawTooltip(d);})
-      .on('mouseout',mouseout)
-      .attr("fill", function(d) {
-        return colorScale(d.properties.value);
-        })
-      .style("stroke", "#333")
-      .style("stroke-width", ".5px")
-      .attr('opacity', 0);
-*/
 
   };
 
@@ -379,8 +357,7 @@ var scrollVis = function () {
       .attr('opacity', 0);
 
     g.selectAll('.line')
-      .transition()
-      .attr('opacity', 0);
+       .attr('opacity', 0);
 
     g.selectAll('.map1')
       .transition()
@@ -409,8 +386,12 @@ var scrollVis = function () {
       .attr('opacity', 0);
 
     g.selectAll('.line')
-      .transition(d3.selectAll(".line"))
       .attr('opacity', 1.0);
+    transitionfxn(d3.selectAll(".line"));
+
+  //  g.selectAll('.line')
+  //    .transition()
+  //    .attr('opacity', 1.0);
 
     g.selectAll('.circle')
       .transition()
@@ -488,7 +469,6 @@ var scrollVis = function () {
       .on('mouseout',mouseout)
       .attr("fill", function(d) {
         return d.properties ? colorScale(d.properties.value) : 'red';
-      // return colorScale(d.properties.value);
     });
 
 };
