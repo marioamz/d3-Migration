@@ -86,6 +86,7 @@ var scrollVis = function () {
       g = svg.select('g')
         .style('transform', 'translate(-190px)');
 
+      console.log(caradata);
       setupVis(bubdata, mymap, caradata);
 
       setupSections();
@@ -148,7 +149,6 @@ var scrollVis = function () {
         var jsonState = mapdata.features[j].properties.name;
           if (dataState == jsonState) {
             mapdata.features[j].properties.value = dataValue;
-            console.log(dataState, jsonState, dataValue);
             break;
           }
         }
@@ -226,6 +226,7 @@ var scrollVis = function () {
       .style("stroke-width", "3.5px")
       .attr("d", line)
       .attr('opacity', 1);
+
 
     // bubbles graph
 
@@ -461,6 +462,10 @@ var scrollVis = function () {
       .transition()
       .attr('opacity', 1.0);
 
+    g.selectAll('.line')
+      .transition()
+      .attr('opacity', 0);
+
     g.selectAll('.map1')
       .classed("area", true)
       .on('mouseover', function(d) {
@@ -485,27 +490,30 @@ var scrollVis = function () {
 
     g.selectAll('.legendThreshold')
       .transition()
-      .attr('opacity', 0);
+      .attr('opacity', 1.0);
 
     g.selectAll('.text')
       .transition()
-      .attr('opacity', 0);
-
-    g.selectAll('.area')
-      .transition()
-      .attr('opacity', 0);
+      .attr('opacity', 1.0);
 
     g.selectAll('.highlight')
       .transition()
       .attr('opacity', 0);
 
+    g.selectAll('.line')
+      .attr('opacity', 1.0);
+    transitionfxn(d3.selectAll(".line"));
+
     g.selectAll('.map1')
-      .transition()
-      .attr('opacity', 1.0)
+      .classed("area", true)
+      .on('mouseover', function(d) {
+        d3.select(this).classed("highlight", true);
+          drawTooltip(d);})
+      .on('mouseout',mouseout)
       .attr("fill", function(d) {
-        return '#FFFACD';
-      });
-  };
+        return d.properties ? colorScale(d.properties.value) : 'red';
+    });
+};
 
 
   /**
