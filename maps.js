@@ -259,9 +259,8 @@ d3.selectAll(".city_dots").data(city_data).enter()
       .attr('fill', '#c51b8a')
       .attr('opacity', 0);
 
-//    d3.select("#option").select("input")
-//      .on('click', d => {
-//        state += 1;
+//  bubbles graph expansion
+
     g.selectAll('circle2')
       .data(bubdata)
       .enter()
@@ -280,7 +279,6 @@ d3.selectAll(".city_dots").data(city_data).enter()
       .style('fill', '#fde0dd')
       .style('stroke', '#c51b8a')
       .attr('opacity', 0);
-//      });
 
     // create choropleth
     // Legend
@@ -294,7 +292,6 @@ d3.selectAll(".city_dots").data(city_data).enter()
             .attr("x", 0)
             .attr("y", -6)
             .text("% Reporting Danger")
-          //  .attr('opacity', 0);
 
     var labels = ['0-12%', '12-24%', '24-36%', '36-48%', '48-60%'];
     var legend = d3.legendColor()
