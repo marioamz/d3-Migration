@@ -126,7 +126,7 @@ var scrollVis = function () {
   function transitionfxn(selection) {
     selection.each(function(){
       d3.select(this).transition()
-      .duration(8000)
+      .duration(6000)
       .attrTween("stroke-dasharray", tweenDash);
        })
 
