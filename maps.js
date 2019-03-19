@@ -73,12 +73,8 @@ var scrollVis = function () {
       var caradata = getCaravanData(caravandata);
 
       // create svg and give it a width and height
-      // svg = d3.select(this).selectAll('svg').data(mymap.features);
-      // var svgE = svg.enter().append('svg');
-
       svg = d3.select(this).append('svg');
       // @v4 use merge to combine enter and existing selection
-      // svg = svg.merge(svgE);
 
       svg.attr('width', width); //+ margin.left + margin.right);
       svg.attr('height', height); //+ margin.top + margin.bottom);
@@ -207,30 +203,16 @@ var scrollVis = function () {
       .data(mymap.features);
 
     map1
-      .attr("class", ".map1")
       .enter().append("path")
+      .attr("class", "map1")
       .attr("d", path)
+      .attr("fill", "#FFFACD")
       .merge(map1)
-      .attr("fill", "transparent")
       .style("stroke", "#333")
       .style("stroke-width", ".5px");
 
-    // map1.select('.map1').style('opacity', 0);
+    // caravan line
 
-    // second caravan map
-  /*  var map2 = g.append("g")
-      .selectAll(".map2")
-      .data(mymap.features);
-    map2
-      .attr("class", ".map2")
-      .enter().append("path")
-      .attr("d", path)
-      .merge(map2)
-      .attr("fill", "transparent")
-      .style("stroke", "#333")
-      .style("stroke-width", ".5px");
-    map2.select('.map2').style('opacity', 0);
-*/
     var line = d3.line()
     .x(function(d) { return projection([d.locations[0][0], d.locations[0][1]])[0]; })
     .y(function(d) { return projection([d.locations[0][0], d.locations[0][1]])[1]; })
@@ -241,28 +223,12 @@ var scrollVis = function () {
       .attr("class", "line")
       .style("stroke", '#df65b0')
       .style("fill", "none")
-      .style("stroke-width", "1.5px")
+      .style("stroke-width", "3.5px")
       .attr("d", line)
       .attr('opacity', 0);
 
-    transition(d3.selectAll('path'));
+    // bubbles graph
 
-
-    // create bubbles graph
-/*
-    var map3 = g.append('g')
-      .selectAll(".map3")
-      .data(mymap.features);
-    map3
-      .attr('class', '.map3')
-      .enter().append("path")
-      .merge(map3)
-      .attr("d", path)
-      .attr("fill", "transparent")
-      .style("stroke", "#333")
-      .style("stroke-width", ".5px")
-      .attr("opacity", 0);
-*/
     var state = 0
 
     var max = d3.max(bubdata, function(d) { return d.locations[state][2]; } );
@@ -299,25 +265,24 @@ var scrollVis = function () {
           .attr('r', function(d) {
             return scale(d.locations[state][2]);
           })
-          //.style('opacity', 0)
           .style('fill-opacity', 0.5)
           .style('fill', '#fde0dd')
           .style('stroke', '#c51b8a')
       });
 
     // create choropleth
-
-            // Legend
+    // Legend
     var g2 = g.append("g")
             .attr("class", "legendThreshold")
-            .attr("transform", "translate(600,20)");
+            .attr("transform", "translate(600,20)")
+            .attr('opacity', 0);
 
         g2.append("text")
             .attr("class", "caption")
             .attr("x", 0)
             .attr("y", -6)
-            .text("% of Migrants who Self-Reported Experiencing Danger in Each State")
-            .attr('opacity', 0);
+            .text("% Reporting Danger")
+          //  .attr('opacity', 0);
 
     var labels = ['0-12%', '12-24%', '24-36%', '36-48%', '48-60%'];
     var legend = d3.legendColor()
@@ -327,11 +292,11 @@ var scrollVis = function () {
           g.select(".legendThreshold")
             .call(legend)
             .attr('opacity', 0);
-
+/*
     var map4 = g.append('g')
       .selectAll(".map4")
       .data(mymap.features);
-
+*
     map4
       .attr('class', 'map4')
       .enter().append("path")
@@ -348,17 +313,7 @@ var scrollVis = function () {
       .style("stroke", "#333")
       .style("stroke-width", ".5px")
       .attr('opacity', 0);
-
-    // final map
-    g.append('g')
-      .selectAll("path")
-      .data(mymap.features)
-      .enter().append("path")
-      .attr("d", path)
-      .attr("fill", "transparent")
-      .style("stroke", "#333")
-      .style("stroke-width", ".5px")
-      .style('opacity', 0);
+*/
 
   };
 
@@ -410,10 +365,29 @@ var scrollVis = function () {
    *
    */
   function showMap() {
-    g.select('.map1')
+
+    g.selectAll('.legendThreshold')
       .transition()
-      .duration(500)
-      .attr('opacity', 1.0);
+      .attr('opacity', 0);
+
+    g.selectAll('.text')
+      .transition()
+      .attr('opacity', 0);
+
+    g.selectAll('.circle')
+      .transition()
+      .attr('opacity', 0);
+
+    g.selectAll('.line')
+      .transition()
+      .attr('opacity', 0);
+
+    g.selectAll('.map1')
+      .transition()
+      .attr('opacity', 1.0)
+      .attr("fill", function(d) {
+        return '#FFFACD';
+      });
   };
 
   /**
@@ -425,19 +399,29 @@ var scrollVis = function () {
    *
    */
   function showCaravan() {
-/*
-    g.selectAll('.map1')
+
+    g.selectAll('.legendThreshold')
       .transition()
       .attr('opacity', 0);
 
-    g.selectAll('.map2')
+    g.selectAll('.text')
       .transition()
-      .attr('opacity', 1.0);
-*/
+      .attr('opacity', 0);
+
     g.selectAll('.line')
-      .transition()
-      .duration(500)
+      .transition(d3.selectAll(".line"))
       .attr('opacity', 1.0);
+
+    g.selectAll('.circle')
+      .transition()
+      .attr('opacity', 0);
+
+    g.selectAll('.map1')
+      .transition()
+      .attr('opacity', 1.0)
+      .attr("fill", function(d) {
+        return '#FFFACD';
+      });
   };
 
   /**
@@ -449,22 +433,25 @@ var scrollVis = function () {
    *
    */
   function showBubbles() {
-/*
-    g.selectAll('.map1')
+
+    g.selectAll('.legendThreshold')
       .transition()
       .attr('opacity', 0);
 
-    g.selectAll('.map2')
+    g.selectAll('.text')
       .transition()
       .attr('opacity', 0);
 
-    g.selectAll('.map3')
-      .transition()
-      .attr('opacity', 1.0);
-*/
     g.selectAll('.line')
       .transition()
       .attr('opacity', 0);
+
+    g.selectAll('.map1')
+      .transition()
+      .attr('opacity', 1.0)
+      .attr("fill", function(d) {
+        return '#FFFACD';
+      });
 
     g.selectAll('.circle')
       .transition()
@@ -481,10 +468,6 @@ var scrollVis = function () {
    */
   function showChoropleth() {
 
-    g.selectAll('.map3').remove();
-      // .attr('opacity', 0)
-      // .classed("back", true);
-
     g.selectAll('.circle')
       .transition()
       .attr('opacity', 0);
@@ -497,18 +480,18 @@ var scrollVis = function () {
       .transition()
       .attr('opacity', 1.0);
 
-    g.selectAll('.map4')
-      .transition()
-      .attr('opacity', 1.0);
+    g.selectAll('.map1')
+      .classed("area", true)
+      .on('mouseover', function(d) {
+        d3.select(this).classed("highlight", true);
+          drawTooltip(d);})
+      .on('mouseout',mouseout)
+      .attr("fill", function(d) {
+        return d.properties ? colorScale(d.properties.value) : 'red';
+      // return colorScale(d.properties.value);
+    });
 
-    g.selectAll('.area')
-      .transition()
-      .attr('opacity', 1.0);
-
-    g.selectAll('.hidden')
-      .transition()
-      .attr('opacity', 1.0);
-  }
+};
 
   /**
    * showBar - barchart
@@ -519,16 +502,12 @@ var scrollVis = function () {
    *
    */
   function showMapFinal() {
-    // ensure bar axis is set
+
     g.selectAll('.legendThreshold')
       .transition()
       .attr('opacity', 0);
 
     g.selectAll('.text')
-      .transition()
-      .attr('opacity', 0);
-
-    g.selectAll('.map4')
       .transition()
       .attr('opacity', 0);
 
@@ -539,7 +518,14 @@ var scrollVis = function () {
     g.selectAll('.highlight')
       .transition()
       .attr('opacity', 0);
-  }
+
+    g.selectAll('.map1')
+      .transition()
+      .attr('opacity', 1.0)
+      .attr("fill", function(d) {
+        return '#FFFACD';
+      });
+  };
 
 
   /**
@@ -603,7 +589,6 @@ var scrollVis = function () {
   // return chart function
   return chart;
 };
-
 
 /**
  * display - called once data

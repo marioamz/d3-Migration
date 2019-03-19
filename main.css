@@ -38,7 +38,6 @@
 
 }
 
-
 #tooltip {
   font-size: 12px;
   position: absolute;
@@ -67,6 +66,7 @@ path.area{
   stroke-width:0.3;
   stroke: black;
 }
+
 path.area.highlight{
   fill:#78c679;
 }
