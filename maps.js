@@ -34,6 +34,7 @@ var scrollVis = function () {
   // for displaying visualizations
   var g = null;
 
+  // color scheme for the choropleth
   var colorScheme = d3.schemePurples[5];
           colorScheme.unshift("#eee");
 
@@ -45,12 +46,6 @@ var scrollVis = function () {
   // the activation function for that
   // section is called.
   var activateFunctions = [];
-  // If a section has an update function
-  // then it is called while scrolling
-  // through the section with the current
-  // progress through the section.
-  var updateFunctions = [];
-
   /**
    * chart
    *
@@ -279,7 +274,9 @@ var scrollVis = function () {
         return projection([d.locations[0][0], d.locations[0][1]])[1];
       })
       .attr("font-size","12px")
+      .attr("font-weight", 'bold')
       .text(function(d) {return d.Location; })
+      .attr('fill', 'none')
       .attr('opacity', 0);
 
     // bubbles graph
@@ -337,17 +334,6 @@ var scrollVis = function () {
     activateFunctions[3] = showBubbles;
     activateFunctions[4] = showChoropleth;
     activateFunctions[5] = showMapFinal;
-
-    // updateFunctions are called while
-    // in a particular section to update
-    // the scroll progress in that section.
-    // Most sections do not need to be updated
-    // for all scrolling and so are set to
-    // no-op functions.
-    for (var i = 0; i < 6; i++) {
-      updateFunctions[i] = function () {};
-    }
-//    updateFunctions[7] = updateCough;
   };
 
   /**
@@ -396,6 +382,7 @@ var scrollVis = function () {
        .attr('opacity', 0);
 
    g.selectAll('.city_name')
+      .transition().delay(function(d,i){ return i * 0 }).duration(0)
       .attr('opacity', 0);
 
     g.selectAll('.map1')
@@ -433,6 +420,7 @@ var scrollVis = function () {
        .attr('opacity', 0);
 
    g.selectAll('.city_name')
+      .transition().delay(function(d,i){ return i * 0 }).duration(0)
       .attr('opacity', 0);
 
     g.selectAll('.map1')
@@ -472,6 +460,7 @@ var scrollVis = function () {
 
     g.selectAll('.city_name')
        .transition().delay(function(d,i){ return i * 500 }).duration(1000)
+       .attr('fill', '#551A8B')
        .attr('opacity', 1.0);
 
     g.selectAll('.circle')
@@ -526,6 +515,7 @@ var scrollVis = function () {
       .attr('opacity', 0);
 
     g.selectAll('.city_name')
+       .transition().delay(function(d,i){ return i * 0 }).duration(0)
        .attr('opacity', 0);
 
     g.selectAll('.map1')
@@ -620,6 +610,7 @@ var scrollVis = function () {
       .attr('opacity', 0);
 
     g.selectAll('.city_name')
+       .transition().delay(function(d,i){ return i * 0 }).duration(0)
        .attr('opacity', 0);
 
     g.selectAll('.circle')
@@ -678,6 +669,7 @@ var scrollVis = function () {
       .attr('opacity', 0);
 
     g.selectAll('.city_name')
+       .transition().delay(function(d,i){ return i * 0 }).duration(0)
        .attr('opacity', 0);
 
     transitionfxn(d3.selectAll(".line"));
@@ -694,40 +686,6 @@ var scrollVis = function () {
     });
 };
 
-
-  /**
-   * UPDATE FUNCTIONS
-   *
-   * These will be called within a section
-   * as the user scrolls through it.
-   *
-   * We use an immediate transition to
-   * update visual elements based on
-   * how far the user has scrolled
-   *
-   */
-
-  /**
-   * updateCough - increase/decrease
-   * cough text and color
-   *
-   * @param progress - 0.0 - 1.0 -
-   *  how far user has scrolled in section
-   */
-  function updateCough(progress) {
-    g.selectAll('.cough')
-      .transition()
-      .duration(0)
-      .attr('opacity', progress);
-
-    g.selectAll('.hist')
-      .transition('cough')
-      .duration(0)
-      .style('fill', function (d) {
-        return (d.x0 >= 14) ? coughColorScale(progress) : '#008080';
-      });
-  }
-
   /**
    * activate -
    *
@@ -742,17 +700,6 @@ var scrollVis = function () {
     });
     lastIndex = activeIndex;
   };
-
-  /**
-   * update
-   *
-   * @param index
-   * @param progress
-   */
-  chart.update = function (index, progress) {
-    updateFunctions[index](progress);
-  };
-
   // return chart function
   return chart;
 };
@@ -788,10 +735,6 @@ function display(data) {
 
     // activate current section
     plot.activate(index);
-  });
-
-  scroll.on('progress', function (index, progress) {
-    plot.update(index, progress);
   });
 };
 
