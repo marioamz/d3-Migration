@@ -34,11 +34,11 @@ var scrollVis = function () {
   // for displaying visualizations
   var g = null;
 
-  var colorScheme = d3.schemePurples[4];
+  var colorScheme = d3.schemePurples[5];
           colorScheme.unshift("#eee");
 
   var colorScale = d3.scaleThreshold()
-              .domain([0, 0.12, 0.24, 0.36, 0.48, 0.6])
+              .domain([0, 0.10, 0.20, 0.30, 0.40, 0.50, 0.60])
               .range(colorScheme);
 
   // When scrolling to a new section
@@ -202,6 +202,16 @@ d3.selectAll(".city_dots").data(city_data).enter()
    */
   var setupVis = function (bubdata, mymap, caradata) {
 
+    // title
+    var imgs = g.append('image')
+      .attr("class", "image")
+      .attr("xlink:href", "d3data/photo.jpg")
+      .attr('x', 200)
+      .attr('y', -100)
+      .attr('width', 500)
+      .attr('height', 500);
+      //.attr("transform", "rotate("+-90+")");
+
     // first transparent map
     var map1 = g.append("g")
       .attr('height', 300)
@@ -213,7 +223,7 @@ d3.selectAll(".city_dots").data(city_data).enter()
       .enter().append("path")
       .attr("class", "map1")
       .attr("d", path)
-      .attr("fill", "#FFFACD")
+      .attr("fill", "#cbc9e2")
       .merge(map1)
       .style("stroke", "#333")
       .style("stroke-width", ".5px");
@@ -228,7 +238,7 @@ d3.selectAll(".city_dots").data(city_data).enter()
     g.append("path")
       .data([caradata])
       .attr("class", "line")
-      .style("stroke", '#df65b0')
+      .style("stroke", '#CC00FF')
       .style("fill", "none")
       .style("stroke-width", "3.5px")
       .attr("d", line)
@@ -274,7 +284,7 @@ d3.selectAll(".city_dots").data(city_data).enter()
             .attr("y", -6)
             .text("% Reporting Danger")
 
-    var labels = ['0-12%', '12-24%', '24-36%', '36-48%', '48-60%'];
+    var labels = ['0-10%', '10-20%', '20-30%', '30-40%', '40-50%', '50-60%'];
     var legend = d3.legendColor()
             .labels(function (d) { return labels[d.i]; })
             .shapePadding(4)
@@ -295,11 +305,12 @@ d3.selectAll(".city_dots").data(city_data).enter()
   var setupSections = function () {
     // activateFunctions are called each
     // time the active section changes
-    activateFunctions[0] = showMap;
-    activateFunctions[1] = showCaravan;
-    activateFunctions[2] = showBubbles;
-    activateFunctions[3] = showChoropleth;
-    activateFunctions[4] = showMapFinal;
+    activateFunctions[0] = showImage;
+    activateFunctions[1] = showMap;
+    activateFunctions[2] = showCaravan;
+    activateFunctions[3] = showBubbles;
+    activateFunctions[4] = showChoropleth;
+    activateFunctions[5] = showMapFinal;
 
     // updateFunctions are called while
     // in a particular section to update
@@ -307,7 +318,7 @@ d3.selectAll(".city_dots").data(city_data).enter()
     // Most sections do not need to be updated
     // for all scrolling and so are set to
     // no-op functions.
-    for (var i = 0; i < 5; i++) {
+    for (var i = 0; i < 6; i++) {
       updateFunctions[i] = function () {};
     }
 //    updateFunctions[7] = updateCough;
@@ -332,7 +343,45 @@ d3.selectAll(".city_dots").data(city_data).enter()
    * showMap: shows first, empty map of Mexico
    *
    */
+
+  function showImage() {
+
+    g.selectAll('.image')
+      .transition()
+      .attr('opacity', 1.0);
+
+    g.selectAll('.legendThreshold')
+      .transition()
+      .attr('opacity', 0);
+
+    g.selectAll('.text')
+      .transition()
+      .attr('opacity', 0);
+
+    g.selectAll('.circle')
+      .transition()
+      .attr('opacity', 0);
+
+    g.selectAll('.circle2')
+      .transition()
+      .attr('opacity', 0);
+
+    g.selectAll('.line')
+       .attr('opacity', 0);
+
+    g.selectAll('.map1')
+      .transition()
+      .attr('opacity', 0)
+      .attr("fill", function(d) {
+        return '#cbc9e2';
+      });
+  };
+
   function showMap() {
+
+    g.selectAll('.image')
+      .transition()
+      .attr('opacity', 0);
 
     g.selectAll('.legendThreshold')
       .transition()
@@ -357,7 +406,7 @@ d3.selectAll(".city_dots").data(city_data).enter()
       .transition()
       .attr('opacity', 1.0)
       .attr("fill", function(d) {
-        return '#FFFACD';
+        return '#cbc9e2';
       });
   };
 
@@ -370,6 +419,10 @@ d3.selectAll(".city_dots").data(city_data).enter()
    *
    */
   function showCaravan() {
+
+    g.selectAll('.image')
+      .transition()
+      .attr('opacity', 0);
 
     g.selectAll('.legendThreshold')
       .transition()
@@ -400,7 +453,7 @@ d3.selectAll(".city_dots").data(city_data).enter()
       .transition()
       .attr('opacity', 1.0)
       .attr("fill", function(d) {
-        return '#FFFACD';
+        return '#cbc9e2';
       });
   };
 
@@ -413,6 +466,10 @@ d3.selectAll(".city_dots").data(city_data).enter()
    *
    */
   function showBubbles() {
+
+    g.selectAll('.image')
+      .transition()
+      .attr('opacity', 0);
 
     g.selectAll('.legendThreshold')
       .transition()
@@ -430,7 +487,7 @@ d3.selectAll(".city_dots").data(city_data).enter()
       .transition()
       .attr('opacity', 1.0)
       .attr("fill", function(d) {
-        return '#FFFACD';
+        return '#cbc9e2';
       });
 
     var projection = d3.geoMercator()
@@ -444,7 +501,7 @@ d3.selectAll(".city_dots").data(city_data).enter()
     g.selectAll('.circle')
       .transition().duration(1000)
       .attr('opacity', 1.0)
-      .transition().delay(2000).duration(2000)
+      .transition().delay(500).duration(2000)
       .attr('cx', function(d) {
         return projection([d.locations[1][0], d.locations[1][1]])[0];
       })
@@ -455,13 +512,13 @@ d3.selectAll(".city_dots").data(city_data).enter()
         return scale(d.locations[1][2]);
       })
       .style('fill-opacity', 0.5)
-      .style('fill', '#fde0dd')
-      .style('stroke', '#c51b8a');
+      .style('fill', '#9e9ac8')
+      .style('stroke', '#54278f');
 
 
     g.selectAll('.circle2')
       .transition()
-      .duration(3000)
+      .duration(1000)
       .attr('opacity', 1);
     };
 
@@ -474,6 +531,10 @@ d3.selectAll(".city_dots").data(city_data).enter()
    *  are moved back to their place in the grid
    */
   function showChoropleth() {
+
+    g.selectAll('.image')
+      .transition()
+      .attr('opacity', 0);
 
     g.selectAll('.circle')
       .transition()
@@ -516,6 +577,10 @@ d3.selectAll(".city_dots").data(city_data).enter()
    *
    */
   function showMapFinal() {
+
+    g.selectAll('.image')
+      .transition()
+      .attr('opacity', 0);
 
     g.selectAll('.legendThreshold')
       .transition()
