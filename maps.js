@@ -66,11 +66,13 @@ var scrollVis = function () {
       var chorodata = data[1];
       var caravandata = data[2];
       var mapdata = data[3];
+      var caracities = data[4]
 
       // perform some preprocessing of my data
       var bubdata = getBubblesData(bubblesdata);
       var mymap = getMapData(mapdata, chorodata);
       var caradata = getCaravanData(caravandata);
+      var carcities = getCaravanData(caracities)
 
       // create svg and give it a width and height
       svg = d3.select(this).append('svg');
@@ -86,7 +88,7 @@ var scrollVis = function () {
       g = svg.select('g')
         .style('transform', 'translate(-190px)');
 
-      setupVis(bubdata, mymap, caradata);
+      setupVis(bubdata, mymap, caradata, carcities);
 
       setupSections();
     });
@@ -96,15 +98,32 @@ var scrollVis = function () {
   /** Drawing tooltip functions!
   */
 
+  function drawBubbletip2(d) {
+    var xBubble = d3.event.clientX;
+    var yBubble = d3.event.clientY;
+
+    d3.select('#tooltip')
+      .classed('hidden', true);
+  };
+
+  function drawBubbletip(d) {
+    var xBubble = d3.event.clientX;
+    var yBubble = d3.event.clientY;
+
+    d3.select('#tooltip')
+      .classed('hidden', false)
+      .style('left', (xBubble-350) + 'px')
+      .style('top', (yBubble) + 'px')
+      .text(d.locations[1][2] + ' migrants named ' + d.index + ' as part of their route');
+  };
+
+
   function drawTooltip2(d){
     var xPosition = d3.event.clientX;
     var yPosition = d3.event.clientY;
 
     d3.select("#tooltip")
-      .classed("hidden",true)
-      .style("left", (xPosition-350)+"px")
-      .style("top", (yPosition)+"px")
-      .text(d.properties.name + ': ' + (d.properties.value*100) + '%');
+      .classed("hidden",true);
   };
 
   function drawTooltip(d){
@@ -143,13 +162,6 @@ var scrollVis = function () {
 
 
     };
-
-/*
-d3.selectAll(".city_dots").data(city_data).enter()
-  .append("circle").attr("class","city_dot")
-  .attr("cx").attr("cy").attr("r",0)
-  .transition().delay(function(d,i){ return i * 2000 }).duration(1000).attr("r",)
-*/
 
   /** DATA FUNCTIONS: preprocessing of my data
    * getBubblesData - creates an array within each object that has lat and long
@@ -211,7 +223,7 @@ d3.selectAll(".city_dots").data(city_data).enter()
    * @param caradata - the caravan
      @param mapdata - the map and choro
    */
-  var setupVis = function (bubdata, mymap, caradata) {
+  var setupVis = function (bubdata, mymap, caradata, carcities) {
 
     // title
     var imgs = g.append('image')
@@ -221,7 +233,6 @@ d3.selectAll(".city_dots").data(city_data).enter()
       .attr('y', -100)
       .attr('width', 500)
       .attr('height', 500);
-      //.attr("transform", "rotate("+-90+")");
 
     // first transparent map
     var map1 = g.append("g")
@@ -240,7 +251,6 @@ d3.selectAll(".city_dots").data(city_data).enter()
       .style("stroke-width", ".5px");
 
     // caravan line
-
     var line = d3.line()
     .x(function(d) { return projection([d.locations[0][0], d.locations[0][1]])[0]; })
     .y(function(d) { return projection([d.locations[0][0], d.locations[0][1]])[1]; })
@@ -255,35 +265,40 @@ d3.selectAll(".city_dots").data(city_data).enter()
       .attr("d", line)
       .attr('opacity', 1);
 
+  var g4 = g.append("g");
 
-    var max = d3.max(bubdata, function(d) { return d.locations[1][2]; } );
-    var scale = d3.scaleLinear()
-      .domain([0, max])
-      .range([5, 20]);
+  g4.selectAll("text")
+      .data(carcities)
+      .enter()
+      .append("text")
+      .attr('class', 'city_name')
+      .attr("x", function(d) {
+        return projection([d.locations[0][0], d.locations[0][1]])[0];
+      })
+      .attr("y", function(d) {
+        return projection([d.locations[0][0], d.locations[0][1]])[1];
+      })
+      .attr("font-size","12px")
+      .text(function(d) {return d.Location; })
+      .attr('opacity', 0);
 
     // bubbles graph
-
-    var state = 0
-
     g.selectAll('circle')
       .data(bubdata)
       .enter()
       .append('circle')
       .attr('class', 'circle')
       .attr('cx', function(d) {
-        return projection([d.locations[state][0], d.locations[state][1]])[0];
+        return projection([d.locations[0][0], d.locations[0][1]])[0];
       })
       .attr('cy', function(d) {
-        return projection([d.locations[state][0], d.locations[state][1]])[1];
+        return projection([d.locations[0][0], d.locations[0][1]])[1];
       })
       .attr('r', 2)
       .attr('fill', '#c51b8a')
       .attr('opacity', 0);
 
-//  bubbles graph expansion
-
-    // create choropleth
-    // Legend
+    // create choropleth legend
     var g2 = g.append("g")
             .attr("class", "legendThreshold")
             .attr("transform", "translate(600,20)")
@@ -380,12 +395,16 @@ d3.selectAll(".city_dots").data(city_data).enter()
     g.selectAll('.line')
        .attr('opacity', 0);
 
+   g.selectAll('.city_name')
+      .attr('opacity', 0);
+
     g.selectAll('.map1')
       .transition()
       .attr('opacity', 0)
       .attr("fill", function(d) {
         return '#cbc9e2';
       });
+
   };
 
   function showMap() {
@@ -412,6 +431,9 @@ d3.selectAll(".city_dots").data(city_data).enter()
 
     g.selectAll('.line')
        .attr('opacity', 0);
+
+   g.selectAll('.city_name')
+      .attr('opacity', 0);
 
     g.selectAll('.map1')
       .transition()
@@ -448,9 +470,9 @@ d3.selectAll(".city_dots").data(city_data).enter()
 
     transitionfxn(d3.selectAll(".line"));
 
-  //  g.selectAll('.line')
-  //    .transition()
-  //    .attr('opacity', 1.0);
+    g.selectAll('.city_name')
+       .transition().delay(function(d,i){ return i * 500 }).duration(1000)
+       .attr('opacity', 1.0);
 
     g.selectAll('.circle')
       .transition()
@@ -459,6 +481,15 @@ d3.selectAll(".city_dots").data(city_data).enter()
     g.selectAll('.circle2')
       .transition()
       .attr('opacity', 0);
+
+    g.selectAll('.circle')
+      .classed('area', false)
+      .classed('highlight', false)
+      .on('mouseover', function(d) {
+        d3.select(this).classed("highlight", false);
+          drawBubbletip2(d);})
+      .on('mouseout',mouseout)
+      .classed('hidden', true);
 
     g.selectAll('.map1')
       .transition()
@@ -494,6 +525,9 @@ d3.selectAll(".city_dots").data(city_data).enter()
       .transition()
       .attr('opacity', 0);
 
+    g.selectAll('.city_name')
+       .attr('opacity', 0);
+
     g.selectAll('.map1')
       .transition()
       .attr('opacity', 1.0)
@@ -505,14 +539,14 @@ d3.selectAll(".city_dots").data(city_data).enter()
         .scale(1100)
         .center([-102.34034978813841, 24.012062015793]);
 
-    var scale = d3.scaleLinear()
-      .domain([0, 2500])
-      .range([5, 20]);
+    var scale = d3.scaleSqrt()
+      .domain([0, 3000])
+      .range([2, 20]);
 
     g.selectAll('.circle')
       .transition().duration(1000)
       .attr('opacity', 1.0)
-      .transition().delay(500).duration(2000)
+      .transition().delay(100).duration(2000)
       .attr('cx', function(d) {
         return projection([d.locations[1][0], d.locations[1][1]])[0];
       })
@@ -526,11 +560,19 @@ d3.selectAll(".city_dots").data(city_data).enter()
       .style('fill', '#9e9ac8')
       .style('stroke', '#54278f');
 
-
     g.selectAll('.circle2')
       .transition()
       .duration(1000)
       .attr('opacity', 1);
+
+    g.selectAll('.circle')
+      .classed('area', true)
+      .classed('highlight', false)
+      .on('mouseover', function(d) {
+        d3.select(this).classed("highlight", false);
+          drawBubbletip(d);})
+      .on('mouseout',mouseout)
+      .classed('hidden', false);
 
     g.selectAll('.map1')
       .classed('area', false)
@@ -577,6 +619,18 @@ d3.selectAll(".city_dots").data(city_data).enter()
       .transition()
       .attr('opacity', 0);
 
+    g.selectAll('.city_name')
+       .attr('opacity', 0);
+
+    g.selectAll('.circle')
+      .classed('area', false)
+      .classed('highlight', false)
+      .on('mouseover', function(d) {
+        d3.select(this).classed("highlight", false);
+          drawBubbletip2(d);})
+      .on('mouseout',mouseout)
+      .classed('hidden', true);
+
     g.selectAll('.map1')
       .classed("area", true)
       .on('mouseover', function(d) {
@@ -585,6 +639,7 @@ d3.selectAll(".city_dots").data(city_data).enter()
       .on('mouseout',mouseout)
       .attr("fill", function(d) {
         return d.properties ? colorScale(d.properties.value) : 'red';
+
     });
 
 };
@@ -622,6 +677,9 @@ d3.selectAll(".city_dots").data(city_data).enter()
       .transition()
       .attr('opacity', 0);
 
+    g.selectAll('.city_name')
+       .attr('opacity', 0);
+
     transitionfxn(d3.selectAll(".line"));
 
     g.selectAll('.map1')
@@ -632,6 +690,7 @@ d3.selectAll(".city_dots").data(city_data).enter()
       .on('mouseout',mouseout)
       .attr("fill", function(d) {
         return d.properties ? colorScale(d.properties.value) : 'red';
+
     });
 };
 
@@ -743,6 +802,7 @@ d3.queue()
     .defer(d3.csv, "d3data/violence.csv")
     .defer(d3.csv, "d3data/Migrant_Caravan.csv")
     .defer(d3.json, url)
+    .defer(d3.csv, "d3data/caravancities.csv")
     .awaitAll(function (err, results) {
       display(results)
     });
