@@ -96,6 +96,17 @@ var scrollVis = function () {
   /** Drawing tooltip functions!
   */
 
+  function drawTooltip2(d){
+    var xPosition = d3.event.clientX;
+    var yPosition = d3.event.clientY;
+
+    d3.select("#tooltip")
+      .classed("hidden",true)
+      .style("left", (xPosition-350)+"px")
+      .style("top", (yPosition)+"px")
+      .text(d.properties.name + ': ' + (d.properties.value*100) + '%');
+  };
+
   function drawTooltip(d){
     var xPosition = d3.event.clientX;
     var yPosition = d3.event.clientY;
@@ -520,6 +531,16 @@ d3.selectAll(".city_dots").data(city_data).enter()
       .transition()
       .duration(1000)
       .attr('opacity', 1);
+
+    g.selectAll('.map1')
+      .classed('area', false)
+      .classed('highlight', false)
+      .on('mouseover', function(d) {
+        d3.select(this).classed("highlight", false);
+          drawTooltip2(d);})
+      .on('mouseout',mouseout)
+      .classed('hidden', true);
+
     };
 
   /**
