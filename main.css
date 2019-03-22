@@ -74,3 +74,11 @@ path.area.highlight{
 .back {
   z-index: -1;
 }
+
+.header{
+  position: absolute;
+  bottom: -2600px;
+  right: -200px;
+  width: 700px;
+  height: 100px;
+}

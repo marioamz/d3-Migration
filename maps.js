@@ -124,12 +124,13 @@ var scrollVis = function () {
   function drawTooltip(d){
     var xPosition = d3.event.clientX;
     var yPosition = d3.event.clientY;
+    var f = d3.format(".1f");
 
     d3.select("#tooltip")
       .classed("hidden",false)
       .style("left", (xPosition-350)+"px")
       .style("top", (yPosition)+"px")
-      .text(d.properties.name + ': ' + (d.properties.value*100) + '%');
+      .text(d.properties.name + ': ' + (f(d.properties.value*100)) + '%');
   };
 
   function mouseout() {
