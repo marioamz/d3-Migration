@@ -1,7 +1,7 @@
 /* inspired by: https://vallandingham.me/scroller.html */
 
 .container {
-  width: 1000px;
+  width: 900px;
   margin: auto;
 }
 
@@ -25,8 +25,8 @@
 .step {
   margin-bottom: 250px;
   font-family: "TiemposTextWeb-Regular","Georgia";
-  font-size: 15px;
-  line-height: 20px;
+  font-size: 16px;
+  line-height: 22px;
   color: #484848;
 }
 
@@ -77,7 +77,7 @@ path.area.highlight{
 
 .header{
   position: absolute;
-  bottom: -2000px;
+  bottom: -2200px;
   right: -200px;
   width: 700px;
   height: 100px;

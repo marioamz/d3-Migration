@@ -233,7 +233,7 @@ var scrollVis = function () {
       .attr('x', width / 2.5)
       .attr('y', height / 6)
       .attr('font-size', '30px')
-      .attr('font-family', "Georgia")
+      .attr('font-family', "TiemposTextWeb-Regular", "Georgia")
       .attr('text-anchor', 'left');
 
     title.append('tspan')
@@ -297,7 +297,7 @@ var scrollVis = function () {
       .attr("y", function(d) {
         return projection([d.locations[0][0], d.locations[0][1]])[1];
       })
-      .attr("font-size","12px")
+      .attr("font-size","14px")
       .attr("font-weight", 'bold')
       .text(function(d) {return d.Location; })
       .attr('fill', 'none')
