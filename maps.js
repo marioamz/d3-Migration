@@ -224,6 +224,25 @@ var scrollVis = function () {
    */
   var setupVis = function (bubdata, mymap, caradata, carcities) {
 
+    var title = g.append('text')
+      .attr('class', 'title')
+      .attr('opacity', 0);
+
+    title.append('tspan')
+      .text('Changing Routes in Central American ')
+      .attr('x', width / 2.5)
+      .attr('y', height / 3)
+      .attr('font-size', '25px')
+      .attr('font-family', "Georgia")
+      .attr('text-anchor', 'left');
+
+    title.append('tspan')
+      .text('Migration Through Mexico')
+      .attr('x', width / 2)
+      .attr('y', height / 2)
+      .attr('font-size', '25px')
+      .attr('font-family', 'Georgia');
+
     // show the image
     var imgs = g.append('image')
       .attr("class", "image")
@@ -266,6 +285,7 @@ var scrollVis = function () {
 
   // cities to show in caravan map
   var g4 = g.append("g");
+
   g4.selectAll("text")
       .data(carcities)
       .enter()
@@ -358,9 +378,12 @@ var scrollVis = function () {
   // turns everything else to opaque
   function showImage() {
 
+    g.selectAll('.title')
+      .attr('opacity', 1.0);
+
     g.selectAll('.image')
       .transition()
-      .attr('opacity', 1.0);
+      .attr('opacity', 0);
 
     g.selectAll('.legendThreshold')
       .transition()
@@ -399,6 +422,9 @@ var scrollVis = function () {
 
     g.selectAll('.image')
       .transition()
+      .attr('opacity', 1);
+
+    g.selectAll('.title')
       .attr('opacity', 0);
 
     g.selectAll('.legendThreshold')
@@ -426,7 +452,7 @@ var scrollVis = function () {
 
     g.selectAll('.map1')
       .transition()
-      .attr('opacity', 1.0)
+      .attr('opacity', 0)
       .attr("fill", function(d) {
         return '#cbc9e2';
       });
@@ -438,6 +464,9 @@ var scrollVis = function () {
 
     g.selectAll('.image')
       .transition()
+      .attr('opacity', 0);
+
+    g.selectAll('.title')
       .attr('opacity', 0);
 
     g.selectAll('.legendThreshold')
@@ -486,6 +515,9 @@ var scrollVis = function () {
   // shows bubbles sized by sqrt scale with transition
   // calls tooltip, everything else opaque
   function showBubbles() {
+
+    g.selectAll('.title')
+      .attr('opacity', 0);
 
     g.selectAll('.image')
       .transition()
@@ -567,6 +599,9 @@ var scrollVis = function () {
   // everything else opaque
   function showChoropleth() {
 
+    g.selectAll('.title')
+      .attr('opacity', 0);
+
     g.selectAll('.image')
       .transition()
       .attr('opacity', 0);
@@ -618,6 +653,9 @@ var scrollVis = function () {
   // shows the final map: a choropleth plus caravan line with tooltip
   // everything else opaque
   function showMapFinal() {
+
+    g.selectAll('.title')
+      .attr('opacity', 0);
 
     g.selectAll('.image')
       .transition()
