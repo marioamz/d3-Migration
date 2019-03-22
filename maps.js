@@ -1,3 +1,5 @@
+/* inspired by: https://vallandingham.me/scroller.html */
+
 /**
  * scrollVis - encapsulates
  * all the code for the visualization
@@ -90,9 +92,9 @@ var scrollVis = function () {
   };
 
 
-  /** Drawing tooltip functions!
-  */
+  /** Drawing tooltip functions!*/
 
+  // Deletes tooltip from graphs that aren't bubble graphs
   function drawBubbletip2(d) {
     var xBubble = d3.event.clientX;
     var yBubble = d3.event.clientY;
@@ -101,6 +103,7 @@ var scrollVis = function () {
       .classed('hidden', true);
   };
 
+  // Draws tooltip for bubble graphs
   function drawBubbletip(d) {
     var xBubble = d3.event.clientX;
     var yBubble = d3.event.clientY;
@@ -112,7 +115,7 @@ var scrollVis = function () {
       .text(d.locations[1][2] + ' migrants named ' + d.index + ' as part of their route');
   };
 
-
+  // removes tooltip from graphs that aren't choropleth
   function drawTooltip2(d){
     var xPosition = d3.event.clientX;
     var yPosition = d3.event.clientY;
@@ -121,6 +124,8 @@ var scrollVis = function () {
       .classed("hidden",true);
   };
 
+  // creates tooltip for choropleth
+  // inspired by: http://bl.ocks.org/micahstubbs/8e15870eb432a21f0bc4d3d527b2d14f
   function drawTooltip(d){
     var xPosition = d3.event.clientX;
     var yPosition = d3.event.clientY;
@@ -133,6 +138,7 @@ var scrollVis = function () {
       .text(d.properties.name + ': ' + (f(d.properties.value*100)) + '%');
   };
 
+  // mouses out of tooltip, same inspiration as above.
   function mouseout() {
   d3.select("#tooltip").classed("hidden", true);
   d3.select(this).classed("highlight",false)
@@ -140,9 +146,8 @@ var scrollVis = function () {
 
 
   /** DRAWING LINES FUNCTIONS
-  * tweenDash and transition both draw the lines for the caravan map
-  */
-
+  * tweenDash and transition both draw the lines for the caravan map*/
+  // inspired by https://bl.ocks.org/mbostock/5649592
   function tweenDash() {
       var l = this.getTotalLength(),
         i = d3.interpolateString("0," + l, l + "," + l);
@@ -155,18 +160,13 @@ var scrollVis = function () {
       .duration(6000)
       .attrTween("stroke-dasharray", tweenDash);
        })
-
-
     };
 
   /** DATA FUNCTIONS: preprocessing of my data
-   * getBubblesData - creates an array within each object that has lat and long
-   * getCaravanData - creates an array within each object that has lat and long
    * getMapData - adds value of danger from choropleth data to the geojson map,
    this creates the data we can use to create an initial map, which we can then
    update with all the other data, and then tap into choro to make the choropleth.
    */
-
   function getMapData (mapdata, chorodata) {
     for (var i = 0; i < chorodata.length; i++) {
       var dataState = chorodata[i].State;
@@ -182,6 +182,7 @@ var scrollVis = function () {
       return mapdata;
     };
 
+  //getBubblesData - creates an array within each object that has lat and long
   function getBubblesData (bubblesdata) {
     var columns = [['mex_port_long', 'mex_port_lat', 'sum'],
     ['city_long', 'city_lat', 'sum']];
@@ -197,6 +198,7 @@ var scrollVis = function () {
     return newData;
    };
 
+   //getCaravanData - creates an array within each object that has lat and long
    function getCaravanData (caravandata) {
      var cols = [['city_long', 'city_lat']];
 
@@ -218,10 +220,11 @@ var scrollVis = function () {
    * @param bubdata - stops data
    * @param caradata - the caravan
      @param mapdata - the map and choro
+     @param carcities - cities to show in caravan route
    */
   var setupVis = function (bubdata, mymap, caradata, carcities) {
 
-    // title
+    // show the image
     var imgs = g.append('image')
       .attr("class", "image")
       .attr("xlink:href", "d3data/photo.jpg")
@@ -261,8 +264,8 @@ var scrollVis = function () {
       .attr("d", line)
       .attr('opacity', 1);
 
+  // cities to show in caravan map
   var g4 = g.append("g");
-
   g4.selectAll("text")
       .data(carcities)
       .enter()
@@ -292,8 +295,8 @@ var scrollVis = function () {
       .attr('cy', function(d) {
         return projection([d.locations[0][0], d.locations[0][1]])[1];
       })
-      .attr('r', 2)
-      .attr('fill', '#c51b8a')
+      .attr('r', 3)
+      .attr('fill', '#54278f')
       .attr('opacity', 0);
 
     // create choropleth legend
@@ -316,7 +319,6 @@ var scrollVis = function () {
           g.select(".legendThreshold")
             .call(legend)
             .attr('opacity', 0);
-
   };
 
   /**
@@ -352,11 +354,8 @@ var scrollVis = function () {
    *
    */
 
-  /**
-   * showMap: shows first, empty map of Mexico
-   *
-   */
-
+  // shows the image with which the story opens
+  // turns everything else to opaque
   function showImage() {
 
     g.selectAll('.image')
@@ -392,9 +391,10 @@ var scrollVis = function () {
       .attr("fill", function(d) {
         return '#cbc9e2';
       });
-
   };
 
+  // shows first empty map
+  // everything else turns opaque
   function showMap() {
 
     g.selectAll('.image')
@@ -432,14 +432,8 @@ var scrollVis = function () {
       });
   };
 
-  /**
-   * showCaravan - shows caravan
-   *
-   * hides: initial map
-   * shows: caravan map
-   * shows: line
-   *
-   */
+  // shows the caravan line and caravan cities with transition and delay
+  // everything else opaque
   function showCaravan() {
 
     g.selectAll('.image')
@@ -489,14 +483,8 @@ var scrollVis = function () {
       });
   };
 
-  /**
-   * showGrid - square grid
-   *
-   * hides: filler count title
-   * hides: filler highlight in grid
-   * shows: square grid
-   *
-   */
+  // shows bubbles sized by sqrt scale with transition
+  // calls tooltip, everything else opaque
   function showBubbles() {
 
     g.selectAll('.image')
@@ -573,17 +561,10 @@ var scrollVis = function () {
           drawTooltip2(d);})
       .on('mouseout',mouseout)
       .classed('hidden', true);
-
     };
 
-  /**
-   * highlightGrid - show fillers in grid
-   *
-   * hides: barchart, text and axis
-   * shows: square grid and highlighted
-   *  filler words. also ensures squares
-   *  are moved back to their place in the grid
-   */
+  // shows choropleth and tooltip
+  // everything else opaque
   function showChoropleth() {
 
     g.selectAll('.image')
@@ -631,19 +612,11 @@ var scrollVis = function () {
       .on('mouseout',mouseout)
       .attr("fill", function(d) {
         return d.properties ? colorScale(d.properties.value) : 'red';
-
     });
-
 };
 
-  /**
-   * showBar - barchart
-   *
-   * hides: square grid
-   * hides: histogram
-   * shows: barchart
-   *
-   */
+  // shows the final map: a choropleth plus caravan line with tooltip
+  // everything else opaque
   function showMapFinal() {
 
     g.selectAll('.image')
@@ -683,7 +656,6 @@ var scrollVis = function () {
       .on('mouseout',mouseout)
       .attr("fill", function(d) {
         return d.properties ? colorScale(d.properties.value) : 'red';
-
     });
 };
 

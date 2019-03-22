@@ -1,3 +1,4 @@
+/* inspired by: https://vallandingham.me/scroller.html */
 
 /**
  * scroller - handles the details
