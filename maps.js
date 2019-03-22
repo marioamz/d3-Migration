@@ -229,18 +229,18 @@ var scrollVis = function () {
       .attr('opacity', 0);
 
     title.append('tspan')
-      .text('Changing Routes in Central American ')
+      .text('Changing Routes in Central American')
       .attr('x', width / 2.5)
-      .attr('y', height / 3)
-      .attr('font-size', '25px')
+      .attr('y', height / 6)
+      .attr('font-size', '30px')
       .attr('font-family', "Georgia")
       .attr('text-anchor', 'left');
 
     title.append('tspan')
       .text('Migration Through Mexico')
       .attr('x', width / 2)
-      .attr('y', height / 2)
-      .attr('font-size', '25px')
+      .attr('y', height / 4)
+      .attr('font-size', '30px')
       .attr('font-family', 'Georgia');
 
     // show the image
@@ -329,12 +329,13 @@ var scrollVis = function () {
             .attr("class", "caption")
             .attr("x", 0)
             .attr("y", -6)
-            .text("% Reporting Danger")
+            .text("% of Migrants Facing Danger")
+            .attr('font-size', '15.5px');
 
     var labels = ['0-10%', '10-20%', '20-30%', '30-40%', '40-50%', '50-60%'];
     var legend = d3.legendColor()
             .labels(function (d) { return labels[d.i]; })
-            .shapePadding(4)
+            .shapePadding(6)
             .scale(colorScale)
           g.select(".legendThreshold")
             .call(legend)
